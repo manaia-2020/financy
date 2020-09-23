@@ -1,22 +1,25 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { postExpense } from '../api/api'
 
 const AddRecurringExpense = (props) => {
-  const [ enterExpense, setEnterExpense ] = useState('')
+  const [ expense, enterExpense ] = useState('')
 
   const handleChange = (event) => {
     [event.target.name] = event.target.value
-    setEnterExpense(event.target.name)
+    enterExpense(event.target.name)
   }
 
-  const postExpense = (event) => {
+  const submitForm = (event) => {
     event.preventDefault()
-    // TODO send API enterExpense variable and userId
+    return postExpense(expense)
+      .then((result) => console.log(result))
   }
+
   return (
     <>
       <h1>Add an Expense</h1>
-      <form onSubmit={postExpense(enterExpense)}>
+      <form onSubmit={submitForm}>
         <label htmlFor="expenseName">Expense Name</label>
         <input type="text" name="expenseName" id="expenseName" autoFocus={true} onChange={handleChange}/>
         <label htmlFor="frequency">How Often</label>

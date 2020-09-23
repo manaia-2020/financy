@@ -12,7 +12,8 @@ module.exports = {
     },
     seeds: {
       directory: path.join(__dirname, '/server/database/seeds')
-    }
+    },
+    useNullAsDefault: true
   },
   test: {
     client: 'sqlite3',

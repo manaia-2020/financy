@@ -13,3 +13,6 @@ applyAuthRoutes(router, {
     createUser: saveNewUser,
     getUserByName
  })
+
+
+ module.exports = router

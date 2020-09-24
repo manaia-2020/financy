@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { addGoal } from '../actions/goals.action'
+import { postGoal } from '../api/goals.api'
 
 function AddGoal (props) {
   const [goal, setGoal] = useState({
@@ -19,8 +21,12 @@ function AddGoal (props) {
   }
 
   function handleSubmit (event) {
+    const id = 2
     event.preventDefault()
-    // TODO: post goal information and userId to api
+    props.dispatch(addGoal(goal, id))
+    postGoal(goal, id)
+      .then(console.log)
+      .catch(console.log)
   }
 
   return (

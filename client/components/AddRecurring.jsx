@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { postExpense } from '../api/api'
+import { addTransaction } from '../api/api'
 
 const AddRecurringExpense = (props) => {
-  const [ expense, enterExpense ] = useState('')
+  const [ trans, setTrans ] = useState('')
 
   const handleChange = (event) => {
     [event.target.name] = event.target.value
-    enterExpense(event.target.name)
+    setTrans(event.target.name)
   }
 
   const submitForm = (event) => {
     event.preventDefault()
-    return postExpense(expense)
-      .then((result) => console.log(result))
+    return addTransaction(trans)
+      .then(() => {
+        return null
+      })
   }
 
   return (

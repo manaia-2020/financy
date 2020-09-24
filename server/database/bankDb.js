@@ -25,14 +25,17 @@ function addRecurring (frequency, db = database) {
     .insert({ frequency })
 }
 
-function addTransaction (body, id, transId, db = database) {
+function addTransaction (body, userId, transId, db = database) {
   const { amount, date } = body
   return db('transactions')
     .insert({
       amount,
       date,
-      user_id: id,
+      user_id: userId,
       recurring_transaction_id: transId
+    })
+    .then(() => {
+      return updateBalance(amount, userId, db)
     })
 }
 

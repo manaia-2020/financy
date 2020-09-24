@@ -32,9 +32,9 @@ describe('addRecurring', () => {
 })
 
 describe('addTransaction', () => {
+  const body = { amount: 12.95, date: '31/12/2020' }
   test('Adds a new transaction record for userId 2', () => {
     expect.assertions(2)
-    const body = { amount: 12.95, date: '31/12/2020' }
     return addTransaction(body, 2, null, testDb)
       .then((newTransId) => {
         return getTransactions(2, testDb)
@@ -42,6 +42,18 @@ describe('addTransaction', () => {
       .then((trans) => {
         expect(trans).toHaveLength(2)
         expect(trans[1].amount).toBe(12.95)
+        return null
+      })
+  })
+
+  test('Adds transaction then updates balance correctly', () => {
+    expect.assertions(1)
+    return addTransaction(body, 2, null, testDb)
+      .then(() => {
+        return getCurrentBalance(2, testDb)
+      })
+      .then((userBalance) => {
+        expect(userBalance.balance).toBe(512.95)
         return null
       })
   })

@@ -4,7 +4,7 @@ exports.up = function (knex) {
     table.string('first_name')
     table.string('last_name')
     table.string('email')
-    table.string('password')
+    table.string('password_hash')
     table.timestamp('created_at')
   })
 }

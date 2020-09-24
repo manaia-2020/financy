@@ -1,6 +1,6 @@
 const knex = require('knex')
 const config = require('../../knexfile').test
-const { getTransactions, newTransaction, addRecurring, addTransaction } = require('./bankDb')
+const { getTransactions, newTransaction, addRecurring, addTransaction, getCurrentBalance, updateBalance } = require('./bankDb')
 
 const testDb = knex(config)
 beforeAll(() => testDb.migrate.latest())
@@ -73,6 +73,56 @@ describe('newTransaction', () => {
       .then((trans) => {
         expect(trans).toHaveLength(2)
         expect(trans[1].recurring_transaction_id).toBeNull()
+        return null
+      })
+  })
+})
+
+describe('getBalance', () => {
+  test('Returns balance for userId', () => {
+    expect.assertions(2)
+    return getCurrentBalance(2, testDb)
+      .then((userBalance) => {
+        expect(userBalance.balance).toBe(500.00)
+        expect(userBalance.user_id).toBe(2)
+        return null
+      })
+  })
+
+  test('Returns newest balance', () => {
+    expect.assertions(2)
+    return getCurrentBalance(2, testDb)
+      .then((userBalance) => {
+        expect(userBalance.balance).not.toBe(450.00)
+        expect(userBalance.balance_updated_at).not.toBe(1600990006895)
+        return null
+      })
+  })
+})
+
+describe('updateBalance', () => {
+  test('Updates a positive balance for a decimal', () => {
+    expect.assertions(1)
+    return updateBalance(15.95, 2, testDb)
+      .then(() => {
+        return getCurrentBalance(2, testDb)
+      })
+      .then((userBalance) => {
+        expect(userBalance.balance).toBe(515.95)
+        return null
+      })
+  })
+})
+
+describe('udpdateBalance', () => {
+  test('updated a negative balance', () => {
+    expect.assertions(1)
+    return updateBalance(-10.50, 2, testDb)
+      .then(() => {
+        return getCurrentBalance(2, testDb)
+      })
+      .then((userBalance) => {
+        expect(userBalance.balance).toBe(489.50)
         return null
       })
   })

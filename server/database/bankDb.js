@@ -36,9 +36,27 @@ function addTransaction (body, id, transId, db = database) {
     })
 }
 
+function updateBalance (amount, userId, db = database) {
+  return db('accounts')
+    .insert({
+      userId,
+      balance_updated_at: Date.now()
+    })
+    .increment({ balance: amount })
+}
+
+function getCurrentBalance (userId, db = database) {
+  return db('accounts')
+    .where({ user_id: userId })
+    .orderBy('balance_updated_at', 'desc')
+    .first()
+}
+
 module.exports = {
   getTransactions,
   newTransaction,
   addRecurring,
-  addTransaction
+  addTransaction,
+  updateBalance,
+  getCurrentBalance
 }

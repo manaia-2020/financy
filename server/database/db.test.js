@@ -13,9 +13,9 @@ beforeEach(() => testDb.seed.run())
 test('saveNewUser adds user to db', () => {
   const user = { username: 'welovetesting@gmail.com', password: 'test' }
   return db.saveNewUser(user, testDb)
-    .then(() =>db.getUserByName(user.username, testDb))
+    .then(() => db.getUserByName(user.username, testDb))
     .then(res => {
-          expect(res.username).toBe('welovetesting@gmail.com')
+      expect(res.username).toBe('welovetesting@gmail.com')
     })
 })
 

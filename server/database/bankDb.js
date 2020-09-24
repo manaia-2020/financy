@@ -11,12 +11,13 @@ function getTransactions (userId, db = database) {
 function newTransaction (body, id, db = database) {
   const { recurring, frequency } = body
   if (recurring) {
-    return addRecurring(frequency)
+    return addRecurring(frequency, db)
       .then((transId) => {
-        return addTransaction(body, id, transId)
+        return addTransaction(body, id, transId[0], db)
       })
+  } else {
+    return addTransaction(body, id, null, db)
   }
-  return addTransaction(body, id, null)
 }
 
 function addRecurring (frequency, db = database) {

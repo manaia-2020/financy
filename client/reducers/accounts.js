@@ -1,10 +1,10 @@
-import { GET_ACCOUNT, ADD_ACCOUNT } from '../actions/index'
+import { GET_ACCOUNTS, ADD_ACCOUNT } from '../actions/index'
 
 const initialState = []
 
 export default function accountsReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_ACCOUNT:
+    case GET_ACCOUNTS:
       return action.account
 
     case ADD_ACCOUNT:

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addAccount } from '../actions/index'
-import { postAccount } from '../api/index'
+import { postAccount } from '../api/api'
 
 const AddAccount = (props) => {
   const [account, setAccount] = useState({

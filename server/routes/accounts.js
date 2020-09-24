@@ -15,14 +15,13 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/:id', (req, res) => {
-  const id = Number(req.params.id)
-  const { name, balance } = req.body
-
-  addAccountDetails(id)
+  const userId = Number(req.params.id)
+  addAccountDetails(req.body, userId)
     .then(id => getAccountDetails(id))
-    .then((account) => {
-      console.log(account)
-      res.json(account)
+    .then((result) => {
+      res.status(201)
+      res.json(result)
+      return null
     })
     .catch((error) => {
       res.status(500).send('DATABASE ERROR:' + error.message)

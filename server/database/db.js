@@ -45,12 +45,12 @@ function getAccountDetails(id, db = connection) {
     .select('accounts.user_id as id', 'user_id as userId', 'name', 'balance', 'balance_updated_at as balanceLastUpdated')
 }
 
-function addAccountDetails(account, db = connection) {
+function addAccountDetails(data, db = connection) {
   return db('accounts')
     .insert({
-      name: account.name,
-      balance: account.balance,
-      id: account.id
+      name: data.name,
+      balance: data.balance,
+      id: data.id
     })
 }
 

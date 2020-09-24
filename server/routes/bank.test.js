@@ -1,10 +1,11 @@
 import request from 'supertest'
 import server from '../server'
 
-import { getTransactions } from '../database/bankDb'
+import { getTransactions, newTransaction } from '../database/bankDb'
 
 jest.mock('../database/bankDb', () => ({
-  getTransactions: jest.fn()
+  getTransactions: jest.fn(),
+  newTransaction: jest.fn()
 }))
 
 describe('GET /:id/transactions', () => {
@@ -33,6 +34,27 @@ describe('GET /:id/transactions', () => {
       .then(res => {
         expect(res.status).toBe(500)
         expect(res.text).toMatch(/Database Error/)
+      })
+  })
+})
+
+describe('POST /:id/addTransaction', () => {
+  const body = {
+    user_id: 2,
+    amount: 10.95,
+    date: Date.now(),
+    recurring: false
+  }
+
+  test('Status 201', () => {
+    newTransaction.mockImplementation(() => Promise.resolve())
+    expect.assertions(2)
+    return request(server)
+      .post('/api/v1/bank/2/addTransaction')
+      .send(body)
+      .then(res => {
+        expect(res.status).toBe(201)
+        expect(newTransaction).toHaveBeenCalledWith(body, 2)
       })
   })
 })

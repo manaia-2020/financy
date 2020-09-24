@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const NavBar = () => {
+const Nav = () => {
   return (
     <div>
       <Link to='/'><h4>HOME</h4></Link>
@@ -14,4 +14,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default Nav

@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 
+import goals from './goals.reducer'
+
 const reducers = combineReducers({
-  test: () => (true)
+  goals
 })
 
 export default reducers

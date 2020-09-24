@@ -5,16 +5,18 @@ import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import Login from './Login'
 import Register from './Register'
 import Nav from './Nav'
+import LandingPage from './LandingPage'
 import Dashboard from './Dashboard'
+import About from './About'
 
 const App = () => {
   return (
     <>
       <Nav />
-      <IfNotAuthenticated>
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={Register} />
-      </IfNotAuthenticated>
+      <LandingPage />
+      <About />
+      <Route exact path='/login' component={Login} />
+      <Route exact path='/register' component={Register} />
 
       <IfAuthenticated>
         <Dashboard />

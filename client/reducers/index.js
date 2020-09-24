@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
+import accounts from './accounts'
 
 const reducers = combineReducers({
-  test: () => (true)
+  accounts
 })
 
 export default reducers

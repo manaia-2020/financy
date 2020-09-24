@@ -25,7 +25,8 @@ module.exports = {
     },
     seeds: {
       directory: path.join(__dirname, 'server/database/seeds')
-    }
+    },
+    useNullAsDefault: true
   },
   staging: {
     client: 'postgresql',

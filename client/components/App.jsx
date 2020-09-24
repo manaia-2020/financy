@@ -1,8 +1,13 @@
 import React from 'react'
+import Login from './Login'
+import Register from './Register'
 
 const App = () => {
   return (
-    <h1>React development has begun!</h1>
+    <>
+      <Login />
+      <Register />
+    </>
   )
 }
 

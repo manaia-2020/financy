@@ -31,6 +31,7 @@ function Register () {
           if (isAuthenticated()) {
             console.log('user added')
           }
+          return null
         })
         .catch(err => console.log(err))
     }

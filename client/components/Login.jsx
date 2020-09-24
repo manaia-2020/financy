@@ -25,6 +25,7 @@ const Login = () => {
         if (isAuthenticated()) {
           console.log('Logged in')
         }
+        return null
       })
       .catch(err => console.log(err))
   }

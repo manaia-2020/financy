@@ -1,14 +1,24 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+
 import Login from './Login'
 import Register from './Register'
-import { Route } from 'react-router-dom'
+import Nav from './Nav'
+import Dashboard from './Dashboard'
 
 const App = () => {
   return (
     <>
+      <Nav />
+      <IfNotAuthenticated>
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/register' component={Register} />
+      </IfNotAuthenticated>
 
-      <Route exact path='/login' component={Login} />
-      <Route exact path='/register' component={Register} />
+      <IfAuthenticated>
+        <Dashboard />
+      </IfAuthenticated>
     </>
   )
 }

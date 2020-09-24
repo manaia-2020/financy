@@ -34,10 +34,10 @@ const Login = (props) => {
   return (
     <div >
       <form onSubmit={handleClick}>
-        <label htmlFor="email">email</label>
-        <input type="email" id='email' name="email" placeholder='Email address' value={user.username} onChange={handleChange}></input>
-        <label htmlFor="password">password</label>
-        <input type="password" id='password' name="password" placeholder="password" value={user.password} onChange={handleChange} ></input>
+        <label htmlFor="email">Email Address</label>
+        <input type="email" id='email' name="email" placeholder='Email Address' value={user.username} onChange={handleChange}></input>
+        <label htmlFor="password">Password</label>
+        <input type="password" id='password' name="password" placeholder="Password" value={user.password} onChange={handleChange} ></input>
         <button type='submit' onClick={handleClick}>Sign-In</button>
       </form>
     </div>

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import Login from './Login'
 import store from '../store'
 
-jest.spyOn(console, 'log').mockImplementation(() => {})
+jest.spyOn(console, 'log').mockImplementation(() => { })
 
 jest.mock('authenticare/client', () => ({
   signIn: () => Promise.resolve(),
@@ -14,8 +14,8 @@ jest.mock('authenticare/client', () => ({
 test('Log in completes succesfully', async () => {
   expect.assertions(1)
   render(<Provider store={store}><Login /></Provider>)
-  let email = screen.getByLabelText('email')
-  let password = screen.getByLabelText('password')
+  let email = screen.getByPlaceholderText('Email Address')
+  let password = screen.getByPlaceholderText('Password')
   fireEvent.change(email, { target: { value: 'test@test.com' } })
   fireEvent.change(password, { target: { value: 'test' } })
   const button = screen.getByRole('button')

@@ -26,7 +26,7 @@ const Login = (props) => {
           props.history.push('/register')
         }
         return null
-    })
+      })
       .catch(err => console.log(err))
   }
 

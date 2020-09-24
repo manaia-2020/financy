@@ -16,6 +16,7 @@ test('saveNewUser adds user to db', () => {
     .then(() =>db.getUserByName(user.username, testDb))
     .then(res => {
           expect(res.username).toBe('welovetesting@gmail.com')
+          return 
     })
 })
 
@@ -25,6 +26,7 @@ describe('checks to see if email already exists when trying to register', () => 
     return db.userExists('bruce@diehard.com', testDb)
       .then((result) => {
         expect(result).toBe(true)
+        return
       })
   })
 
@@ -33,6 +35,7 @@ describe('checks to see if email already exists when trying to register', () => 
     return db.userExists('idontexist@diehard.com', testDb)
       .then((result) => {
         expect(result).toBe(false)
+        return
       })
   })
 })

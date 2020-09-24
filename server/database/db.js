@@ -1,13 +1,13 @@
-const knex = require("knex")
-const config = require("../../knexfile").development
+const knex = require('knex')
+const config = require('../../knexfile').development
 const connection = knex(config)
-const { generateHash } = require("authenticare/server")
+const { generateHash } = require('authenticare/server')
 
-function saveNewUser(user, db = connection) {
-  user.email = user.username;
+function saveNewUser (user, db = connection) {
+  user.email = user.username
   return generateHash(user.password)
     .then((passwordHash) => {
-      return db("users")
+      return db('users')
         .insert({
           first_name: user.firstName,
           last_name: user.lastName,
@@ -19,27 +19,27 @@ function saveNewUser(user, db = connection) {
     .catch((err) => console.log(err))
 }
 
-function userExists(email, db = connection) {
-  return db("users")
-    .count("id as n")
-    .where("email", email)
+function userExists (email, db = connection) {
+  return db('users')
+    .count('id as n')
+    .where('email', email)
     .then((count) => {
-      return count[0].n > 0;
+      return count[0].n > 0
     })
 }
 
-function getUserByName(email, db = connection) {
-  return db("users")
-    .where("email", email)
-    .select("id", "email as username", "password_hash as hash")
+function getUserByName (email, db = connection) {
+  return db('users')
+    .where('email', email)
+    .select('id', 'email as username', 'password_hash as hash')
     .first()
     .then((user) => {
-      return user;
+      return user
     })
 }
 
 module.exports = {
   saveNewUser,
   getUserByName,
-  userExists,
+  userExists
 }

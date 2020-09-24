@@ -1,7 +1,7 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 
 const reducers = combineReducers({
-    test: () => (true)
+  test: () => (true)
 })
 
 export default reducers

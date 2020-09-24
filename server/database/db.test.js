@@ -8,16 +8,15 @@ const testDb = knex(config)
 beforeAll(() => testDb.migrate.latest())
 beforeEach(() => testDb.seed.run())
 
-
 test('saveNewUser adds user to db', () => {
   const user = { username: 'welovetesting@gmail.com', password: 'test' }
   return db.saveNewUser(user, testDb)
-  .then(() => {
-    return db.getUserByName(user.username, testDb)
-    .then(res => {
-      expect(res.username).toBe('welovetesting@gmail.com')
+    .then(() => {
+      return db.getUserByName(user.username, testDb)
+        .then(res => {
+          expect(res.username).toBe('welovetesting@gmail.com')
+        })
     })
-  })
 })
 
 describe('checks to see if email already exists when trying to register', () => {

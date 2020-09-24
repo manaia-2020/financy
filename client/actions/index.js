@@ -1,9 +1,9 @@
 export const ADD_ACCOUNT = 'ADD_ACCOUNT'
 export const GET_ACCOUNTS = 'GET_ACCOUNTS'
 
-export const addAccount = (account) => ({
+export const addAccount = (account, id) => ({
   type: ADD_ACCOUNT,
-  account
+  payload: { account, id }
 })
 
 export const getAccounts = (accounts) => ({

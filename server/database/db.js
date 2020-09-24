@@ -45,9 +45,19 @@ function getAccountDetails(id, db = connection) {
     .select('accounts.user_id as id', 'user_id as userId', 'name', 'balance', 'balance_updated_at as balanceLastUpdated')
 }
 
+function addAccountDetails(account, db = connection) {
+  return db('accounts')
+    .insert({
+      name: account.name,
+      balance: account.balance,
+      id: account.id
+    })
+}
+
 module.exports = {
   saveNewUser,
   getUserByName,
   userExists,
-  getAccountDetails
+  getAccountDetails,
+  addAccountDetails
 }

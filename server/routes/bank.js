@@ -1,8 +1,8 @@
 const express = require('express')
-const { getTransactions, newTransaction } = '../database/bankDb.js'
+const { getTransactions, newTransaction } = '../database/bankDb'
 const router = express.Router()
 
-router.get('/bank/:id/transactions', (req, res) => {
+router.get('/:id/transactions', (req, res) => {
   const userId = Number(req.params.id)
   return getTransactions(userId)
     .then((transactions) => {
@@ -12,7 +12,7 @@ router.get('/bank/:id/transactions', (req, res) => {
     })
 })
 
-router.post('/bank/:id/addTransaction', (req, res) => {
+router.post('/:id/addTransaction', (req, res) => {
   const userId = Number(req.params.id)
   return newTransaction(req.body, userId)
     .then((result) => {
@@ -24,5 +24,7 @@ router.post('/bank/:id/addTransaction', (req, res) => {
 })
 
 function sendErr (err, res) {
-  res.status(500).send('Databse Error' + err.msg)
+  res.status(500).send('Database Error' + err.msg)
 }
+
+module.exports = router

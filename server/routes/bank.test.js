@@ -46,7 +46,7 @@ describe('POST /:id/addTransaction', () => {
     recurring: false
   }
 
-  test('Status 201', () => {
+  test('Returns Status 201 and calls db function with correct args', () => {
     newTransaction.mockImplementation(() => Promise.resolve())
     expect.assertions(2)
     return request(server)
@@ -55,6 +55,18 @@ describe('POST /:id/addTransaction', () => {
       .then(res => {
         expect(res.status).toBe(201)
         expect(newTransaction).toHaveBeenCalledWith(body, 2)
+      })
+  })
+
+  test('Returns 500 with DB error', () => {
+    newTransaction.mockImplementation(() => Promise.reject('DB Error'))
+    expect.assertions(2)
+    return request(server)
+      .post('/api/v1/bank/2/addTransaction')
+      .send(body)
+      .then(res => {
+        expect(res.status).toBe(500)
+        expect(res.text).toMatch(/Database Error/)
       })
   })
 })

@@ -8,4 +8,5 @@ exports.seed = function (knex) {
         { id: 2, first_name: 'Will', last_name: 'Smith', email: 'will@irobot.com', password_hash: '', created_at: Date.now() }
       ])
     })
+
 }

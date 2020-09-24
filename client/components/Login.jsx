@@ -15,7 +15,6 @@ const Login = () =>{
         event.preventDefault()
         const {name , value} = event.target
         setUser({...user,[name]:value})
-        console.log(user.email);
     }
 
     const handleClick = event => {

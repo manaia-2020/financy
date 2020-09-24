@@ -29,3 +29,18 @@ describe('addRecurring', () => {
       })
   })
 })
+
+describe('addTransaction', () => {
+  test('Adds a new transaction record for userId 2', () => {
+    expect.assertions(2)
+    const body = { amount: 12.95, date: '31/12/2020' }
+    return addTransaction(body, 2, null, testDb)
+      .then((newTransId) => {
+        return getTransactions(2, testDb)
+          .then((trans) => {
+            expect(trans).toHaveLength(2)
+            expect(trans[1].amount).toBe(12.95)
+          })
+      })
+  })
+})

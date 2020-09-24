@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import accounts from './accounts'
 
+import goals from './goals.reducer'
+
 const reducers = combineReducers({
-  accounts
+  goals
 })
 
 export default reducers

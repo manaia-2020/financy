@@ -1,26 +1,40 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import { Redirect, Route } from 'react-router-dom'
+import { isAuthenticated } from 'authenticare/client/auth'
 
 import Login from './Login'
 import Register from './Register'
 import Nav from './Nav'
 import Dashboard from './Dashboard'
-import AddAccount from './AddAccount'
 
 const App = () => {
   return (
     <>
-      <Nav />
-      <AddAccount />
-      <IfNotAuthenticated>
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={Register} />
-      </IfNotAuthenticated>
-
-      <IfAuthenticated>
-        <Dashboard />
-      </IfAuthenticated>
+      <Route path="/" component={Nav} />
+      <Route
+        exact
+        path="/login"
+        render={({ history }) => {
+          return isAuthenticated() ? (
+            <Redirect to="/dashboard" />
+          ) : (
+              <Login history={history} />
+            )
+        }}
+      />
+      <Route
+        path="/register"
+        render={({ history }) => {
+          return isAuthenticated() ? (
+            <Redirect to="/dashboard" />
+          ) : (
+              <Register history={history} />
+            )
+        }}
+      />
+      <Route path="/dashboard" render={({ history }) => {
+        return <Dashboard history={history} />
+      }} />
     </>
   )
 }

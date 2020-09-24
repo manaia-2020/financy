@@ -23,6 +23,7 @@ const Login = (props) => {
     signIn({ username: email, password }, { baseUrl })
       .then((token) => {
         if (isAuthenticated()) {
+            console.log('Logged in');
           props.history.push('/register')
         }
         return null

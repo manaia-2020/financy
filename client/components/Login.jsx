@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { signIn } from 'authenticare/client'
+import { signIn, isAuthenticated } from 'authenticare/client'
 import { baseApiUrl as baseUrl } from '../config'
 
 // Email = Username as authenticare requires a username field
@@ -31,9 +31,13 @@ const Login = () =>{
 
     return(
         <div >
-            <input type="email" name='email' placeholder='Email address' value={user.username} onChange={handleChange}></input>
-            <input type="password" id='password' name='password' placeholder="password" value={user.password} onChange={handleChange} ></input>
-            <button type='button' onClick={handleClick}>Sign-In</button>
+            <form onSubmit={handleClick}>
+                <label htmlFor="email">email</label>
+                <input type="email" id="email" placeholder='Email address' value={user.username} onChange={handleChange}></input>
+                <label htmlFor="password">password</label>
+                <input type="password" id="password" placeholder="password" value={user.password} onChange={handleChange} ></input>
+                <button type='submit' onClick={handleClick}>Sign-In</button>
+            </form>
         </div>
     )
 

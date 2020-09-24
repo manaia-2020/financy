@@ -20,10 +20,20 @@ test('saveNewUser adds user to db', () => {
   })
 })
 
-test('getUserByName get the user using the email address', () => {
-  const email = { username: 'testing@gmail.com' }
-  return db.getUserByName(email, testDb)
-    .then(res => {
-      expect(res.username).toBe(email)
-    })
+describe('checks to see if email already exists when trying to register', () => {
+  test('Check function returns TRUE if email exists', () => {
+    expect.assertions(1)
+    return db.userExists('bruce@diehard.com', testDb)
+      .then((result) => {
+        expect(result).toBe(true)
+      })
+  })
+
+  test('Check function returns FALSE if email does not exists', () => {
+    expect.assertions(1)
+    return db.userExists('idontexist@diehard.com', testDb)
+      .then((result) => {
+        expect(result).toBe(false)
+      })
+  })
 })

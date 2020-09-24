@@ -1,7 +1,7 @@
-const knex = require("knex");
-const config = require("../../knexfile").development;
-const connection = knex(config);
-const { generateHash } = require("authenticare/server");
+const knex = require("knex")
+const config = require("../../knexfile").development
+const connection = knex(config)
+const { generateHash } = require("authenticare/server")
 
 function saveNewUser(user, db = connection) {
   user.email = user.username;
@@ -16,7 +16,7 @@ function saveNewUser(user, db = connection) {
           created_at: Date.now()
         })
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
 }
 
 function userExists(email, db = connection) {
@@ -25,7 +25,7 @@ function userExists(email, db = connection) {
     .where("email", email)
     .then((count) => {
       return count[0].n > 0;
-    });
+    })
 }
 
 function getUserByName(email, db = connection) {
@@ -35,11 +35,11 @@ function getUserByName(email, db = connection) {
     .first()
     .then((user) => {
       return user;
-    });
+    })
 }
 
 module.exports = {
   saveNewUser,
   getUserByName,
   userExists,
-};
+}

@@ -6,11 +6,13 @@ import Login from './Login'
 import Register from './Register'
 import Nav from './Nav'
 import Dashboard from './Dashboard'
+import AddAccount from './AddAccount'
 
 const App = () => {
   return (
     <>
       <Nav />
+      <AddAccount />
       <IfNotAuthenticated>
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />

@@ -15,6 +15,7 @@ describe('getTransactions', () => {
         expect(trans).toHaveLength(1)
         expect(trans[0].amount).toBe(25.00)
         expect(trans[0].id).toBe(1)
+        return null
       })
   })
 })
@@ -25,6 +26,7 @@ describe('addRecurring', () => {
     return addRecurring(7, testDb)
       .then((transId) => {
         expect(transId[0]).toBe(4)
+        return null
       })
   })
 })
@@ -36,10 +38,11 @@ describe('addTransaction', () => {
     return addTransaction(body, 2, null, testDb)
       .then((newTransId) => {
         return getTransactions(2, testDb)
-          .then((trans) => {
-            expect(trans).toHaveLength(2)
-            expect(trans[1].amount).toBe(12.95)
-          })
+      })
+      .then((trans) => {
+        expect(trans).toHaveLength(2)
+        expect(trans[1].amount).toBe(12.95)
+        return null
       })
   })
 })
@@ -52,10 +55,11 @@ describe('newTransaction', () => {
     return newTransaction(body, userId, testDb)
       .then((newTransId) => {
         return getTransactions(userId, testDb)
-          .then((trans) => {
-            expect(trans).toHaveLength(2)
-            expect(trans[1].recurring_transaction_id).toBe(5)
-          })
+      })
+      .then((trans) => {
+        expect(trans).toHaveLength(2)
+        expect(trans[1].recurring_transaction_id).toBe(5)
+        return null
       })
   })
   test('Adds a new transaction only if recurring is false', () => {
@@ -65,10 +69,11 @@ describe('newTransaction', () => {
     return newTransaction(body, userId, testDb)
       .then((newTransId) => {
         return getTransactions(userId, testDb)
-          .then((trans) => {
-            expect(trans).toHaveLength(2)
-            expect(trans[1].recurring_transaction_id).toBeNull()
-          })
+      })
+      .then((trans) => {
+        expect(trans).toHaveLength(2)
+        expect(trans[1].recurring_transaction_id).toBeNull()
+        return null
       })
   })
 })

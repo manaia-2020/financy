@@ -8,6 +8,7 @@ router.get('/:id/transactions', (req, res) => {
   return getTransactions(userId)
     .then((transactions) => {
       res.json({ transactions })
+      return null
     }).catch((err) => {
       sendErr(err, res)
     })
@@ -20,6 +21,7 @@ router.post('/:id/addTransaction', (req, res) => {
     .then((result) => {
       res.status(201)
       res.json(result)
+      return null
     }).catch((err) => {
       sendErr(err, res)
     })

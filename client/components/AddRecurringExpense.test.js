@@ -1,9 +1,8 @@
 import React from 'react'
-import { screen, render, fireEvent } from '@testing-library/react'
+import { screen, render } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import AddRecurringExpense from './AddRecurringExpense'
-
-// TODO IMPORT STORE
+import store from '../store'
 
 test('Setup working', () => {
   expect(5).toBe(5)

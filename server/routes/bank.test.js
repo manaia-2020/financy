@@ -23,17 +23,19 @@ describe('GET /:id/transactions', () => {
       .then((res) => {
         expect(res.body.transactions).toHaveLength(2)
         expect(getTransactions).toHaveBeenCalledWith(2)
+        return null
       })
   })
 
   test('Reject returns 500 Database Error', () => {
     expect.assertions(2)
-    getTransactions.mockImplementation(() => Promise.reject('DB Error'))
+    getTransactions.mockImplementation(() => Promise.reject(new Error('DB Error')))
     return request(server)
       .get('/api/v1/bank/3/transactions')
       .then(res => {
         expect(res.status).toBe(500)
         expect(res.text).toMatch(/Database Error/)
+        return null
       })
   })
 })
@@ -55,11 +57,12 @@ describe('POST /:id/addTransaction', () => {
       .then(res => {
         expect(res.status).toBe(201)
         expect(newTransaction).toHaveBeenCalledWith(body, 2)
+        return null
       })
   })
 
   test('Returns 500 with DB error', () => {
-    newTransaction.mockImplementation(() => Promise.reject('DB Error'))
+    newTransaction.mockImplementation(() => Promise.reject(new Error('DB Error')))
     expect.assertions(2)
     return request(server)
       .post('/api/v1/bank/2/addTransaction')
@@ -67,6 +70,7 @@ describe('POST /:id/addTransaction', () => {
       .then(res => {
         expect(res.status).toBe(500)
         expect(res.text).toMatch(/Database Error/)
+        return null
       })
   })
 })

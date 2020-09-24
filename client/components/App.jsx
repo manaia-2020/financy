@@ -10,7 +10,6 @@ import Dashboard from './Dashboard'
 const App = () => {
   return (
     <>
-      <h1>Financy</h1>
       <Nav />
       <IfNotAuthenticated>
         <Route exact path='/login' component={Login} />

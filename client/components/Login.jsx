@@ -4,7 +4,7 @@ import { baseApiUrl as baseUrl } from '../config'
 
 // Email = Username as authenticare requires a username field
 
-const Login = () => {
+const Login = (props) => {
   const [user, setUser] = useState({
     email: '',
     password: ''
@@ -23,7 +23,8 @@ const Login = () => {
     signIn({ username: email, password }, { baseUrl })
       .then((token) => {
         if (isAuthenticated()) {
-          console.log('Logged in')
+            console.log('Logged in');
+          props.history.push('/register')
         }
         return null
       })
@@ -34,9 +35,9 @@ const Login = () => {
     <div >
       <form onSubmit={handleClick}>
         <label htmlFor="email">email</label>
-        <input type="email" id="email" placeholder='Email address' value={user.username} onChange={handleChange}></input>
+        <input type="email" id='email' name="email" placeholder='Email address' value={user.username} onChange={handleChange}></input>
         <label htmlFor="password">password</label>
-        <input type="password" id="password" placeholder="password" value={user.password} onChange={handleChange} ></input>
+        <input type="password" id='password' name="password" placeholder="password" value={user.password} onChange={handleChange} ></input>
         <button type='submit' onClick={handleClick}>Sign-In</button>
       </form>
     </div>

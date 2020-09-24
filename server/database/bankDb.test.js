@@ -19,3 +19,13 @@ describe('getTransactions', () => {
       })
   })
 })
+
+describe('addRecurring', () => {
+  test('Adds a record to recurring_transactions table', () => {
+    expect.assertions(1)
+    return addRecurring(7, testDb)
+      .then((transId) => {
+        expect(transId[0]).toBe(4)
+      })
+  })
+})

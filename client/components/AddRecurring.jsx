@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addTransaction } from '../api/api'
 
 const AddRecurringExpense = (props) => {
-  const [ trans, setTrans ] = useState('')
+  const [trans, setTrans] = useState('')
 
   const handleChange = (event) => {
     [event.target.name] = event.target.value

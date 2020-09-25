@@ -12,7 +12,7 @@ function AddGoal (props) {
   })
 
   function handleChange ({ target }) {
-    let { name, value } = target
+    const { name, value } = target
     // eslint-disable-next-line no-prototype-builtins
     if (goal.hasOwnProperty(name)) {
       setGoal({

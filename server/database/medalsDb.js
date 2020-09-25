@@ -32,7 +32,8 @@ function getMedal (medalId, db = database) {
 async function awardMedal (userId, db = database) {
   const delta = await calcBalanceDelta(userId, db)
   const medalId = decideMedal(delta)
-  return getMedal(medalId, db)
+  const newMedal = await getMedal(medalId, db)
+  return insertUsersMedals(userId, newMedal.id, db)
 }
 
 function decideMedal (delta) {
@@ -41,10 +42,27 @@ function decideMedal (delta) {
       : delta >= 50 ? 1 : 'No medal for you'
 }
 
+function insertUsersMedals (userId, medalId, db = database) {
+  return db('users_medals')
+    .insert({
+      user_id: userId,
+      medal_id: medalId,
+      awarded_at: Date.now()
+    })
+}
+
+function getUsersMedals (userId, db = database) {
+  return db('users_medals')
+    .join('medals', 'users_medals.medal_id', 'medals.id')
+    .where({ user_id: userId })
+}
+
 module.exports = {
   getPreviousBalance,
   getMedal,
   calcBalanceDelta,
   awardMedal,
-  decideMedal
+  decideMedal,
+  insertUsersMedals,
+  getUsersMedals
 }

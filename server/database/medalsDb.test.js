@@ -1,6 +1,6 @@
 const knex = require('knex')
 const config = require('../../knexfile').test
-const { getPreviousBalance, calcBalanceDelta, getMedal, awardMedal, decideMedal } = require('./medalsDb')
+const { getPreviousBalance, calcBalanceDelta, getMedal, awardMedal, decideMedal, insertUsersMedals, getUsersMedals } = require('./medalsDb')
 
 let testDb = knex(config)
 
@@ -69,6 +69,46 @@ describe('awardMedal', () => {
   test('Returns the correct medal', async () => {
     const userId = 2
     const medal = await awardMedal(userId, testDb)
-    expect(medal.name).toBe('Strong Saver')
+    expect(medal).toHaveLength(1)
+  })
+})
+
+describe('insertUsersMedals', () => {
+  const userId = 2
+  const medalId = 2
+  test('Inserts a new medal', () => {
+    expect.assertions(1)
+    return insertUsersMedals(userId, medalId, testDb)
+      .then((medals) => {
+        expect(medals).toHaveLength(1)
+        return null
+      })
+  })
+
+  test('Inserts correct medal name for user', () => {
+    expect.assertions(2)
+    return insertUsersMedals(userId, medalId, testDb)
+      .then(() => {
+        return getUsersMedals(userId, testDb)
+      })
+      .then((medals) => {
+        expect(medals).toHaveLength(2)
+        expect(medals[1].name).toBe('Best Saver')
+        return null
+      })
+  })
+})
+
+describe('getUsersMedals', () => {
+  test('Returns correct medals for userId', () => {
+    expect.assertions(3)
+    const userId = 1
+    return getUsersMedals(userId, testDb)
+      .then((medals) => {
+        expect(medals).toHaveLength(2)
+        expect(medals[0].name).toBe('Strong Saver')
+        expect(medals[1].name).toMatch(/Best Saver/)
+        return null
+      })
   })
 })

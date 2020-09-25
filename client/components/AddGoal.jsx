@@ -52,11 +52,11 @@ function AddGoal (props) {
       <h1>Add Financial Goal</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="goalName">Goal Name</label>
-        <input type="text" id="goalName" name="name" autoFocus={true} onChange={handleChange} value={goal.name} />
+        <input type="text" id="goalName" name="name" autoFocus={true} onChange={handleChange} value={goal.name} placeholder="goal name" />
         <label htmlFor="goalAmount">Goal Amount</label>
-        <input type="currency" id="goalAmount" name="amount" autoFocus={true} onFocus={handleFocus} onBlur={handleBlur} onChange={handleChange} value={goal.amount} />
+        <input type="currency" id="goalAmount" name="amount" autoFocus={true} onFocus={handleFocus} onBlur={handleBlur} onChange={handleChange} value={goal.amount} placeholder="goal amount" />
         <label htmlFor="goalDate">Goal Date</label>
-        <input type="date" id="goalDate" name="date" autoFocus={true} onChange={handleChange} value={goal.date} />
+        <input type="date" id="goalDate" name="date" autoFocus={true} onChange={handleChange} value={goal.date} placeholder="goal date" />
         <button type="submit">Add Goal</button>
       </form>
     </>

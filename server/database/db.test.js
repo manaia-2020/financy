@@ -57,7 +57,7 @@ test('adds new accounts details to db', () => {
   expect.assertions(1)
   return db.addAccountDetails(data, testDb)
     .then((newAcc) => {
-      expect(newAcc[0]).toBe(6)
+      expect(newAcc[0]).toBe(3)
     })
 })
 

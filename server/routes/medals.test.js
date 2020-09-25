@@ -19,4 +19,13 @@ describe('GET /:id/medals', () => {
         return null
       })
   })
+  test('Medals are correctly returned', () => {
+    getUsersMedals.mockImplementation(() => Promise.resolve({ user_id: 2, medal_id: 1, name: 'Strong Saver' }))
+    return request(server)
+      .get('/api/v1/medals/2/show')
+      .then((res) => {
+        expect(res.body.medals.name).toBe('Strong Saver')
+        return null
+      })
+  })
 })

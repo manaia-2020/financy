@@ -1,5 +1,6 @@
 const knex = require('knex')
-const config = require('../../knexfile').development
+const environment = process.env.NODE_ENV || 'development'
+const config = require('../../knexfile')[environment]
 const connection = knex(config)
 const { generateHash } = require('authenticare/server')
 
@@ -38,8 +39,27 @@ function getUserByName (email, db = connection) {
     })
 }
 
+function getAccountDetails (id, db = connection) {
+  return db('accounts')
+    .join('users', 'accounts.user_id', 'users.id')
+    .where('user_id', id)
+    .select('accounts.user_id as id', 'user_id as userId', 'name', 'balance', 'balance_updated_at as balanceLastUpdated')
+}
+
+function addAccountDetails (data, db = connection) {
+  return db('accounts')
+    .insert({
+      name: data.name,
+      balance: data.balance,
+      balance_updated_at: Date.now(),
+      user_id: data.id
+    })
+}
+
 module.exports = {
   saveNewUser,
   getUserByName,
-  userExists
+  userExists,
+  getAccountDetails,
+  addAccountDetails
 }

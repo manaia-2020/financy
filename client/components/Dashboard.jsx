@@ -1,11 +1,13 @@
 import React from 'react'
 
 import DashboardNav from './DashboardNav'
+import AddAccount from './AddAccount'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <div>
-      <DashboardNav />
+      <DashboardNav history={props.history} />
+      <AddAccount />
     </div>
   )
 }

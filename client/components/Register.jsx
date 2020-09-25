@@ -6,7 +6,7 @@ import { baseApiUrl as baseUrl } from '../config'
 // import {  } from '../actions'
 // import {  } from '../api/api'
 
-function Register() {
+function Register(props) {
   const [newUser, setNewUser] = useState({
     firstName: '',
     lastName: '',
@@ -30,6 +30,7 @@ function Register() {
         .then((token) => {
           if (isAuthenticated()) {
             console.log('user added')
+            props.history.push('/dashboard')
           }
           return null
         })

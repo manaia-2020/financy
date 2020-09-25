@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux'
+import goals from './goals.reducer'
+import accounts from './accounts.reducer'
 
 const reducers = combineReducers({
-  test: () => (true)
+  goals,
+  accounts
 })
 
 export default reducers

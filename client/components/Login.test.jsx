@@ -11,7 +11,7 @@ jest.mock('authenticare/client', () => ({
   isAuthenticated: () => true
 }))
 
-test('Log in completes succesfully', async () => {
+test('Log in completes successfully', async () => {
   expect.assertions(1)
   render(<Provider store={store}><Login /></Provider>)
   let email = screen.getByPlaceholderText('Email Address')

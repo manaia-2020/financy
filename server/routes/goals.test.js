@@ -43,4 +43,34 @@ describe('GET/ api/v1/goals/:id', () => {
         return null
       })
   })
+
+  test('goals are returned correctly', () => {
+    expect.assertions(4)
+    getAllGoalsByUserId.mockImplementation(() => Promise.resolve([{
+      id: 1,
+      name: 'buy a house',
+      goal_date: 1600992000000,
+      amount: 2344,
+      user_id: 2
+    },
+    {
+      id: 2,
+      name: 'buy a dog',
+      goal_date: 1530921600000,
+      amount: 12.42,
+      user_id: 2
+    }
+    ]
+    ))
+
+    return request(server)
+      .get(`/api/v1/goals/${id}`)
+      .then((res) => {
+        res.body.forEach(goal => {
+          expect(goal.user_id).toBe(id)
+        })
+        expect(res.body[0].name).toBe('buy a house')
+        expect(res.body[1].name).toBe('buy a dog')
+      })
+  })
 })

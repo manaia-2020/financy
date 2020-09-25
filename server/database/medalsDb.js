@@ -43,12 +43,26 @@ function decideMedal (delta) {
 }
 
 function insertUsersMedals (userId, medalId, db = database) {
-  return db('users_medals')
-    .insert({
-      user_id: userId,
-      medal_id: medalId,
-      awarded_at: Date.now()
+  return userMedalExists(userId, medalId, db)
+    .then((medals) => {
+      if (medals.length === 0) {
+        return db('users_medals')
+          .insert({
+            user_id: userId,
+            medal_id: medalId,
+            awarded_at: Date.now()
+          })
+      } else {
+        return null
+      }
     })
+}
+
+function userMedalExists (userId, medalId, db = database) {
+  return db('users_medals')
+    .join('medals', 'users_medals.medal_id', 'medals.id')
+    .where({ user_id: userId })
+    .where({ medal_id: medalId })
 }
 
 function getUsersMedals (userId, db = database) {

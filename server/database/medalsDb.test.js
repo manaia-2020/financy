@@ -85,6 +85,15 @@ describe('insertUsersMedals', () => {
       })
   })
 
+  test("doesn't insert a medal if user already has medal", () => {
+    expect.assertions(1)
+    return insertUsersMedals(userId, 3, testDb)
+      .then((medals) => {
+        expect(medals).toBeNull()
+        return null
+      })
+  })
+
   test('Inserts correct medal name for user', () => {
     expect.assertions(2)
     return insertUsersMedals(userId, medalId, testDb)

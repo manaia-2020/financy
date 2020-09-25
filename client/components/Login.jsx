@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { signIn, isAuthenticated } from 'authenticare/client'
 import { baseApiUrl as baseUrl } from '../config'
 
 // Email = Username as authenticare requires a username field
 
 const Login = (props) => {
+  useEffect(() => {
+
+  }, [props.location])
+
   const [user, setUser] = useState({
     email: '',
     password: ''
@@ -24,7 +28,7 @@ const Login = (props) => {
       .then((token) => {
         if (isAuthenticated()) {
           console.log('Logged in')
-          props.history.push('/register')
+          props.history.push('/dashboard')
         }
         return null
       })

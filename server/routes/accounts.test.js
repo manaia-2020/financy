@@ -26,7 +26,7 @@ describe('GET/ api/v1.accounts/:id', () => {
   })
 })
 
-describe('POST/ api/v1/accounts', () => {
+describe('POST/ api/v1/accounts/:id', () => {
   const data = {
     user_id: 1,
     name: 'Daily Spending Account',

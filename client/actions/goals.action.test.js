@@ -1,4 +1,4 @@
-import { addGoal, ADD_GOAL } from './goals.action'
+import { addGoal, ADD_GOAL, fetchGoalsBegin, FETCH_GOALS_BEGIN } from './goals.action'
 
 describe('goals action tests', () => {
   test('addGoal', () => {
@@ -15,5 +15,10 @@ describe('goals action tests', () => {
     expect(action.type).toBe(ADD_GOAL)
     expect(action.payload.id).toBe(2)
     expect(action.payload.goal).toEqual(goal)
+  })
+
+  test('fetchGoalsBegin', () => {
+    const action = fetchGoalsBegin()
+    expect(action.type).toBe(FETCH_GOALS_BEGIN)
   })
 })

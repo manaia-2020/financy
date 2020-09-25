@@ -2,10 +2,10 @@ import React from 'react'
 
 import DashboardNav from './DashboardNav'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <div>
-      <DashboardNav />
+      <DashboardNav history={props.history} />
     </div>
   )
 }

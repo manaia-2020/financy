@@ -3,7 +3,8 @@ export const GET_ACCOUNTS = 'GET_ACCOUNTS'
 
 export const addAccount = (account, id) => ({
   type: ADD_ACCOUNT,
-  account
+  account,
+  id
 })
 
 export const getAccounts = (accounts) => ({

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { addAccount } from '../actions/index'
+import { addAccount } from '../actions/accounts.action'
 import { postAccount } from '../api/api'
 
 const AddAccount = (props) => {

@@ -8,6 +8,7 @@ export default function goalsReducer (state = initialState, action) {
       return [...state, {
         name: action.payload.goal.name,
         goal_date: action.payload.goal.date,
+        amount: action.payload.goal.amount,
         user_id: action.payload.id
       }]
 

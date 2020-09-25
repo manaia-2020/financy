@@ -14,6 +14,7 @@ describe('POST/ api/v1/goals', () => {
     const data = {
       name: 'ten pin',
       date: '1999-02-12',
+      amount: '$32.00',
       id: 2
     }
 

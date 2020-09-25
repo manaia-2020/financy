@@ -6,7 +6,8 @@ function saveNewGoal (data, db = connection) {
   return db('goals').insert({
     name: data.name,
     goal_date: Date.parse(data.date),
-    user_id: data.id
+    user_id: data.id,
+    amount: Number(String(data.amount).replace(/[^0-9.-]+/g, ''))
   })
 }
 

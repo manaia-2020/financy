@@ -3,9 +3,9 @@ const { saveNewGoal } = require('../database/goals.database')
 const router = express.Router()
 
 router.post('/', (req, res) => {
-  const { name, date, id } = req.body
+  const { name, date, amount, id } = req.body
 
-  saveNewGoal({ name, date, id })
+  saveNewGoal({ name, date, amount, id })
     .then((id) => {
       return res.status(201).json(id[0])
     })

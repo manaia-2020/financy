@@ -18,7 +18,7 @@ const AddAccount = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     props.dispatch(addAccount(account))
-    postAccount(account)
+    postAccount(1, account)
       .then(console.log)
       .catch(err => console.log(err))
   }

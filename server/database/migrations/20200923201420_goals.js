@@ -3,6 +3,7 @@ exports.up = function (knex) {
     table.increments('id').primary()
     table.string('name')
     table.date('goal_date')
+    table.float('amount')
     table.integer('user_id')
     table.foreign('user_id').references('id').inTable('users')
   })

@@ -15,9 +15,9 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/:id', (req, res) => {
-  const userId = Number(req.params.id)
-  addAccountDetails(req.body, userId)
-    .then(id => getAccountDetails(id))
+  const id = Number(req.params.id)
+  addAccountDetails({ ...req.body, id })
+    .then(accountDetailsId => getAccountDetails(accountDetailsId))
     .then((result) => {
       res.status(201)
       res.json(result)

@@ -6,26 +6,17 @@ describe('account reducer tests', () => {
   test(ADD_ACCOUNT, () => {
     expect.assertions(1)
     const account = {
-      name: 'John',
-      balance: '21.05'
+      name: 'Jesus',
+      balance: '🍷'
     }
 
     const initialState = [{
       name: 'Mary',
-      balance: '50000.05',
+      balance: '🐑',
       user_id: 1
     }]
 
-    const expectedState = [{
-      name: 'Mary',
-      balance: '50000.05',
-      user_id: 1
-    },
-    {
-      name: 'John',
-      balance: '21.05',
-      user_id: 2
-    }]
+    const expectedState = [...initialState, { ...account, user_id: 2 }]
 
     const action = addAccount(account, 2)
 

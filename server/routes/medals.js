@@ -1,18 +1,22 @@
 const express = require('express')
-const { awardMedals } = require('../database/medalsDb')
+const { awardMedal, getUsersMedals } = require('../database/medalsDb')
 const router = express.Router()
 
-// router.get('/:id/medals', (req, res) => {
-//   const userId = Number(req.params.id)
-//   return awardMedals(userId)
-//     .then((medal) => {
-//       res.status(200)
-//       res.json(medal)
-//       return null
-//     }).catch((err) => {
-//       sendErr(err, res)
-//     })
-// })
+router.get('/:id/show', (req, res) => {
+  const userId = Number(req.params.id)
+  return awardMedal(userId)
+    .then(() => {
+      return getUsersMedals(userId)
+    })
+    .then((medals) => {
+      res.status(200)
+      res.json({ medals })
+      return null
+    })
+    .catch((err) => {
+      sendErr(err, res)
+    })
+})
 
 function sendErr (err, res) {
   res.status(500).send('Database Error ' + err.msg)

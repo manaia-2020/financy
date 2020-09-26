@@ -1,12 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { fetchGoalsBegin, fetchGoalsFailure, fetchGoalsSuccess } from '../actions/goals.action'
+import { getUserGoals } from '../api/goals.api'
 
-const Goals = (props) => {
+function Goals (props) {
+  const { begin, success, failure, goals } = props
+
+  useEffect(() => {
+    begin()
+    getUserGoals(2)
+      .then((goals) => success(goals))
+      .catch((error) => failure(error))
+  }, [])
+
   return (
-    <div>
-      <h1>Goals</h1>
-    </div>
+    goals.map((goal) => (
+      <h1 key={goal.id}>{ goal.name }</h1>
+    ))
   )
 }
 
-export default connect()(Goals)
+const mapStateToProps = (state) => ({
+  goals: state.goals,
+  waiting: state.waiting
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  begin: () => dispatch(fetchGoalsBegin()),
+  success: (goals) => dispatch(fetchGoalsSuccess(goals)),
+  failure: (error) => dispatch(fetchGoalsFailure(error))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Goals)

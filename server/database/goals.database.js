@@ -11,6 +11,11 @@ function saveNewGoal (data, db = connection) {
   })
 }
 
+function getAllGoalsByUserId (id, db = connection) {
+  return db('goals').where('goals.user_id', id)
+}
+
 module.exports = {
-  saveNewGoal
+  saveNewGoal,
+  getAllGoalsByUserId
 }

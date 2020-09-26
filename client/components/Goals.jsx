@@ -5,11 +5,12 @@ import { getUserGoals } from '../api/goals.api'
 import AddGoal from './AddGoal'
 
 function Goals (props) {
-  const { begin, success, failure, goals } = props
+  const { begin, success, failure, goals, userInfo } = props
 
   useEffect(() => {
     begin()
-    getUserGoals(2)
+    console.log(userInfo)
+    getUserGoals(userInfo.id)
       .then((goals) => success(goals))
       .catch((error) => failure(error))
   }, [])
@@ -26,7 +27,8 @@ function Goals (props) {
 
 const mapStateToProps = (state) => ({
   goals: state.goals,
-  waiting: state.waiting
+  waiting: state.waiting,
+  userInfo: state.addUserInfo
 })
 
 const mapDispatchToProps = (dispatch) => ({

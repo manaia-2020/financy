@@ -5,7 +5,6 @@ import { isAuthenticated } from 'authenticare/client/auth'
 import Login from './Login'
 import Register from './Register'
 import Nav from './Nav'
-import Dashboard from './Dashboard'
 
 const App = () => {
   return (
@@ -23,7 +22,7 @@ const App = () => {
         }}
       />
       <Route
-        path="/register"
+        exact path="/register"
         render={({ history }) => {
           return isAuthenticated() ? (
             <Redirect to="/dashboard" />
@@ -32,9 +31,6 @@ const App = () => {
           )
         }}
       />
-      <Route path="/dashboard" render={({ history }) => {
-        return <Dashboard history={history} />
-      }} />
     </>
   )
 }

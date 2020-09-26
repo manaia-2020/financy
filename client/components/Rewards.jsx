@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const Profile = () => {
+const Rewards = (props) => {
   return (
     <div>
-      <h1>Profile</h1>
+      <h1>Rewards</h1>
     </div>
   )
 }
 
-export default connect()(Profile)
+export default connect()(Rewards)

@@ -1,7 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react'
 
 const Rewards = (props) => {
+  
   return (
     <div>
       <h1>Rewards</h1>
@@ -9,4 +9,4 @@ const Rewards = (props) => {
   )
 }
 
-export default connect()(Rewards)
+export default Rewards

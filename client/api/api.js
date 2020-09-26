@@ -19,3 +19,11 @@ export function postAccount (id, account) {
     .send(account)
     .then(response => response.body)
 }
+
+export function getUserInfo (email) {
+  return request
+    .get(`/api/v1/auth?email=${email}`)
+    .then(res => {
+      return res.body
+    })
+}

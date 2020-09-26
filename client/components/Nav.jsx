@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link, Route, Switch } from 'react-router-dom'
 import { IfNotAuthenticated, IfAuthenticated } from './Authenticated'
 import { logOff, isAuthenticated } from 'authenticare/client'
@@ -9,11 +10,12 @@ import Goals from './Goals'
 import Rewards from './Rewards'
 import Accounts from './Accounts'
 
-const Nav = (props) => {
+
+const Nav = ({history, dispatch, userInfo}) => {
   const handleClick = () => {
     logOff()
     if (!isAuthenticated()) {
-      props.history.push('/')
+      history.push('/')
     }
   }
 
@@ -57,6 +59,8 @@ const Nav = (props) => {
               <Link to="/accounts">Accounts</Link>
             </li>
           </ul>
+          <h3> User ID: {userInfo.id} </h3>
+          <h3> User Email: {userInfo.email} </h3>
           <button onClick={handleClick}>Log off</button>
 
           <Switch>
@@ -82,4 +86,10 @@ const Nav = (props) => {
   )
 }
 
-export default Nav
+function mapStateToProps (state) {
+  return {
+    userInfo: state.addUserInfo
+  }
+}
+
+export default connect(mapStateToProps)(Nav)

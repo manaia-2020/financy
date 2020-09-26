@@ -5,7 +5,7 @@ import { getAccounts } from '../actions/accounts.action'
 
 import AddAccount from './AddAccount'
 
-function Accounts(props) {
+function Accounts (props) {
   useEffect(() => {
     getAccountApi()
       .then((results) => {
@@ -30,7 +30,7 @@ function Accounts(props) {
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     accounts: state.accounts
   }

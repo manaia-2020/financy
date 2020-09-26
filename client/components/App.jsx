@@ -17,8 +17,8 @@ const App = () => {
           return isAuthenticated() ? (
             <Redirect to="/dashboard" />
           ) : (
-              <Login history={history} />
-            )
+            <Login history={history} />
+          )
         }}
       />
       <Route
@@ -27,8 +27,8 @@ const App = () => {
           return isAuthenticated() ? (
             <Redirect to="/dashboard" />
           ) : (
-              <Register history={history} />
-            )
+            <Register history={history} />
+          )
         }}
       />
     </>

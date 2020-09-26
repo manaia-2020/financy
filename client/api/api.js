@@ -27,3 +27,9 @@ export function getUserInfo (email) {
       return res.body
     })
 }
+
+export function getUserAccountTransactions (userId, accountId) {
+  return request
+    .get(`/api/v1/transactions/${userId}/${accountId}`)
+    .then(res => res.body)
+}

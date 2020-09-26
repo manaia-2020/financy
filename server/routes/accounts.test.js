@@ -1,13 +1,14 @@
 import request from 'supertest'
-import { getAccountDetails, addAccountDetails } from '../database/db'
+import { getAccountDetails, addAccountDetails, deleteAccount } from '../database/accountsDb'
 import server from '../server'
 
-jest.mock('../database/db', () => ({
+jest.mock('../database/accountsDb', () => ({
   getAccountDetails: jest.fn(),
-  addAccountDetails: jest.fn()
+  addAccountDetails: jest.fn(),
+  deleteAccount: jest.fn()
 }))
 
-describe('GET/ api/v1.accounts/:id', () => {
+describe('GET/ api/v1/accounts/:id', () => {
   test('returns accounts based off userId', () => {
     getAccountDetails.mockImplementation(() => Promise.resolve(
       [
@@ -43,6 +44,21 @@ describe('POST/ api/v1/accounts/:id', () => {
         expect(res.status).toBe(201)
         expect(addAccountDetails).toHaveBeenCalled()
         expect(res.text).toMatch(/Spending/)
+        return null
+      })
+  })
+})
+
+describe('DELETE/ api/v1/accounts/:id', () => {
+  test('calls deleteAccount db function', () => {
+    deleteAccount.mockImplementation(() => Promise.resolve(1))
+    expect.assertions(3)
+    return request(server)
+      .delete('/api/v1/accounts/1')
+      .then(res => {
+        expect(deleteAccount).toHaveBeenCalled()
+        expect(deleteAccount).toHaveBeenCalledWith(1)
+        expect(res.status).toBe(200)
         return null
       })
   })

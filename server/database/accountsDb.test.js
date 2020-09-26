@@ -1,6 +1,6 @@
 /* eslint-disable */
-
 const knex = require('knex')
+const { getAccountDetails } = require('./accountsDb')
 const config = require('../../knexfile').test
 
 const db = require('./accountsDb')
@@ -27,7 +27,15 @@ test('adds new accounts details to db', () => {
   expect.assertions(1)
   return db.addAccountDetails(data, testDb)
     .then((newAcc) => {
-      expect(newAcc[0]).toBe(6)
+      expect(newAcc[0]).toBe(8)
+    })
+})
+
+test('tests that deleteAccount removes account from db', () => {
+  expect.assertions(1)
+  return db.deleteAccount(1, testDb)
+    .then(accountDeleted => {
+      expect(accountDeleted).toBe(1)
     })
 })
 

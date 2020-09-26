@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchGoalsBegin, fetchGoalsFailure, fetchGoalsSuccess } from '../actions/goals.action'
 import { getUserGoals } from '../api/goals.api'
+import AddGoal from './AddGoal'
 
 function Goals (props) {
   const { begin, success, failure, goals } = props
@@ -14,9 +15,12 @@ function Goals (props) {
   }, [])
 
   return (
-    goals.map((goal) => (
-      <h1 key={goal.id}>{ goal.name }</h1>
-    ))
+    <>
+      {goals.map((goal) => (
+        <h1 key={goal.id}>{ goal.name }</h1>
+      ))}
+      <AddGoal />
+    </>
   )
 }
 

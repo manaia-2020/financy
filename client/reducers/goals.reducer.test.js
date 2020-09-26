@@ -26,7 +26,7 @@ describe('goals reducer tests', () => {
     const actualState = goalsReducer(initialState, action)
 
     expect.assertions(1)
-    expect(actualState).toEqual(expectedState)
+    expect(actualState[0].name).toBe(expectedState[0].name)
   })
 
   test(FETCH_GOALS_SUCCESS, () => {

@@ -9,7 +9,7 @@ function Goals (props) {
 
   useEffect(() => {
     begin()
-    getUserGoals(2)
+    getUserGoals(props.userInfo.id)
       .then((goals) => success(goals))
       .catch((error) => failure(error))
   }, [])
@@ -26,7 +26,8 @@ function Goals (props) {
 
 const mapStateToProps = (state) => ({
   goals: state.goals,
-  waiting: state.waiting
+  waiting: state.waiting,
+  userInfo: state.userInfo
 })
 
 const mapDispatchToProps = (dispatch) => ({

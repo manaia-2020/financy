@@ -8,5 +8,5 @@ test('getAccounts returns accounts', () => {
 test('addAccount adds account details by userId', () => {
   const action = addAccount({ name: 'Spending Account', balance: 10 }, 1)
   expect(action.type).toBe('ADD_ACCOUNT')
-  expect(action.id).toBe(1)
+  expect(action.userId).toBe(1)
 })

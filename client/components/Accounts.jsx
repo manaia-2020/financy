@@ -5,10 +5,12 @@ import { getAccounts } from '../actions/accounts.action'
 
 import AddAccount from './AddAccount'
 
-function Accounts (props) {
+function Accounts(props) {
+  const { userInfo, accounts } = props
   useEffect(() => {
-    getAccountApi()
+    getAccountApi(userInfo.id)
       .then((results) => {
+        console.log(results)
         props.dispatch(getAccounts(results))
         return null
       }).catch((err) => {
@@ -17,22 +19,23 @@ function Accounts (props) {
   }, [])
 
   return (
-    <div>
+    <>
       <h1>Accounts</h1>
       <AddAccount />
-      {props.accounts.map(acc => (
+      {accounts.map(acc => (
         <div key={acc.id} >
           <h4>{acc.name} - ${acc.balance}<button>X</button></h4>
         </div>
       ))
       }
-    </div >
+    </ >
   )
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
-    accounts: state.accounts
+    accounts: state.accounts,
+    userInfo: state.addUserInfo
   }
 }
 

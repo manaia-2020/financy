@@ -10,8 +10,7 @@ import Goals from './Goals'
 import Rewards from './Rewards'
 import Accounts from './Accounts'
 
-
-const Nav = ({history, dispatch, userInfo}) => {
+const Nav = ({ history, dispatch, userInfo }) => {
   const handleClick = () => {
     logOff()
     if (!isAuthenticated()) {

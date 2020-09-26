@@ -23,6 +23,7 @@ router.get('/auth', (req, res) => {
         email: user.username
       }
       res.json(userInfo)
+      return null
     })
     .catch((err) => {
       res.status(500).send(err.message)

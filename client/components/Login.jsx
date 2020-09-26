@@ -33,9 +33,11 @@ const Login = (props) => {
           props.history.push('/dashboard')
           return getUserInfo(email)
         }
+        return null
       })
       .then(res => {
         props.dispatch(addUserInfo(res))
+        return null
       })
       .catch(err => console.log(err))
   }

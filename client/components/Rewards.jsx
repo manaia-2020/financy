@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 const Rewards = (props) => {
-  
   return (
     <div>
       <h1>Rewards</h1>

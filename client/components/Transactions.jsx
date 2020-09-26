@@ -7,7 +7,6 @@ const Transactions = (props) => {
   return (
     <div>
       <h1>Transactions</h1>
-      <AddAccount />
     </div>
   )
 }

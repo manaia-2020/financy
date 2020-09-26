@@ -1,10 +1,10 @@
 const express = require('express')
-const { getAllTransForUser } = require('../database/transactionsDb')
+const { getAllTransForUserAccount } = require('../database/transactionsDb')
 const router = express.Router()
 
 router.get('/:userId/:accountId', (req, res) => {
   const { userId, accountId } = req.params
-  return getAllTransForUser(userId, accountId)
+  return getAllTransForUserAccount(userId, accountId)
     .then((trans) => {
       res.send({ trans })
       return null

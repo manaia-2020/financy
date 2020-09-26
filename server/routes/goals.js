@@ -1,5 +1,5 @@
 const express = require('express')
-const { saveNewGoal } = require('../database/goals.database')
+const { saveNewGoal, getAllGoalsByUserId } = require('../database/goals.database')
 const router = express.Router()
 
 router.post('/', (req, res) => {
@@ -10,6 +10,14 @@ router.post('/', (req, res) => {
       return res.status(201).json(id[0])
     })
     .catch(err => console.log(err))
+})
+
+router.get('/:id', (req, res) => {
+  const id = Number(req.params.id)
+
+  getAllGoalsByUserId(id)
+    .then((goals) => res.status(201).json(goals))
+    .catch(() => res.status(500).send('DATABASE ERROR'))
 })
 
 module.exports = router

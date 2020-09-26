@@ -14,8 +14,8 @@ jest.mock('authenticare/client', () => ({
 test('Log in completes successfully', async () => {
   expect.assertions(1)
   render(<Provider store={store}><Login /></Provider>)
-  let email = screen.getByPlaceholderText('Email Address')
-  let password = screen.getByPlaceholderText('Password')
+  const email = screen.getByPlaceholderText('Email Address')
+  const password = screen.getByPlaceholderText('Password')
   fireEvent.change(email, { target: { value: 'test@test.com' } })
   fireEvent.change(password, { target: { value: 'test' } })
   const button = screen.getByRole('button')

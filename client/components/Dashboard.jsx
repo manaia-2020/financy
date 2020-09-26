@@ -1,13 +1,11 @@
 import React from 'react'
 
-import DashboardNav from './DashboardNav'
-
 const Dashboard = (props) => {
-  return (
-    <div>
-      <DashboardNav history={props.history} />
-    </div>
-  )
+      return (
+            <div>
+                  <h1>Profile</h1>
+            </div>
+      )
 }
 
 export default Dashboard

@@ -38,14 +38,14 @@ function Register (props) {
     }
   }
   return (
-    <div>
+    <section id="register">
       <input type='email' role='email' name='firstName' placeholder='Name' onChange={handleChange}></input>
       <input type='email' role='email' name='lastName' placeholder='Last Name' onChange={handleChange}></input>
       <input type='email' role='email' name='email' placeholder='example@gmail.com' onChange={handleChange}></input>
       <input type='password' role='password' name='password' placeholder='password' onChange={handleChange}></input>
       <input type='password' role='confirmPassword' name='confirmPassword' placeholder='confirm password' onChange={handleChange}></input>
       <button type="submit" onClick={submitHandler}>Register</button>
-    </div>
+    </section>
   )
 }
 

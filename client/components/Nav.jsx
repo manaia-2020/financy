@@ -7,6 +7,7 @@ import Transactions from './Transactions'
 import Dashboard from './Dashboard'
 import Goals from './Goals'
 import Rewards from './Rewards'
+import Accounts from './Accounts'
 
 const Nav = (props) => {
   const handleClick = () => {
@@ -52,6 +53,9 @@ const Nav = (props) => {
             <li>
               <Link to="/transactions">Transactions</Link>
             </li>
+            <li>
+              <Link to="/accounts">Accounts</Link>
+            </li>
           </ul>
           <button onClick={handleClick}>Log off</button>
 
@@ -67,6 +71,9 @@ const Nav = (props) => {
             </Route>
             <Route exact path="/transactions">
               <Transactions />
+            </Route>
+            <Route exact path="/accounts">
+              <Accounts />
             </Route>
           </Switch>
         </IfAuthenticated>

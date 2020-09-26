@@ -1,19 +1,21 @@
-import React from "react";
-import { Link, Route, Switch } from "react-router-dom";
-import { IfNotAuthenticated, IfAuthenticated } from "./Authenticated";
-import { logOff, isAuthenticated } from "authenticare/client";
+import React from 'react'
+import { Link, Route, Switch } from 'react-router-dom'
+import { IfNotAuthenticated, IfAuthenticated } from './Authenticated'
+import { logOff, isAuthenticated } from 'authenticare/client'
 
-import Transactions from "./Transactions";
+import Transactions from './Transactions'
+import Dashboard from './Dashboard'
+import Goals from './Goals'
+import Rewards from './Rewards'
 
 const Nav = (props) => {
-  
   const handleClick = () => {
-    logOff();
+    logOff()
     if (!isAuthenticated()) {
-      props.history.push("/");
+      props.history.push('/')
     }
-  };
-  
+  }
+
   return (
     <header id="header" className="fixed-top ">
       <div className="container-fluid"></div>
@@ -54,15 +56,15 @@ const Nav = (props) => {
           <button onClick={handleClick}>Log off</button>
 
           <Switch>
-            {/* <Route exact path="/dashboard">
-          <Profile />
-        </Route>
-        <Route path="/rewards">
-          <Rewards />
-        </Route>
-        <Route path="/goals">
-          <Goals />
-        </Route> */}
+            <Route exact path="/dashboard">
+              <Dashboard />
+            </Route>
+            <Route path="/rewards">
+              <Rewards />
+            </Route>
+            <Route path="/goals">
+              <Goals />
+            </Route>
             <Route exact path="/transactions">
               <Transactions />
             </Route>
@@ -70,7 +72,7 @@ const Nav = (props) => {
         </IfAuthenticated>
       </ul>
     </header>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav

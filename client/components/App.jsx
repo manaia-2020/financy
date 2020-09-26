@@ -23,7 +23,7 @@ const App = () => {
         }}
       />
       <Route
-        path="/register"
+        exact path="/register"
         render={({ history }) => {
           return isAuthenticated() ? (
             <Redirect to="/dashboard" />
@@ -32,9 +32,6 @@ const App = () => {
           )
         }}
       />
-      <Route path="/dashboard" render={({ history }) => {
-        return <Dashboard history={history} />
-      }} />
     </>
   )
 }

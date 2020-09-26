@@ -1,28 +1,53 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { logOff, isAuthenticated } from 'authenticare/client'
-import { IfAuthenticated } from './Authenticated'
+import React from "react";
+import { Link, Route, Switch } from "react-router-dom";
+import { logOff, isAuthenticated } from "authenticare/client";
+import { IfAuthenticated } from "./Authenticated";
+
+import Transactions from "./Transactions";
 
 const DashboardNav = (props) => {
   const handleClick = () => {
-    logOff()
+    logOff();
     if (!isAuthenticated()) {
-      props.history.push('/')
+      props.history.push("/");
     }
-  }
+  };
 
   return (
     <div>
       <IfAuthenticated>
-        <Link to='/'><h4>Profile</h4></Link>
-        <Link to='/rewards'><h4>Rewards</h4></Link>
-        <Link to='/goals'><h4>Goals</h4></Link>
-        <Link to='/income'><h4>Income</h4></Link>
-        <Link to='/expenses'><h4>Expenses</h4></Link>
+        <ul>
+          <li>
+            <Link to="/dashboard">Profile</Link>
+          </li>
+          <li>
+            <Link to="/rewards">Rewards</Link>
+          </li>
+          <li>
+            <Link to="/goals">Goals</Link>
+          </li>
+          <li>
+            <Link to="/transactions">Transactions</Link>
+          </li>
+        </ul>
         <button onClick={handleClick}>Log off</button>
       </IfAuthenticated>
+      <Switch>
+        {/* <Route exact path="/dashboard">
+          <Profile />
+        </Route>
+        <Route path="/rewards">
+          <Rewards />
+        </Route>
+        <Route path="/goals">
+          <Goals />
+        </Route> */}
+        <Route exact path="/transactions">
+          <Transactions />
+        </Route>
+      </Switch>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardNav
+export default DashboardNav;

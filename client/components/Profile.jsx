@@ -3,9 +3,13 @@ import { connect } from 'react-redux'
 
 const Profile = () => {
   return (
-    <div>
-      <h1>Profile</h1>
-    </div>
+    return (
+      <div>
+        <DashboardNav history={props.history} />
+        <AddAccount />
+      </div>
+    )
+  }
   )
 }
 

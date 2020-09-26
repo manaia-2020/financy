@@ -1,6 +1,6 @@
 /* eslint-disable jest/valid-title */
 import goalsReducer from './goals.reducer'
-import { addGoal, ADD_GOAL } from '../actions/goals.action'
+import { addGoal, ADD_GOAL, fetchGoalsSuccess, FETCH_GOALS_SUCCESS } from '../actions/goals.action'
 
 describe('goals reducer tests', () => {
   test(ADD_GOAL, () => {
@@ -26,6 +26,17 @@ describe('goals reducer tests', () => {
     const actualState = goalsReducer(initialState, action)
 
     expect.assertions(1)
+    expect(actualState).toEqual(expectedState)
+  })
+
+  test(FETCH_GOALS_SUCCESS, () => {
+    const goals = ['goal 1', 'goal 2']
+    const initialState = []
+    const expectedState = goals
+
+    const action = fetchGoalsSuccess(goals)
+    const actualState = goalsReducer(initialState, action)
+
     expect(actualState).toEqual(expectedState)
   })
 })

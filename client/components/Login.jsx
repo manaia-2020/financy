@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import { signIn, isAuthenticated } from 'authenticare/client'
 import { baseApiUrl as baseUrl } from '../config'
+import { getUserInfo } from '../api/api'
+import { addUserInfo } from '../actions'
 
 // Email = Username as authenticare requires a username field
 
@@ -27,9 +30,13 @@ const Login = (props) => {
     signIn({ username: email, password }, { baseUrl })
       .then((token) => {
         if (isAuthenticated()) {
-          console.log('Logged in')
           props.history.push('/dashboard')
+          return getUserInfo(email)
         }
+        return null
+      })
+      .then(res => {
+        props.dispatch(addUserInfo(res))
         return null
       })
       .catch(err => console.log(err))
@@ -47,5 +54,10 @@ const Login = (props) => {
     </section>
   )
 }
+function mapStateToProps (state) {
+  return {
+    userInfo: state.addUserInfo
+  }
+}
 
-export default Login
+export default connect(mapStateToProps)(Login)

@@ -6,6 +6,7 @@ export default function goalsReducer (state = initialState, action) {
   switch (action.type) {
     case ADD_GOAL:
       return [...state, {
+        id: Math.random().toString(36).substring(7),
         name: action.payload.goal.name,
         goal_date: action.payload.goal.date,
         amount: action.payload.goal.amount,

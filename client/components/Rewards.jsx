@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 const Rewards = (props) => {
   return (
@@ -9,4 +8,4 @@ const Rewards = (props) => {
   )
 }
 
-export default connect()(Rewards)
+export default Rewards

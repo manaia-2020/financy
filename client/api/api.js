@@ -21,15 +21,15 @@ export function postAccount(id = 3, account) {
     .then(response => response.body)
 }
 
-export function removeAccount(id, accId) {
+export function removeAccount(id) {
   return request
-    .del(`/api/v1/accounts/${id}/${accId}`)
+    .del(`/api/v1/accounts/${id}`)
     .then(response => response)
 }
 
 export function getUserInfo(email) {
   return request
-    .get(`/api/v1/auth?email=${email}`)
+    .get(`/ api / v1 / auth ? email = ${email}`)
     .then(res => {
       return res.body
     })

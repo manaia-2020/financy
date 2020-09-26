@@ -20,7 +20,14 @@ function addAccountDetails(data, db = connection) {
     })
 }
 
+function deleteAccount(id, db = connection) {
+  return db('accounts')
+    .where('id', id)
+    .del()
+}
+
 module.exports = {
   getAccountDetails,
-  addAccountDetails
+  addAccountDetails,
+  deleteAccount
 }

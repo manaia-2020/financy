@@ -19,9 +19,9 @@ function Accounts(props) {
   }, [])
 
   //change 3 to id once userId is persisting in Global state
-  function handleClick(id, accId) {
-    removeAccount(id, accId)
-    return props.dispatch(deleteAccount(accId))
+  function handleClick(id) {
+    removeAccount(id)
+    return props.dispatch(deleteAccount(id))
   }
 
   return (
@@ -30,7 +30,7 @@ function Accounts(props) {
       <AddAccount />
       {accounts.map(acc => (
         <div key={acc.id} >
-          <h4>{acc.name} - ${acc.balance}<button onClick={() => handleClick(acc.userId, acc.id)}>X</button></h4>
+          <h4>{acc.name} - ${acc.balance}<button onClick={() => handleClick(acc.id)}>X</button></h4>
         </div>
       ))
       }

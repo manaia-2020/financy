@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { getAccountDetails, addAccountDetails } = require('../database/accountsDb')
+const { getAccountDetails, addAccountDetails, deleteAccount } = require('../database/accountsDb')
 
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id)
@@ -21,6 +21,18 @@ router.post('/:id', (req, res) => {
     .then((result) => {
       res.status(201)
       res.json(result)
+      return null
+    })
+    .catch((error) => {
+      res.status(500).send('DATABASE ERROR:' + error.message)
+    })
+})
+
+router.delete('/:id', (req, res) => {
+  const accountId = Number(req.params.id)
+  deleteAccount(accountId)
+    .then(() => {
+      res.sendStatus(200)
       return null
     })
     .catch((error) => {

@@ -2,7 +2,7 @@ const knex = require('knex')
 const config = require('../../knexfile').test
 const { getPreviousBalance, calcBalanceDelta, getMedal, awardMedal, decideMedal, insertUsersMedals, getUsersMedals } = require('./medalsDb')
 
-let testDb = knex(config)
+const testDb = knex(config)
 
 beforeAll(() => testDb.migrate.latest())
 beforeEach(() => testDb.seed.run())

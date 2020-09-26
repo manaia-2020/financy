@@ -28,5 +28,5 @@ test('user can add new account in input', async () => {
 
   expect.assertions(2)
   expect(postGoal).toHaveBeenCalled()
-  expect(postGoal).toHaveBeenCalledWith({ 'amount': 'NZ$0.00', 'date': '2020-12-12', 'name': 'pin jesus to cross' }, 2)
+  expect(postGoal).toHaveBeenCalledWith({ amount: 'NZ$0.00', date: '2020-12-12', name: 'pin jesus to cross' }, 2)
 })

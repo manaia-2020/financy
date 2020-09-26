@@ -7,13 +7,13 @@ export const addTransaction = (expense, id) => {
     .then(res => res.body)
 }
 
-export function getAccountApi(id = 1) {
+export function getAccountApi (id = 1) {
   return request
     .get(`/api/v1/accounts/${id}`)
     .then(response => response.body)
 }
 
-export function postAccount(id, account) {
+export function postAccount (id, account) {
   return request
     .post(`/api/v1/accounts/${id}`)
     .send(account)

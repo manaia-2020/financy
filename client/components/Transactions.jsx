@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import AddAccount from './AddAccount'
-
 const Transactions = (props) => {
   return (
     <div>

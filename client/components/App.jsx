@@ -5,8 +5,6 @@ import { isAuthenticated } from 'authenticare/client/auth'
 import Login from './Login'
 import Register from './Register'
 import Nav from './Nav'
-import Dashboard from './Dashboard'
-import Accounts from './Accounts'
 
 const App = () => {
   return (

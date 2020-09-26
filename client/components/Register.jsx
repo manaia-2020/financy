@@ -6,7 +6,7 @@ import { baseApiUrl as baseUrl } from '../config'
 // import {  } from '../actions'
 // import {  } from '../api/api'
 
-function Register(props) {
+function Register (props) {
   const [newUser, setNewUser] = useState({
     firstName: '',
     lastName: '',

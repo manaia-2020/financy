@@ -13,7 +13,6 @@ export default function accountsReducer (state = initialState, action) {
         balance: action.account.balance,
         user_id: action.id
       }]
-
     default:
       return state
   }

@@ -19,13 +19,13 @@ const AddAccount = (props) => {
     event.preventDefault()
     props.dispatch(addAccount(account))
     postAccount(1, account)
-      .then(console.log)
+      .then(location.reload())
       .catch(err => console.log(err))
   }
 
   return (
     <>
-      <h1>Add Account Balance</h1>
+      <h3>Add New Account</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Account Name</label>
         <input type="text" id='accountName' name="name" placeholder='Account Name' value={account.name} onChange={handleChange}></input>

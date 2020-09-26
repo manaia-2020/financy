@@ -5,9 +5,8 @@ import { isAuthenticated } from 'authenticare/client/auth'
 import Login from './Login'
 import Register from './Register'
 import Nav from './Nav'
-import LandingPage from './LandingPage'
 import Dashboard from './Dashboard'
-import About from './About'
+import Accounts from './Accounts'
 
 const App = () => {
   return (
@@ -37,6 +36,7 @@ const App = () => {
       <Route path="/dashboard" render={({ history }) => {
         return <Dashboard history={history} />
       }} />
+      <Route path='/accounts' component={Accounts} />
     </>
   )
 }

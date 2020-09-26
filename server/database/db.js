@@ -4,7 +4,7 @@ const config = require('../../knexfile')[environment]
 const connection = knex(config)
 const { generateHash } = require('authenticare/server')
 
-function saveNewUser (user, db = connection) {
+function saveNewUser(user, db = connection) {
   user.email = user.username
   return generateHash(user.password)
     .then((passwordHash) => {
@@ -20,7 +20,7 @@ function saveNewUser (user, db = connection) {
     .catch((err) => console.log(err))
 }
 
-function userExists (email, db = connection) {
+function userExists(email, db = connection) {
   return db('users')
     .count('id as n')
     .where('email', email)
@@ -29,7 +29,7 @@ function userExists (email, db = connection) {
     })
 }
 
-function getUserByName (email, db = connection) {
+function getUserByName(email, db = connection) {
   return db('users')
     .where('email', email)
     .select('id', 'email as username', 'password_hash as hash')
@@ -39,14 +39,14 @@ function getUserByName (email, db = connection) {
     })
 }
 
-function getAccountDetails (id, db = connection) {
+function getAccountDetails(id, db = connection) {
   return db('accounts')
     .join('users', 'accounts.user_id', 'users.id')
     .where('user_id', id)
-    .select('accounts.user_id as id', 'user_id as userId', 'name', 'balance', 'balance_updated_at as balanceLastUpdated')
+    .select('accounts.id as id', 'users.id as userId', 'name', 'balance', 'balance_updated_at as balanceLastUpdated')
 }
 
-function addAccountDetails (data, db = connection) {
+function addAccountDetails(data, db = connection) {
   return db('accounts')
     .insert({
       name: data.name,

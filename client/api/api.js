@@ -13,11 +13,18 @@ export function getAccountApi(id) {
     .then(response => response.body)
 }
 
-export function postAccount(id, account) {
+//update once userId is persisted to global state
+export function postAccount(id = 3, account) {
   return request
     .post(`/api/v1/accounts/${id}`)
     .send(account)
     .then(response => response.body)
+}
+
+export function removeAccount(id, accId) {
+  return request
+    .del(`/api/v1/accounts/${id}/${accId}`)
+    .then(response => response)
 }
 
 export function getUserInfo(email) {

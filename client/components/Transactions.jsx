@@ -4,7 +4,6 @@ import { getAccountApi } from '../api/api'
 import { getAccounts } from '../actions/accounts.action'
 
 const Transactions = (props) => {
-  console.log(props)
   useEffect(() => {
     getAccountApi(props.userInfo.id)
       .then((results) => {

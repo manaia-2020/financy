@@ -7,7 +7,9 @@ export const addAccount = (account, id) => ({
   id
 })
 
-export const getAccounts = (accounts) => ({
-  type: GET_ACCOUNTS,
-  accounts
-})
+export const getAccounts = (accounts) => {
+  return {
+    type: GET_ACCOUNTS,
+    accounts
+  }
+}

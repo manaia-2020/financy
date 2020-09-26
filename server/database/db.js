@@ -43,7 +43,7 @@ function getAccountDetails (id, db = connection) {
   return db('accounts')
     .join('users', 'accounts.user_id', 'users.id')
     .where('user_id', id)
-    .select('accounts.user_id as id', 'user_id as userId', 'name', 'balance', 'balance_updated_at as balanceLastUpdated')
+    .select('accounts.id as id', 'users.id as userId', 'name', 'balance', 'balance_updated_at as balanceLastUpdated')
 }
 
 function addAccountDetails (data, db = connection) {

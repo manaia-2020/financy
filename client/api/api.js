@@ -7,29 +7,29 @@ export const addTransaction = (expense, id) => {
     .then(res => res.body)
 }
 
-export function getAccountApi (id) {
+export function getAccountApi(id) {
   return request
     .get(`/api/v1/accounts/${id}`)
     .then(response => response.body)
 }
 
 // update once userId is persisted to global state
-export function postAccount (id = 3, account) {
+export function postAccount(id = 3, account) {
   return request
     .post(`/api/v1/accounts/${id}`)
     .send(account)
     .then(response => response.body)
 }
 
-export function removeAccount (id) {
+export function removeAccount(id) {
   return request
     .del(`/api/v1/accounts/${id}`)
     .then(response => response)
 }
 
-export function getUserInfo (email) {
+export function getUserInfo(email) {
   return request
-    .get(`/ api / v1 / auth ? email = ${email}`)
+    .get(`/api/v1/auth?email=${email}`)
     .then(res => {
       return res.body
     })

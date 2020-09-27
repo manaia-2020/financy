@@ -9,7 +9,6 @@ function Goals (props) {
 
   useEffect(() => {
     begin()
-    console.log(userInfo)
     getUserGoals(userInfo.id)
       .then((goals) => success(goals))
       .catch((error) => failure(error))

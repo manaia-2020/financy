@@ -2,17 +2,18 @@ const express = require('express')
 const { getTransactions, newTransaction, getCurrentBalance } = require('../database/bankDb')
 const router = express.Router()
 
-router.get('/:id/transactions', (req, res) => {
-  const userId = Number(req.params.id)
-  if (!userId) return res.status(400).send('No UserId Specified')
-  return getTransactions(userId)
-    .then((transactions) => {
-      res.json({ transactions })
-      return null
-    }).catch((err) => {
-      sendErr(err, res)
-    })
-})
+// Not being used 
+// router.get('/:id/transactions', (req, res) => {
+//   const userId = Number(req.params.id)
+//   if (!userId) return res.status(400).send('No UserId Specified')
+//   return getTransactions(userId)
+//     .then((transactions) => {
+//       res.json({ transactions })
+//       return null
+//     }).catch((err) => {
+//       sendErr(err, res)
+//     })
+// })
 
 router.post('/:id/addTransaction', (req, res) => {
   const userId = Number(req.params.id)

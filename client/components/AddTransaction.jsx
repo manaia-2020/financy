@@ -51,6 +51,8 @@ const AddTransaction = (props) => {
     )
   }
 
+  console.log(newTrans)
+
   return (
     <div>
       <h1>Add New Transaction</h1>

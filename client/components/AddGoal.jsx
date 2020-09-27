@@ -23,7 +23,7 @@ function AddGoal (props) {
   }
 
   function handleSubmit (event) {
-    const id = 2
+    const id = props.userInfo.id
     event.preventDefault()
     props.dispatch(addGoal(goal, id))
     postGoal(goal, id)
@@ -63,4 +63,8 @@ function AddGoal (props) {
   )
 }
 
-export default connect()(AddGoal)
+const mapStateToProps = (state) => ({
+  userInfo: state.addUserInfo
+})
+
+export default connect(mapStateToProps)(AddGoal)

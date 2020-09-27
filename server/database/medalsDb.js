@@ -9,7 +9,8 @@ const oneWeekInSecs = 1000 * 60 * 60 * 24 * 7
 
 function getPreviousBalance (userId, db = database) {
   const lastTrans = Date.now() - oneWeekInSecs
-  return db('accounts')
+  return db('balance_history')
+    .join('accounts', 'accounts.id', 'account_id')
     .select()
     .where({ user_id: userId })
     .where('balance_updated_at', '>', lastTrans)
@@ -17,9 +18,9 @@ function getPreviousBalance (userId, db = database) {
     .first()
 }
 
-async function calcBalanceDelta (userId, db = database) {
+async function calcBalanceDelta (userId, accountId, db = database) {
   const previous = await getPreviousBalance(userId, db)
-  const current = await getCurrentBalance(userId, db)
+  const current = await getCurrentBalance(userId, accountId, db)
   return current.balance - previous.balance
 }
 
@@ -29,8 +30,8 @@ function getMedal (medalId, db = database) {
     .first()
 }
 
-async function awardMedal (userId, db = database) {
-  const delta = await calcBalanceDelta(userId, db)
+async function awardMedal (userId, accountId, db = database) {
+  const delta = await calcBalanceDelta(userId, accountId, db)
   const medalId = decideMedal(delta)
   const newMedal = await getMedal(medalId, db)
   return insertUsersMedals(userId, newMedal.id, db)

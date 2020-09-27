@@ -55,7 +55,8 @@ function updateBalance (amount, accountId, userId, db = database) {
 }
 
 function getCurrentBalance (userId, accountId, db = database) {
-  return db('accounts')
+  return db('balance_history')
+    .join('accounts', 'accounts.id', 'account_id')
     .where({ user_id: userId })
     .where({ account_id: accountId })
     .orderBy('balance_updated_at', 'desc')

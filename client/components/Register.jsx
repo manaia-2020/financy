@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { register, isAuthenticated } from 'authenticare/client'
 import { baseApiUrl as baseUrl } from '../config'
 
-// import {  } from '../actions'
-// import {  } from '../api/api'
+import { getUserInfo } from '../api/api'
+import { addUserInfo } from '../actions'
 
 function Register (props) {
   const [newUser, setNewUser] = useState({
@@ -31,7 +31,12 @@ function Register (props) {
           if (isAuthenticated()) {
             console.log('user added')
             props.history.push('/dashboard')
+            return getUserInfo(email)
           }
+          return null
+        })
+        .then(res => {
+          props.dispatch(addUserInfo(res))
           return null
         })
         .catch(err => console.log(err))
@@ -49,4 +54,10 @@ function Register (props) {
   )
 }
 
-export default connect()(Register)
+function mapStateToProps (state) {
+  return {
+    userInfo: state.addUserInfo
+  }
+}
+
+export default connect(mapStateToProps)(Register)

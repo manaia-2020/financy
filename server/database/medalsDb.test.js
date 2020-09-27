@@ -11,7 +11,7 @@ afterAll(() => testDb.destroy())
 describe('getPreviousBalance', () => {
   test('Gets the oldest balance within 1 week', () => {
     expect.assertions(1)
-    return getPreviousBalance(3, testDb)
+    return getPreviousBalance(3, 7, testDb)
       .then((oldestBalance) => {
         expect(oldestBalance.balance).toBe(450)
         return null

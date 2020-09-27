@@ -19,7 +19,7 @@ const AddAccount = (props) => {
     event.preventDefault()
     props.dispatch(addAccount(account))
     postAccount(3, account)
-      .then(location.reload())
+      .then(console.log())
       .catch(err => console.log(err))
   }
 

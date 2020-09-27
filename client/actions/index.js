@@ -8,8 +8,7 @@ export function addUserInfo (userInfo) {
   }
 }
 
-
-export function setRewards (rewards){
+export function setRewards (rewards) {
   return {
     type: SET_REWARDS,
     rewards

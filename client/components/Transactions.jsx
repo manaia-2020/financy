@@ -25,7 +25,8 @@ const Transactions = (props) => {
     setAccountId(event.target.name)
   }
 
-  const requestTransactions = () => {
+  const requestTransactions = (event) => {
+    event.preventDefault()
     // TODO change arg to id, it isn't persisting in global state
     return getUserAccountTransactions(3, accountId)
       .then(items => {
@@ -33,7 +34,6 @@ const Transactions = (props) => {
         return null
       })
   }
-  console.log(transactions);
   return (
     <div>
       <div>

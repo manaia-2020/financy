@@ -15,6 +15,8 @@ router.get('/:id/transactions', (req, res) => {
 })
 
 router.post('/:id/addTransaction', (req, res) => {
+  console.log(req.body)
+  console.log(req.params.id);
   const userId = Number(req.params.id)
   if (!userId) return res.status(400).send('No UserId Specified')
   return newTransaction(req.body, userId)

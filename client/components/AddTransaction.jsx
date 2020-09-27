@@ -3,6 +3,10 @@ import { connect } from 'react-redux'
 import { addNewTransaction } from '../api/api'
 
 const AddTransaction = (props) => {
+  useEffect(() => {
+
+  }, [])
+
   const [newTrans, setNewTrans] = useState({
     amount: 0,
     name: '',
@@ -10,20 +14,17 @@ const AddTransaction = (props) => {
     frequency: 0
   })
   const [ showRecurring, setShowRecurring ] = useState(false)
-  const [ disabled, setDisabled ] = useState(true)
 
-  const postTransaction = () => {
-    // addNewTransaction
+  const postTransaction = (event) => {
+    event.preventDefault()
+    const newTransToAdd = { ...newTrans, showRecurring }
+    //TODO pass userId not persisting
+    addNewTransaction(3, newTransToAdd)
   }
-
-  useEffect(() => {
-    console.log(newTrans)
-  }, [])
 
   const handleChange = (event) => {
     const { name, value } = event.target
     setNewTrans({ ...newTrans, [name]: value })
-    setDisabled(true)
   }
 
   const checkFloat = () => {
@@ -49,8 +50,7 @@ const AddTransaction = (props) => {
       </>
     )
   }
-
-  console.log(newTrans)
+  console.log(newTrans);
   return (
     <div>
       <h1>Add New Transaction</h1>

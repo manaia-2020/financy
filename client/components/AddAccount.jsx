@@ -16,9 +16,10 @@ const AddAccount = (props) => {
   }
 
   const handleSubmit = (event) => {
+    const id = props.userInfo.id
     event.preventDefault()
-    props.dispatch(addAccount(account))
-    postAccount(3, account)
+    props.dispatch(addAccount(account, id))
+    postAccount(id, account)
       .then(console.log())
       .catch(err => console.log(err))
   }
@@ -36,5 +37,8 @@ const AddAccount = (props) => {
     </>
   )
 }
+const mapStateToProps = (state) => ({
+  userInfo: state.addUserInfo
+})
 
-export default connect()(AddAccount)
+export default connect(mapStateToProps)(AddAccount)

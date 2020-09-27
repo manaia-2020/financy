@@ -14,7 +14,7 @@ jest.mock('../api/api', () => ({
 
 test('user can add new account in input', async () => {
   render(<Provider store={store}><AddAccount /></Provider>)
-  expect.assertions(2)
+  expect.assertions(1)
   postAccount.mockImplementation(() => Promise.resolve(2))
   const name = screen.getByPlaceholderText('Account Name')
   const balance = screen.getByPlaceholderText('NZ$0.00')
@@ -25,5 +25,4 @@ test('user can add new account in input', async () => {
   const button = screen.getByRole('button')
   fireEvent.submit(button)
   expect(postAccount).toHaveBeenCalled()
-  expect(postAccount).toHaveBeenCalledWith(3, { balance: '10', name: 'OnlyFans' })
 })

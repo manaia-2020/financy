@@ -7,7 +7,7 @@ export const addTransaction = (expense, id) => {
     .then(res => res.body)
 }
 
-export function getAccountApi (id = 1) {
+export function getAccountApi (id) {
   return request
     .get(`/api/v1/accounts/${id}`)
     .then(response => response.body)
@@ -18,6 +18,12 @@ export function postAccount (id, account) {
     .post(`/api/v1/accounts/${id}`)
     .send(account)
     .then(response => response.body)
+}
+
+export function removeAccount (id) {
+  return request
+    .del(`/api/v1/accounts/${id}`)
+    .then(response => response)
 }
 
 export function getUserInfo (email) {

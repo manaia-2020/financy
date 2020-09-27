@@ -1,4 +1,4 @@
-import { GET_ACCOUNTS, ADD_ACCOUNT } from '../actions/accounts.action'
+import { GET_ACCOUNTS, ADD_ACCOUNT, DELETE_ACCOUNT } from '../actions/accounts.action'
 
 const initialState = []
 
@@ -13,6 +13,8 @@ export default function accountsReducer (state = initialState, action) {
         balance: action.account.balance,
         user_id: action.id
       }]
+    case DELETE_ACCOUNT:
+      return state.filter((account) => account.id !== action.id)
     default:
       return state
   }

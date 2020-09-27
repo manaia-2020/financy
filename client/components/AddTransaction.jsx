@@ -18,8 +18,8 @@ const AddTransaction = (props) => {
   const postTransaction = (event) => {
     event.preventDefault()
     const newTransToAdd = { ...newTrans, showRecurring }
-    addNewTransaction(props.userInfo.id, newTransToAdd)
-    .then(balance => console.log(balance))
+    return addNewTransaction(props.userInfo.id, newTransToAdd)
+      .then(balance => console.log(balance))
   }
 
   const handleChange = (event) => {

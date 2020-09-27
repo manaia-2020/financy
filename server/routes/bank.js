@@ -2,7 +2,7 @@ const express = require('express')
 const { getTransactions, newTransaction, getCurrentBalance } = require('../database/bankDb')
 const router = express.Router()
 
-// Not being used 
+// Not being used
 // router.get('/:id/transactions', (req, res) => {
 //   const userId = Number(req.params.id)
 //   if (!userId) return res.status(400).send('No UserId Specified')

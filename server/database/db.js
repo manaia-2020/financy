@@ -50,9 +50,15 @@ function addAccountDetails (data, db = connection) {
   return db('accounts')
     .insert({
       name: data.name,
-      balance: data.balance,
-      balance_updated_at: Date.now(),
       user_id: data.id
+    })
+    .then((accountId) => {
+      return db('balance_history')
+        .insert({
+          balance: data.balance,
+          balance_updated_at: Date.now(),
+          account_id: accountId[0]
+        })
     })
 }
 

@@ -21,7 +21,7 @@ function getPreviousBalance (userId, accountId, db = database) {
 
 async function calcBalanceDelta (userId, accountId, db = database) {
   const previous = await getPreviousBalance(userId, accountId, db)
-  const current = await getCurrentBalance(userId, accountId, db)
+  const current = await getCurrentBalance(accountId, db)
   return current.balance - previous.balance
 }
 

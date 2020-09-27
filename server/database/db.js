@@ -4,7 +4,7 @@ const config = require('../../knexfile')[environment]
 const connection = knex(config)
 const { generateHash } = require('authenticare/server')
 
-function saveNewUser(user, db = connection) {
+function saveNewUser (user, db = connection) {
   user.email = user.username
   return generateHash(user.password)
     .then((passwordHash) => {
@@ -20,7 +20,7 @@ function saveNewUser(user, db = connection) {
     .catch((err) => console.log(err))
 }
 
-function userExists(email, db = connection) {
+function userExists (email, db = connection) {
   return db('users')
     .count('id as n')
     .where('email', email)
@@ -29,7 +29,7 @@ function userExists(email, db = connection) {
     })
 }
 
-function getUserByName(email, db = connection) {
+function getUserByName (email, db = connection) {
   return db('users')
     .where('email', email)
     .select('id', 'email as username', 'password_hash as hash')
@@ -38,7 +38,6 @@ function getUserByName(email, db = connection) {
       return user
     })
 }
-
 
 module.exports = {
   saveNewUser,

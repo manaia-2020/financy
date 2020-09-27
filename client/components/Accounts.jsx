@@ -5,10 +5,10 @@ import { getAccounts, deleteAccount } from '../actions/accounts.action'
 
 import AddAccount from './AddAccount'
 
-function Accounts(props) {
-  const { userInfo, accounts } = props
+function Accounts (props) {
+  const { accounts } = props
   useEffect(() => {
-    //change 3 to id once userId is persisting in Global state
+    // change 3 to id once userId is persisting in Global state
     getAccountApi(3)
       .then((results) => {
         props.dispatch(getAccounts(results))
@@ -18,8 +18,8 @@ function Accounts(props) {
       })
   }, [])
 
-  //change 3 to id once userId is persisting in Global state
-  function handleClick(id) {
+  // change 3 to id once userId is persisting in Global state
+  function handleClick (id) {
     removeAccount(id)
     return props.dispatch(deleteAccount(id))
   }
@@ -38,7 +38,7 @@ function Accounts(props) {
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     accounts: state.accounts,
     userInfo: state.addUserInfo

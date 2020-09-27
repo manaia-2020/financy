@@ -2,7 +2,7 @@ import { GET_ACCOUNTS, ADD_ACCOUNT, DELETE_ACCOUNT } from '../actions/accounts.a
 
 const initialState = []
 
-export default function accountsReducer(state = initialState, action) {
+export default function accountsReducer (state = initialState, action) {
   switch (action.type) {
     case GET_ACCOUNTS:
       return action.accounts

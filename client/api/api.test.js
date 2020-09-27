@@ -2,14 +2,14 @@ import nock from 'nock'
 import { getAccountApi, postAccount, removeAccount } from './api'
 
 test('getAccountApi fetches accounts from server', () => {
-  const scope = nock(/localhost/)
+  nock(/localhost/)
     .get('/api/v1/accounts/1')
     .reply(201, [{ name: 'Only Fans', balance: 10 }])
 
   return getAccountApi(1)
     .then(accounts => {
       expect(accounts[0].name).toBe('Only Fans')
-      expect(accounts.length).toBe(1)
+      expect(accounts).toHaveLength(1)
       return null
     })
 })

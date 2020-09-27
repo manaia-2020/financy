@@ -38,26 +38,24 @@ function addTransaction (body, userId, transId, db = database) {
       recurring_transaction_id: transId
     })
     .then(() => {
-      return updateBalance(amount, accountSelect, userId, db)
+      return updateBalance(amount, accountSelect, db)
     })
 }
 
-function updateBalance (amount, accountId, userId, db = database) {
-  return db('accounts')
-    .insert({
-      userId,
-      balance_updated_at: Date.now()
+function updateBalance (amount, accountId, db = database) {
+  return getCurrentBalance(accountId, db)
+    .then((accountBalance) => {
+      return db('balance_history')
+        .insert({
+          balance: accountBalance.balance + amount,
+          balance_updated_at: Date.now(),
+          account_id: accountId
+        })
     })
-    .where({
-      id: accountId
-    })
-    .increment({ balance: amount })
 }
 
-function getCurrentBalance (userId, accountId, db = database) {
+function getCurrentBalance (accountId, db = database) {
   return db('balance_history')
-    .join('accounts', 'accounts.id', 'account_id')
-    .where({ user_id: userId })
     .where({ account_id: accountId })
     .orderBy('balance_updated_at', 'desc')
     .first()

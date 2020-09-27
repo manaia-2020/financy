@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getAccountApi, getUserAccountTransactions } from '../api/api'
 import { getAccounts } from '../actions/accounts.action'
+import AddTransaction from './AddTransaction'
 
 const Transactions = (props) => {
   const [transactions, setTransactions] = useState([])
@@ -35,6 +36,10 @@ const Transactions = (props) => {
   console.log(transactions);
   return (
     <div>
+      <div>
+        <AddTransaction />
+      </div>
+      <h1>View Transactions</h1>
       <form onSubmit={requestTransactions}>
         <label htmlFor="accountSelect">Select an Account</label>
         <select onChange={handleChange} name="accountSelect" id="accountSelect">

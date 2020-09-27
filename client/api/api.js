@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-export const addTransaction = (expense, id) => {
+export const addRecurringTransaction = (expense, id) => {
   return request
     .post(`/api/v1/bank/${id}/addTransaction`)
     .send(expense)
@@ -31,5 +31,12 @@ export function getUserInfo (email) {
 export function getUserAccountTransactions (userId, accountId) {
   return request
     .get(`/api/v1/transactions/${userId}/${accountId}`)
+    .then(res => res.body)
+}
+
+export function addNewTransaction (userId, object) {
+  return request
+    .post(`/api/v1/bank/${userId}/addTransaction`)
+    .send(object)
     .then(res => res.body)
 }

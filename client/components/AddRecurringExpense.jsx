@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { addTransaction } from '../api/api'
+import { addRecurringTransaction } from '../api/api'
 
 const AddRecurringExpense = (props) => {
   const [trans, setTrans] = useState('')
@@ -12,7 +12,7 @@ const AddRecurringExpense = (props) => {
 
   const submitForm = (event) => {
     event.preventDefault()
-    return addTransaction(trans)
+    return addRecurringTransaction(trans)
       .then(() => {
         return null
       })

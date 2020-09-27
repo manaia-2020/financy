@@ -10,6 +10,7 @@ const AddTransaction = (props) => {
     frequency: 0
   })
   const [ showRecurring, setShowRecurring ] = useState(false)
+  const [ disabled, setDisabled ] = useState(true)
 
   const postTransaction = () => {
     // addNewTransaction
@@ -22,12 +23,12 @@ const AddTransaction = (props) => {
   const handleChange = (event) => {
     const { name, value } = event.target
     setNewTrans({ ...newTrans, [name]: value })
+    setDisabled(true)
   }
 
-  const checkFloat = (newTrans) => {
-    return null
-    // const float = /^[-+]?[0-9]+\.[0-9]+$/
-    // return !!newTrans.amount.match(float)
+  const checkFloat = () => {
+    const float = /^[-+]?[0-9]+\.[0-9]+$/
+    return (Number(newTrans.amount) !== 0) ? newTrans.amount.match(float) : false
   }
 
   const toggleRecurring = () => {
@@ -61,7 +62,7 @@ const AddTransaction = (props) => {
         <input onChange = {handleChange}type="date" name="date" id="date"/>
         <label htmlFor="selectrecurring">Recurring?</label>
         <input type="checkbox" name="showRecurring" id="showRecurring" value={true} onClick={toggleRecurring}/>
-        <button type="submit" disabled={!checkFloat(newTrans)}>Add New Trans</button>
+        <button type="submit" disabled={!checkFloat()}>Add New Trans</button>
         {(showRecurring) ? viewRecurringForm() : null }
       </form>
     </div>

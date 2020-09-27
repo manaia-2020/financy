@@ -10,8 +10,7 @@ const Transactions = (props) => {
 
   const { id } = props.userInfo
   useEffect(() => {
-    // TODO change arg to id, it isn't persisting in global state
-    getAccountApi(3)
+    getAccountApi(id)
       .then((results) => {
         props.dispatch(getAccounts(results))
         return null
@@ -27,8 +26,7 @@ const Transactions = (props) => {
 
   const requestTransactions = (event) => {
     event.preventDefault()
-    // TODO change arg to id, it isn't persisting in global state
-    return getUserAccountTransactions(3, accountId)
+    return getUserAccountTransactions(id, accountId)
       .then(items => {
         setTransactions(items.trans)
         return null

@@ -10,8 +10,8 @@ function getTransactions (userId, db = database) {
 }
 
 function newTransaction (body, id, db = database) {
-  const { recurring, frequency } = body
-  if (recurring) {
+  const { showRecurring, frequency } = body
+  if (showRecurring) {
     return addRecurring(frequency, db)
       .then((transId) => {
         return addTransaction(body, id, transId[0], db)
@@ -27,31 +27,37 @@ function addRecurring (frequency, db = database) {
 }
 
 function addTransaction (body, userId, transId, db = database) {
-  const { amount, date } = body
+  const { amount, date, expenseName, accountSelect } = body
   return db('transactions')
     .insert({
       amount,
       date,
       user_id: userId,
+      name: expenseName,
+      account_id: accountSelect,
       recurring_transaction_id: transId
     })
     .then(() => {
-      return updateBalance(amount, userId, db)
+      return updateBalance(amount, accountSelect, userId, db)
     })
 }
 
-function updateBalance (amount, userId, db = database) {
+function updateBalance (amount, accountId, userId, db = database) {
   return db('accounts')
     .insert({
       userId,
       balance_updated_at: Date.now()
     })
+    .where({
+      id: accountId
+    })
     .increment({ balance: amount })
 }
 
-function getCurrentBalance (userId, db = database) {
+function getCurrentBalance (userId, accountId, db = database) {
   return db('accounts')
     .where({ user_id: userId })
+    .where({ account_id: accountId })
     .orderBy('balance_updated_at', 'desc')
     .first()
 }

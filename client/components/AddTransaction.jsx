@@ -18,8 +18,8 @@ const AddTransaction = (props) => {
   const postTransaction = (event) => {
     event.preventDefault()
     const newTransToAdd = { ...newTrans, showRecurring }
-    //TODO pass userId not persisting
-    addNewTransaction(3, newTransToAdd)
+    addNewTransaction(props.userInfo.id, newTransToAdd)
+    .then(balance => console.log(balance))
   }
 
   const handleChange = (event) => {
@@ -50,7 +50,7 @@ const AddTransaction = (props) => {
       </>
     )
   }
-  console.log(newTrans);
+
   return (
     <div>
       <h1>Add New Transaction</h1>
@@ -59,6 +59,11 @@ const AddTransaction = (props) => {
         <input onChange = {handleChange} type="text" name="amount" id="amount" autoFocus={true}/>
         <label htmlFor="expenseName">Expense Name</label>
         <input type="text" name="expenseName" id="expenseName" onChange={handleChange}/>
+        <label htmlFor="accountSelect">Select an Account</label>
+        <select onChange={handleChange} name="accountSelect" id="accountSelect">
+          <option value=""></option>
+          {props.accounts.map(account => <option key={account.id} value={account.id}>{account.name}</option>)}
+        </select>
         <input onChange = {handleChange}type="date" name="date" id="date"/>
         <label htmlFor="selectrecurring">Recurring?</label>
         <input type="checkbox" name="showRecurring" id="showRecurring" value={true} onClick={toggleRecurring}/>

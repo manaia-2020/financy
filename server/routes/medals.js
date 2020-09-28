@@ -2,9 +2,10 @@ const express = require('express')
 const { awardMedal, getUsersMedals } = require('../database/medalsDb')
 const router = express.Router()
 
-router.get('/:id/show', (req, res) => {
-  const userId = Number(req.params.id)
-  return awardMedal(userId)
+router.get('/:userId/:accountId/show', (req, res) => {
+  const userId = Number(req.params.userId)
+  const accountId = Number(req.params.accountId)
+  return awardMedal(userId, accountId)
     .then(() => {
       return getUsersMedals(userId)
     })

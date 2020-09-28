@@ -39,8 +39,33 @@ function getUserByName (email, db = connection) {
     })
 }
 
+function getAccountDetails (id, db = connection) {
+  return db('accounts')
+    .join('users', 'accounts.user_id', 'users.id')
+    .where('user_id', id)
+    .select('accounts.id as id', 'users.id as userId', 'name')
+}
+
+function addAccountDetails (data, db = connection) {
+  return db('accounts')
+    .insert({
+      name: data.name,
+      user_id: data.id
+    })
+    .then((accountId) => {
+      return db('balance_history')
+        .insert({
+          balance: data.balance,
+          balance_updated_at: Date.now(),
+          account_id: accountId[0]
+        })
+    })
+}
+
 module.exports = {
   saveNewUser,
   getUserByName,
-  userExists
+  userExists,
+  getAccountDetails,
+  addAccountDetails
 }

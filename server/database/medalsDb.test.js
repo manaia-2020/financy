@@ -11,7 +11,7 @@ afterAll(() => testDb.destroy())
 describe('getPreviousBalance', () => {
   test('Gets the oldest balance within 1 week', () => {
     expect.assertions(1)
-    return getPreviousBalance(2, testDb)
+    return getPreviousBalance(3, 7, testDb)
       .then((oldestBalance) => {
         expect(oldestBalance.balance).toBe(450)
         return null
@@ -32,10 +32,11 @@ describe('getMedal', () => {
 })
 
 describe('calcBalanceDelta', () => {
-  test('Calculates correct change in balance for userId 2', async () => {
-    const userId = 2
-    const delta = await calcBalanceDelta(userId, testDb)
-    expect(delta).toBe(50)
+  test('Calculates correct change in balance for userId 3', async () => {
+    const userId = 3
+    const accountId = 7
+    const delta = await calcBalanceDelta(userId, accountId, testDb)
+    expect(delta).toBe(9550)
   })
 })
 
@@ -67,8 +68,9 @@ describe('decideMedal', () => {
 
 describe('awardMedal', () => {
   test('Returns the correct medal', async () => {
-    const userId = 2
-    const medal = await awardMedal(userId, testDb)
+    const userId = 3
+    const accountId = 7
+    const medal = await awardMedal(userId, accountId, testDb)
     expect(medal).toHaveLength(1)
   })
 })

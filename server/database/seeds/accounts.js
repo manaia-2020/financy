@@ -4,14 +4,13 @@ exports.seed = function (knex) {
     .then(function () {
       // Inserts seed entries
       return knex('accounts').insert([
-        { id: 1, name: 'Savings', balance: 10000.00, balance_updated_at: Date.now(), user_id: 1 },
-        { id: 2, name: 'Spendings', balance: 500.00, balance_updated_at: Date.now(), user_id: 2 },
-        { id: 3, name: 'Spendings', balance: 450.00, balance_updated_at: 1600990006895, user_id: 2 },
-        { id: 4, name: 'Spendings', balance: 350.00, balance_updated_at: 1600990006897, user_id: 2 },
-        { id: 5, name: 'Spendings', balance: 395.00, balance_updated_at: 1600385206000, user_id: 2 },
-        { id: 6, name: 'Cash Money', balance: 395.00, balance_updated_at: 1600385206000, user_id: 3 },
-        { id: 7, name: 'I need a dolla dolla', balance: 1.00, balance_updated_at: 1600385206000, user_id: 3 }
-
+        { id: 1, name: 'Savings', user_id: 1 },
+        { id: 2, name: 'Spendings', user_id: 2 },
+        { id: 3, name: 'Spendings', user_id: 2 },
+        { id: 4, name: 'Spendings', user_id: 2 },
+        { id: 5, name: 'Spendings', user_id: 2 },
+        { id: 6, name: 'Cash Money', user_id: 3 },
+        { id: 7, name: 'I need a dolla dolla', user_id: 3 }
       ])
     })
 }

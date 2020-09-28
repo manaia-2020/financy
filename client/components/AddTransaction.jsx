@@ -14,7 +14,7 @@ const AddTransaction = (props) => {
     frequency: 0
   })
 
-  const [ showRecurring, setShowRecurring ] = useState(false)
+  const [showRecurring, setShowRecurring] = useState(false)
 
   const postTransaction = (event) => {
     event.preventDefault()

@@ -25,11 +25,13 @@ function Goals (props) {
     }
   }))
   useEffect(() => {
-    begin()
-    getUserGoals(userInfo.id)
-      .then((goals) => success(goals))
-      .catch((error) => failure(error))
-  }, [])
+    if (userInfo.id) {
+      begin()
+      getUserGoals(userInfo.id)
+        .then((goals) => success(goals))
+        .catch((error) => failure(error))
+    }
+  }, [userInfo])
 
   const classes = useStyles()
   return (

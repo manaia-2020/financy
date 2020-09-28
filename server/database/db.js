@@ -14,7 +14,7 @@ function saveNewUser (user, db = connection) {
           last_name: user.lastName,
           email: user.email,
           password_hash: passwordHash,
-          created_at: Date.now()
+          created_at: new Date(Date.now())
         })
     })
     .catch((err) => console.log(err))

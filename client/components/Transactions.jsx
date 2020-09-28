@@ -4,10 +4,18 @@ import { getAccountApi, getUserAccountTransactions, getBalance } from '../api/ap
 import { getAccounts } from '../actions/accounts.action'
 import AddTransaction from './AddTransaction'
 
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+
 const Transactions = (props) => {
   const [transactions, setTransactions] = useState([])
   const [balances, setBalances] = useState([])
-  const [accountId, setAccountId] = useState('')
+  const [accountId, setAccountId] = useState(0)
 
   const { id } = props.userInfo
   useEffect(() => {
@@ -21,11 +29,12 @@ const Transactions = (props) => {
   }, [])
 
   const handleChange = (event) => {
-    [event.target.name] = event.target.value
-    setAccountId(event.target.name)
+    console.log(event.target.value)
+    setAccountId(event.target.value)
   }
 
   const requestTransactions = (event) => {
+    console.log(id)
     event.preventDefault()
     return getUserAccountTransactions(id, accountId)
       .then(items => {
@@ -37,21 +46,41 @@ const Transactions = (props) => {
         return null
       })
   }
-  console.log(transactions)
-  console.log(balances)
+  const useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+  }));
+  const classes = useStyles();
+  console.log(transactions  )
   return (
     <div>
       <div>
         <AddTransaction />
       </div>
       <h1>View Transactions</h1>
-      <form onSubmit={requestTransactions}>
-        <label htmlFor="accountSelect">Select an Account</label>
-        <select onChange={handleChange} name="accountSelect" id="accountSelect">
-          <option value=""></option>
-          {props.accounts.map(account => <option key={account.id} value={account.id}>{account.name}</option>)}
-        </select>
-        <button type="submit">Get</button>
+      <form className={classes.formControl} onSubmit={requestTransactions}>
+      <FormControl>
+        <InputLabel>Account</InputLabel>
+        <Select
+          labelId="accountSelect"
+          id="accountSelect"
+          onChange={handleChange}
+          name="accountSelect"
+          defaultValue = ""
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          {props.accounts.map(account => <MenuItem key={account.id} value={account.id}>{account.name}</MenuItem>)}
+        </Select>
+        <FormHelperText>Please Select An Account</FormHelperText>
+        <Button type="submit" variant="contained" color="primary">Get</Button>
+      </FormControl>
       </form>
       {transactions.length === 0 ? null : transactions.map(item => <h5 key={item.id}>{item.name}, {item.amount}</h5>)}
       {balances.length === null ? null : balances.map(item => <h5 key={item.id}>{item.balance}</h5>)}

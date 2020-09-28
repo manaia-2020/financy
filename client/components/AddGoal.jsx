@@ -119,7 +119,8 @@ function AddGoal (props) {
               label="Goal Date"
               type="date"
               name="date"
-              defaultValue={goal.date}
+              required
+              // defaultValue={goal.date}
               onChange={handleChange}
               className={classes.textField}
               InputLabelProps={{

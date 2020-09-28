@@ -15,14 +15,14 @@ import FormControl from '@material-ui/core/FormControl'
 import Input from '@material-ui/core/Input'
 import InputLabel from '@material-ui/core/InputLabel'
 
-function AddGoal(props) {
+function AddGoal (props) {
   const [goal, setGoal] = useState({
     name: '',
     amount: '',
     date: new Date().toLocaleDateString('en-CA')
   })
 
-  function handleChange({ target }) {
+  function handleChange ({ target }) {
     const { name, value } = target
     // eslint-disable-next-line no-prototype-builtins
     if (goal.hasOwnProperty(name)) {
@@ -55,7 +55,7 @@ function AddGoal(props) {
     }
   }))
 
-  function handleSubmit(event) {
+  function handleSubmit (event) {
     const id = props.userInfo.id
     event.preventDefault()
     props.dispatch(addGoal(goal, id))
@@ -63,7 +63,7 @@ function AddGoal(props) {
       .catch(err => console.log(err))
   }
 
-  function handleBlur({ target }) {
+  function handleBlur ({ target }) {
     const { name, value } = target
     setGoal({
       ...goal,
@@ -71,7 +71,7 @@ function AddGoal(props) {
     })
   }
 
-  function handleFocus({ target }) {
+  function handleFocus ({ target }) {
     const { name, value } = target
     setGoal({
       ...goal,

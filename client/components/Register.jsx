@@ -20,7 +20,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import { isEmpty, isPasswordMatch, isValidEmail } from '../utils/validation'
 
-function Copyright() {
+function Copyright () {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function Register(props) {
+function Register (props) {
   const [newUser, setNewUser] = useState({
     firstName: '',
     lastName: '',
@@ -96,7 +96,6 @@ function Register(props) {
       register({ firstName, lastName, username: email, password }, { baseUrl })
         .then((token) => {
           if (isAuthenticated()) {
-            console.log('user added')
             props.history.push('/dashboard')
             return getUserInfo(email)
           }
@@ -116,7 +115,7 @@ function Register(props) {
 
   const updatedState = {}
 
-  function validateField({ target }) {
+  function validateField ({ target }) {
     const { name, value } = target
 
     const fieldSuccess = () => {
@@ -149,7 +148,7 @@ function Register(props) {
     }
   }
 
-  function handleFocus() {
+  function handleFocus () {
     if (!formError) return
     setFormError('')
   }
@@ -287,7 +286,7 @@ function Register(props) {
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     userInfo: state.addUserInfo
   }

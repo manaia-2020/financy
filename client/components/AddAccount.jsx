@@ -4,19 +4,19 @@ import { addAccount } from '../actions/accounts.action'
 import { postAccount } from '../api/api'
 import { localStringToNumber } from '../utils/currency'
 
-function AddAccount(props) {
+function AddAccount (props) {
   const [account, setAccount] = useState({
     name: '',
     balance: ''
   })
 
-  function handleChange(event) {
+  function handleChange (event) {
     event.preventDefault()
     const { name, value } = event.target
     setAccount({ ...account, [name]: value })
   }
 
-  function handleSubmit(event) {
+  function handleSubmit (event) {
     const id = props.userInfo.id
     event.preventDefault()
     props.dispatch(addAccount(account, id))
@@ -24,7 +24,7 @@ function AddAccount(props) {
       .catch(err => console.log(err))
   }
 
-  function handleBlur({ target }) {
+  function handleBlur ({ target }) {
     const { name, value } = target
     setAccount({
       ...account,
@@ -32,7 +32,7 @@ function AddAccount(props) {
     })
   }
 
-  function handleFocus({ target }) {
+  function handleFocus ({ target }) {
     const { name, value } = target
     setAccount({
       ...account,

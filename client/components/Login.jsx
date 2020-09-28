@@ -154,7 +154,7 @@ const Login = (props) => {
           <Avatar className={classes.avatar}>
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log In
           </Typography>
           <form id="login-form-js" className={classes.form} noValidate onSubmit={handleClick} onFocus={handleFocus}>
             <TextField
@@ -203,7 +203,7 @@ const Login = (props) => {
               className={classes.submit}
               onClick={handleClick}
             >
-              Sign In
+              Log In
             </Button>
             <Grid container>
               <Grid item xs>

@@ -28,7 +28,7 @@ function Accounts (props) {
       <AddAccount />
       {accounts.map(acc => (
         <div key={acc.name} >
-          <h4>{acc.name} - ${acc.balance}<button onClick={() => handleClick(acc.id)}>X</button></h4>
+          <h4>{acc.name} - {acc.balance}<button onClick={() => handleClick(acc.id)}>X</button></h4>
         </div>
       ))
       }

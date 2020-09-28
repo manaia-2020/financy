@@ -1,5 +1,5 @@
 const express = require('express')
-const { saveNewGoal, getAllGoalsByUserId } = require('../database/goals.database')
+const { saveNewGoal, getAllGoalsByUserId } = require('../database/goalsDb')
 const router = express.Router()
 
 router.post('/', (req, res) => {

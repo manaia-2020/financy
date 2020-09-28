@@ -96,7 +96,6 @@ function Register (props) {
       register({ firstName, lastName, username: email, password }, { baseUrl })
         .then((token) => {
           if (isAuthenticated()) {
-            console.log('user added')
             props.history.push('/dashboard')
             return getUserInfo(email)
           }

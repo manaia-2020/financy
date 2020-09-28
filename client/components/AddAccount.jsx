@@ -21,7 +21,6 @@ function AddAccount (props) {
     event.preventDefault()
     props.dispatch(addAccount(account, id))
     postAccount(id, account)
-      .then(console.log())
       .catch(err => console.log(err))
   }
 

@@ -2,8 +2,8 @@ import { combineReducers } from 'redux'
 import goals from './goals.reducer'
 import accounts from './accounts.reducer'
 import waiting from './waiting.reducer'
-import addUserInfo from './addUserInfo'
-import setRewards from './rewards'
+import addUserInfo from './addUserInfo.reducer'
+import setRewards from './rewards.reducer'
 
 const reducers = combineReducers({
   goals,

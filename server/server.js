@@ -3,13 +3,7 @@ const express = require('express')
 
 const server = express()
 
-const auth = require('./routes/auth')
-const accounts = require('./routes/accounts')
-const goals = require('./routes/goals')
-const bank = require('./routes/bank')
-const medals = require('./routes/medals')
-const transactions = require('./routes/transactions')
-const user = require('./routes/user')
+const { auth, accounts, goals, bank, medals, transactions, user } = require('./routes')
 
 server.use(express.json())
 server.use(express.static(path.join(__dirname, './public')))

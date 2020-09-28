@@ -1,4 +1,4 @@
-import { FETCH_GOALS_BEGIN, FETCH_GOALS_SUCCESS, FETCH_GOALS_FAILURE } from '../actions/goals.action'
+import { FETCH_GOALS_BEGIN, FETCH_GOALS_SUCCESS } from '../actions/goals.action'
 
 const initialState = false
 
@@ -8,7 +8,6 @@ export default function waitingReducer (state = initialState, action) {
       return true
 
     case FETCH_GOALS_SUCCESS:
-    case FETCH_GOALS_FAILURE:
       return false
 
     default:

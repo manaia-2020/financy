@@ -60,8 +60,7 @@ function AddGoal (props) {
     event.preventDefault()
     props.dispatch(addGoal(goal, id))
     postGoal(goal, id)
-      .then(console.log)
-      .catch(console.log)
+      .catch(err => console.log(err))
   }
 
   function handleBlur ({ target }) {

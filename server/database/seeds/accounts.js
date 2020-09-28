@@ -11,7 +11,6 @@ exports.seed = function (knex) {
         { id: 5, name: 'Spendings', user_id: 2 },
         { id: 6, name: 'Cash Money', user_id: 3 },
         { id: 7, name: 'I need a dolla dolla', user_id: 3 }
-
       ])
     })
 }

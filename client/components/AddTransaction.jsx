@@ -13,13 +13,16 @@ const AddTransaction = (props) => {
     date: '',
     frequency: 0
   })
+
   const [ showRecurring, setShowRecurring ] = useState(false)
 
   const postTransaction = (event) => {
     event.preventDefault()
     const newTransToAdd = { ...newTrans, showRecurring }
     return addNewTransaction(props.userInfo.id, newTransToAdd)
-      .then(balance => console.log(balance))
+      .then(newTransId => {
+        return null
+      })
   }
 
   const handleChange = (event) => {
@@ -50,8 +53,6 @@ const AddTransaction = (props) => {
       </>
     )
   }
-
-  console.log(newTrans)
 
   return (
     <div>

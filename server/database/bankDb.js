@@ -45,10 +45,11 @@ function addTransaction (body, userId, transId, db = database) {
 function updateBalance (amount, accountId, db = database) {
   return getCurrentBalance(accountId, db)
     .then((accountBalance) => {
+      const newBalance = Number(accountBalance.balance) + Number(amount)
       return db('balance_history')
         .insert({
-          balance: accountBalance.balance + amount,
           balance_updated_at: Date.now(),
+          balance: newBalance,
           account_id: accountId
         })
     })

@@ -40,3 +40,9 @@ export function addNewTransaction (userId, object) {
     .send(object)
     .then(res => res.body)
 }
+
+export function getBalance (accountId) {
+  return request
+    .get(`/api/v1/bank/balance/${accountId}`)
+    .then(res => res.body)
+}

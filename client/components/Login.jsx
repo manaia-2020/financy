@@ -137,7 +137,10 @@ const Login = (props) => {
     if (name === 'email') {
       !isValidEmail(value) ? fieldError('Email is not valid!') : fieldSuccess()
     }
+  }
 
+  function handleFocus () {
+    if (!formError) return
     setFormError('')
   }
 
@@ -153,7 +156,7 @@ const Login = (props) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form id="login-form-js" className={classes.form} noValidate onSubmit={handleClick}>
+          <form id="login-form-js" className={classes.form} noValidate onSubmit={handleClick} onFocus={handleFocus}>
             <TextField
               variant="outlined"
               margin="normal"

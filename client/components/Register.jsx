@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { register, isAuthenticated } from 'authenticare/client'
 import { baseApiUrl as baseUrl } from '../config'
@@ -70,6 +70,8 @@ function Register (props) {
     confirmPasswordError: null
   })
 
+  const [formError, setFormError] = useState('')
+
   const handleChange = (event) => {
     event.preventDefault()
     const { name, value } = event.target
@@ -102,7 +104,11 @@ function Register (props) {
           props.dispatch(addUserInfo(res))
           return null
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          if (err.message === 'Bad Request') {
+            setFormError('A user with that email already exists')
+          }
+        })
     }
   }
 
@@ -141,6 +147,11 @@ function Register (props) {
     }
   }
 
+  function handleFocus () {
+    if (!formError) return
+    setFormError('')
+  }
+
   const classes = useStyles()
   return (
     <Container component="main" maxWidth="xs" className={classes.container}>
@@ -151,7 +162,7 @@ function Register (props) {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form id ="register-form-js" className={classes.form} noValidate>
+        <form id ="register-form-js" className={classes.form} onFocus={handleFocus} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -238,6 +249,7 @@ function Register (props) {
               />
             </Grid>
             <Grid item xs={12}>
+              {formError && <p style={{ color: '#ff1744' }}>{formError}</p>}
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="sign your life away with us"

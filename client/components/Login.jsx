@@ -17,6 +17,7 @@ import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import { isEmpty, isValidEmail } from '../utils/validation'
 
 // Email = Username as authenticare requires a username field
 
@@ -66,6 +67,13 @@ const Login = (props) => {
     password: ''
   })
 
+  const [error, setError] = useState({
+    emailError: null,
+    passwordError: null
+  })
+
+  const [formError, setFormError] = useState('')
+
   const handleChange = (event) => {
     event.preventDefault()
     const { name, value } = event.target
@@ -75,6 +83,14 @@ const Login = (props) => {
   const handleClick = event => {
     event.preventDefault()
     const { email, password } = user
+
+    const inputs = document.querySelector('#login-form-js').elements
+
+    Object.keys(user).forEach((detail) => {
+      validateField({ target: inputs[detail] })
+    })
+
+    for (const value of Object.values(error)) if (value) return
 
     signIn({ username: email, password }, { baseUrl })
       .then((token) => {
@@ -88,8 +104,43 @@ const Login = (props) => {
         props.dispatch(addUserInfo(res))
         return null
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        if (err.message === 'Bad Request') setFormError('The email or password you entered are incorrect')
+      })
   }
+
+  const updatedState = {}
+
+  function validateField ({ target }) {
+    const { name, value } = target
+
+    const fieldSuccess = () => {
+      updatedState[`${name}Error`] = null
+      setError({
+        ...error,
+        ...updatedState
+      })
+    }
+
+    const fieldError = (message) => {
+      updatedState[`${name}Error`] = message
+      setError({
+        ...error,
+        ...updatedState
+      })
+    }
+
+    if (isEmpty(value)) {
+      fieldError('This field is required!')
+    } else fieldSuccess()
+
+    if (name === 'email') {
+      !isValidEmail(value) ? fieldError('Email is not valid!') : fieldSuccess()
+    }
+
+    setFormError('')
+  }
+
   const classes = useStyles()
   return (
     <>
@@ -102,7 +153,7 @@ const Login = (props) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate onSubmit={handleClick}>
+          <form id="login-form-js" className={classes.form} noValidate onSubmit={handleClick}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -114,7 +165,11 @@ const Login = (props) => {
               autoComplete="email"
               autoFocus
               value={user.username}
-              onChange={handleChange}>
+              onChange={handleChange}
+              onBlur={validateField}
+              error={!!error.emailError}
+              helperText={error.emailError ? error.emailError : ''}
+            >
             </TextField>
             <TextField
               variant="outlined"
@@ -128,7 +183,11 @@ const Login = (props) => {
               autoComplete="current-password"
               value={user.password}
               onChange={handleChange}
+              onBlur={validateField}
+              error={!!error.passwordError}
+              helperText={error.passwordError ? error.passwordError : ''}
             />
+            {formError && <p style={{ color: '#ff1744' }}>{formError}</p>}
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

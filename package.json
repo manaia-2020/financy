@@ -20,7 +20,8 @@
     "migrate": "npx knex migrate:latest",
     "reset:db": "run-s migrate seed",
     "lint": "npx eslint . --ext .js,.jsx",
-    "lint:fix": "npx eslint . --ext .js,.jsx --fix"
+    "lint:fix": "npx eslint . --ext .js,.jsx --fix",
+    "postinstall": "webpack && knex migrate:latest"
   },
   "babel": {
     "presets": [

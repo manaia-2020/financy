@@ -9,6 +9,7 @@ import Dashboard from './Dashboard'
 import Goals from './Goals'
 import Rewards from './Rewards'
 import Accounts from './Accounts'
+import LandingPage from './LandingPage/LandingPage'
 
 const Nav = ({ history, dispatch, userInfo }) => {
   const handleClick = () => {
@@ -20,24 +21,10 @@ const Nav = ({ history, dispatch, userInfo }) => {
 
   return (
     <>
-      <h1>Financy</h1>
       <IfNotAuthenticated>
-        <Link to="/" className="active">
-          <li>Home</li>
-        </Link>
-        <Link to="/about">
-          <li>About</li>
-        </Link>
-        <Link to="/team">
-          <li>Team</li>
-        </Link>
-        <Link to="/login">
-          <li>Log In</li>
-        </Link>
-        <Link to="/register">
-          <li>Register</li>
-        </Link>
+        <LandingPage />
       </IfNotAuthenticated>
+
       <IfAuthenticated>
         <li>
           <Link to="/dashboard">Profile</Link>

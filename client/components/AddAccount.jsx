@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addAccount } from '../actions/accounts.action'
 import { postAccount } from '../api/api'
-import { formatAmount, localStringToNumber } from '../utils/currency'
+import { localStringToNumber } from '../utils/currency'
 
 function AddAccount (props) {
   const [account, setAccount] = useState({
@@ -29,7 +29,7 @@ function AddAccount (props) {
     const { name, value } = target
     setAccount({
       ...account,
-      [name]: formatAmount(value)
+      [name]: value
     })
   }
 
@@ -48,7 +48,7 @@ function AddAccount (props) {
         <label htmlFor="name">Account Name</label>
         <input type="text" id='accountName' name="name" autoFocus={true} placeholder='Account Name' value={account.name} onChange={handleChange}></input>
         <label htmlFor="balance">Balance</label>
-        <input type="number" id='accountBalance' name="balance" autoFocus={true} onFocus={handleFocus} onBlur={handleBlur} placeholder="NZ$0.00" value={account.balance} onChange={handleChange} ></input>
+        <input type="currency" id='accountBalance' name="balance" autoFocus={true} onFocus={handleFocus} onBlur={handleBlur} placeholder="NZ$0.00" value={account.balance} onChange={handleChange} ></input>
         <button type='submit'>Add Account</button>
       </form>
     </>

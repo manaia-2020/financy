@@ -27,3 +27,19 @@ describe('isValidEmail', () => {
     expect(isValidEmail(email)).toBeTruthy()
   })
 })
+
+describe('isPasswordMath', () => {
+  test('returns false if the password does not match', () => {
+    const password = 'jesus'
+    const confirmedPassword = 'mary'
+    expect.assertions(1)
+    expect(isPasswordMatch(password, confirmedPassword)).not.toBeTruthy()
+  })
+
+  test('returns true if the password does match', () => {
+    const password = 'jesus'
+    const confirmedPassword = 'jesus'
+    expect.assertions(1)
+    expect(isPasswordMatch(password, confirmedPassword)).toBeTruthy()
+  })
+})

@@ -4,6 +4,7 @@ import { signIn, isAuthenticated } from 'authenticare/client'
 import { baseApiUrl as baseUrl } from '../config'
 import { getUserInfo } from '../api/api'
 import { addUserInfo } from '../actions'
+import Navbar from './LandingPage/Navbar'
 
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -147,7 +148,7 @@ const Login = (props) => {
   const classes = useStyles()
   return (
     <>
-
+      <Navbar />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>

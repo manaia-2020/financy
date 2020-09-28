@@ -96,7 +96,7 @@ function Register (props) {
         <Avatar className={classes.avatar}>
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Register
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -184,7 +184,7 @@ function Register (props) {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Register
           </Button>
           <Grid container justify="flex-end">
             <Grid item>

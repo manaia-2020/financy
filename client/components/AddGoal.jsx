@@ -26,6 +26,8 @@ function AddGoal (props) {
     const id = props.userInfo.id
     event.preventDefault()
     props.dispatch(addGoal(goal, id))
+    
+    //dirty dirty console logs, begone foul beasts
     postGoal(goal, id)
       .then(console.log)
       .catch(console.log)

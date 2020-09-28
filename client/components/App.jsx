@@ -9,6 +9,7 @@ import { getUser } from '../api/api'
 import { addUserInfo } from '../actions'
 
 const App = (props) => {
+
   if (isAuthenticated()) {
     getUser()
       .then((user) => props.dispatch(addUserInfo(user)))

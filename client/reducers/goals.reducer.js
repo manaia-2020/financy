@@ -16,6 +16,7 @@ export default function goalsReducer (state = initialState, action) {
     case FETCH_GOALS_SUCCESS:
       return action.payload.goals
 
+    //this case is unecessary (same as default)
     case FETCH_GOALS_FAILURE:
       return state
 

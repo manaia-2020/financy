@@ -3,6 +3,8 @@ const express = require('express')
 
 const server = express()
 
+// try putting a single index.js in ./routes so you can get everything via
+// const {auth, accounts, ...} = require('./routes')
 const auth = require('./routes/auth')
 const accounts = require('./routes/accounts')
 const goals = require('./routes/goals')

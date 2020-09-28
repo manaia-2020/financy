@@ -19,6 +19,9 @@ const Nav = ({ history, dispatch, userInfo }) => {
     }
   }
 
+  //Nav component is actually rendering the pag contents? 
+  //Maybe it shouldnt' be called Nav anymore 
+  //or that stuff should be rendered somewhere else
   return (
     <>
       <IfNotAuthenticated>

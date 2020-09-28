@@ -20,7 +20,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import { isEmpty, isPasswordMatch, isValidEmail } from '../utils/validation'
 
-function Copyright () {
+function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -42,19 +42,20 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: '#A64AC9'
+    backgroundColor: '#17E9E0'
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(1),
+    borderColor: '#A64AC9'
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: '#A64AC9'
+    backgroundColor: '#17E9E0'
   }
 }))
 
-function Register (props) {
+function Register(props) {
   const [newUser, setNewUser] = useState({
     firstName: '',
     lastName: '',
@@ -115,7 +116,7 @@ function Register (props) {
 
   const updatedState = {}
 
-  function validateField ({ target }) {
+  function validateField({ target }) {
     const { name, value } = target
 
     const fieldSuccess = () => {
@@ -148,7 +149,7 @@ function Register (props) {
     }
   }
 
-  function handleFocus () {
+  function handleFocus() {
     if (!formError) return
     setFormError('')
   }
@@ -286,7 +287,7 @@ function Register (props) {
   )
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     userInfo: state.addUserInfo
   }

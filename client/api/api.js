@@ -1,4 +1,5 @@
 import request from 'superagent'
+import { getAuthorizationHeader } from 'authenticare/client'
 
 export const addRecurringTransaction = (expense, id) => {
   return request
@@ -51,4 +52,14 @@ export function getBalance (accountId) {
   return request
     .get(`/api/v1/bank/balance/${accountId}`)
     .then(res => res.body)
+}
+
+export async function getUser () {
+  const res = await request
+    .get('/api/v1/user')
+    .set({ Accept: 'application/json' })
+    .set(getAuthorizationHeader())
+
+  if (res.status === 200) return res.body
+  throw new Error('unable to retrieve user')
 }

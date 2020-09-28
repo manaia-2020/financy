@@ -29,7 +29,7 @@ function AddAccount (props) {
     const { name, value } = target
     setAccount({
       ...account,
-      [name]: formatAmount(value)
+      [name]: value
     })
   }
 

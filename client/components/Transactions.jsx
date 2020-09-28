@@ -54,7 +54,7 @@ const Transactions = (props) => {
         <button type="submit">Get</button>
       </form>
       {transactions.length === 0 ? null : transactions.map(item => <h5 key={item.id}>{item.name}, {item.amount}</h5>)}
-      {balances.length === 0 ? null : balances.map(item => <h5 key={item.balance_updated_at}>{item.balance}</h5>)}
+      {balances.length === null ? null : balances.map(item => <h5 key={item.id}>{item.balance}</h5>)}
     </div>
   )
 }

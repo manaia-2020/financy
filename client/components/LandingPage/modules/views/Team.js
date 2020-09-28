@@ -80,7 +80,7 @@ function Team (props) {
                 />
                 <div className={classes.number}>Tia</div>
                 <Typography variant="h5" align="center">
-                  Main Bitch
+                  Software Engineer
                 </Typography>
               </div>
             </Grid>

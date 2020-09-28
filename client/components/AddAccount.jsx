@@ -48,7 +48,7 @@ function AddAccount (props) {
         <label htmlFor="name">Account Name</label>
         <input type="text" id='accountName' name="name" autoFocus={true} placeholder='Account Name' value={account.name} onChange={handleChange}></input>
         <label htmlFor="balance">Balance</label>
-        <input type="number" id='accountBalance' name="balance" autoFocus={true} onFocus={handleFocus} onBlur={handleBlur} placeholder="NZ$0.00" value={account.balance} onChange={handleChange} ></input>
+        <input type="currency" id='accountBalance' name="balance" autoFocus={true} onFocus={handleFocus} onBlur={handleBlur} placeholder="NZ$0.00" value={account.balance} onChange={handleChange} ></input>
         <button type='submit'>Add Account</button>
       </form>
     </>

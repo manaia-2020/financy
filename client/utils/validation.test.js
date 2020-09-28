@@ -13,3 +13,17 @@ describe('isEmpty', () => {
     expect(isEmpty(value)).toBeTruthy()
   })
 })
+
+describe('isValidEmail', () => {
+  test('returns false if not a valid email', () => {
+    const email = 'adsf*gmail.com'
+    expect.assertions(1)
+    expect(isValidEmail(email)).not.toBeTruthy()
+  })
+
+  test('returns true if it is a valid email', () => {
+    const email = 'asdf@gmail.com'
+    expect.assertions(1)
+    expect(isValidEmail(email)).toBeTruthy()
+  })
+})

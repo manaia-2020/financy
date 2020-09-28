@@ -4,6 +4,7 @@ import { register, isAuthenticated } from 'authenticare/client'
 import { baseApiUrl as baseUrl } from '../config'
 import { getUserInfo } from '../api/api'
 import { addUserInfo } from '../actions'
+import Navbar from './LandingPage/Navbar'
 
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -154,131 +155,134 @@ function Register (props) {
 
   const classes = useStyles()
   return (
-    <Container component="main" maxWidth="xs" className={classes.container}>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Register
-        </Typography>
-        <form id ="register-form-js" className={classes.form} onFocus={handleFocus} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                onChange={handleChange}
-                onBlur={validateField}
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                type='email'
-                role='email'
-                error={!!error.firstNameError}
-                helperText={error.firstNameError ? error.firstNameError : ''}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                onChange={handleChange}
-                onBlur={validateField}
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                type='email'
-                role='email'
-                error={!!error.lastNameError}
-                helperText={error.lastNameError ? error.lastNameError : ''}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleChange}
-                onBlur={validateField}
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                type='email'
-                role='email'
-                error={!!error.emailError}
-                helperText={error.emailError ? error.emailError : ''}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleChange}
-                onBlur={validateField}
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                role='password'
-                error={!!error.passwordError}
-                helperText={error.passwordError ? error.passwordError : ''}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                onChange={handleChange}
-                onBlur={validateField}
-                variant="outlined"
-                required
-                fullWidth
-                name="confirmPassword"
-                label="Confirm Password"
-                type="password"
-                id="confirmPassword"
-                role='confirmPassword'
-                error={!!error.confirmPasswordError}
-                helperText={error.confirmPasswordError ? error.confirmPasswordError : ''}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              {formError && <p style={{ color: '#ff1744' }}>{formError}</p>}
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="sign your life away with us"
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            onClick={submitHandler}
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+    <>
+      <Navbar />
+      <Container component="main" maxWidth="xs" className={classes.container}>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+          </Avatar>
+          <Typography component="h1" variant="h5">
             Register
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="/#/login" variant="body2">
-                Already have an account? Sign in
-              </Link>
+          </Typography>
+          <form id="register-form-js" className={classes.form} onFocus={handleFocus} noValidate>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  onChange={handleChange}
+                  onBlur={validateField}
+                  autoComplete="fname"
+                  name="firstName"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                  type='email'
+                  role='email'
+                  error={!!error.firstNameError}
+                  helperText={error.firstNameError ? error.firstNameError : ''}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  onChange={handleChange}
+                  onBlur={validateField}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="lname"
+                  type='email'
+                  role='email'
+                  error={!!error.lastNameError}
+                  helperText={error.lastNameError ? error.lastNameError : ''}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleChange}
+                  onBlur={validateField}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  type='email'
+                  role='email'
+                  error={!!error.emailError}
+                  helperText={error.emailError ? error.emailError : ''}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleChange}
+                  onBlur={validateField}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  role='password'
+                  error={!!error.passwordError}
+                  helperText={error.passwordError ? error.passwordError : ''}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  onChange={handleChange}
+                  onBlur={validateField}
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  id="confirmPassword"
+                  role='confirmPassword'
+                  error={!!error.confirmPasswordError}
+                  helperText={error.confirmPasswordError ? error.confirmPasswordError : ''}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                {formError && <p style={{ color: '#ff1744' }}>{formError}</p>}
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="sign your life away with us"
+                />
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+            <Button
+              type="submit"
+              onClick={submitHandler}
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Register
+            </Button>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link href="/#/login" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
+      </Container>
+    </>
   )
 }
 

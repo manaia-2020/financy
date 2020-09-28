@@ -1,12 +1,20 @@
 import React from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import { isAuthenticated } from 'authenticare/client/auth'
 import { connect } from 'react-redux'
 import Login from './Login'
 import Register from './Register'
+
 import Nav from './Nav'
 import { getUser } from '../api/api'
 import { addUserInfo } from '../actions'
+
+import Transactions from './Transactions'
+import Dashboard from './Dashboard'
+import Goals from './Goals'
+import Rewards from './Rewards'
+import Accounts from './Accounts'
+import LandingPage from './LandingPage/LandingPage'
 
 const App = (props) => {
   if (isAuthenticated()) {
@@ -18,9 +26,9 @@ const App = (props) => {
   return (
     <>
       <Route path="/" component={Nav} />
+      <Route exact path="/" component={LandingPage} />
       <Route
-        exact
-        path="/login"
+        exact path="/login"
         render={({ history }) => {
           return isAuthenticated() ? (
             <Redirect to="/dashboard" />
@@ -39,6 +47,23 @@ const App = (props) => {
           )
         }}
       />
+      <Switch>
+        <Route path="/dashboard">
+          <Dashboard />
+        </Route>
+        <Route path="/rewards">
+          <Rewards />
+        </Route>
+        <Route path="/goals">
+          <Goals />
+        </Route>
+        <Route exact path="/transactions">
+          <Transactions />
+        </Route>
+        <Route exact path="/accounts">
+          <Accounts />
+        </Route>
+      </Switch>
     </>
   )
 }

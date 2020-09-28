@@ -1,15 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link, Route, Switch } from 'react-router-dom'
-import { IfNotAuthenticated, IfAuthenticated } from './Authenticated'
+import { Link } from 'react-router-dom'
+import { IfAuthenticated } from './Authenticated'
 import { logOff, isAuthenticated } from 'authenticare/client'
-
-import Transactions from './Transactions'
-import Dashboard from './Dashboard'
-import Goals from './Goals'
-import Rewards from './Rewards'
-import Accounts from './Accounts'
-import LandingPage from './LandingPage/LandingPage'
 
 const Nav = ({ history, dispatch, userInfo }) => {
   const handleClick = () => {
@@ -21,10 +14,6 @@ const Nav = ({ history, dispatch, userInfo }) => {
 
   return (
     <>
-      <IfNotAuthenticated>
-        <LandingPage />
-      </IfNotAuthenticated>
-
       <IfAuthenticated>
         <li>
           <Link to="/dashboard">Profile</Link>
@@ -44,24 +33,6 @@ const Nav = ({ history, dispatch, userInfo }) => {
         <h3> User ID: {userInfo.id} </h3>
         <h3> User Email: {userInfo.email} </h3>
         <button onClick={handleClick}>Log off</button>
-
-        <Switch>
-          <Route exact path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/rewards">
-            <Rewards />
-          </Route>
-          <Route path="/goals">
-            <Goals />
-          </Route>
-          <Route exact path="/transactions">
-            <Transactions />
-          </Route>
-          <Route exact path="/accounts">
-            <Accounts />
-          </Route>
-        </Switch>
       </IfAuthenticated>
     </>
   )

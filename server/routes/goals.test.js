@@ -1,9 +1,9 @@
 /* eslint-disable promise/always-return */
 import request from 'supertest'
-import { saveNewGoal, getAllGoalsByUserId } from '../database/goals.database'
+import { saveNewGoal, getAllGoalsByUserId } from '../database/goalsDb'
 import server from '../server'
 
-jest.mock('../database/goals.database', () => ({
+jest.mock('../database/goalsDb', () => ({
   saveNewGoal: jest.fn(),
   getAllGoalsByUserId: jest.fn()
 }))

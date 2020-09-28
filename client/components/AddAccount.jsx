@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addAccount } from '../actions/accounts.action'
 import { postAccount } from '../api/api'
-import { formatAmount, localStringToNumber } from '../utils/currency'
+import { localStringToNumber } from '../utils/currency'
 
 function AddAccount (props) {
   const [account, setAccount] = useState({

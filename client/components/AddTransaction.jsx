@@ -143,21 +143,7 @@ const AddTransaction = (props) => {
               autoFocus
               onChange={handleChange}>
             </TextField>
-            <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="accountSelect"></InputLabel>
-            <Select
-              labelId="accountSelect"
-              id="accountSelect"
-              value=""
-              onChange={handleChange}
-              label="accountSelect"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {props.accounts.map(account => <MenuItem key={account.id} value={account.id}>{account.name}</MenuItem>)}
-            </Select>
-          </FormControl>
+            
             <Grid container>
             </Grid>
           </form>

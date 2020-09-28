@@ -17,6 +17,7 @@ import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import { isEmpty, isPasswordMatch, isValidEmail } from '../utils/validation'
 
 function Copyright () {
   return (
@@ -61,6 +62,16 @@ function Register (props) {
     confirmPassword: ''
   })
 
+  const [error, setError] = useState({
+    firstNameError: null,
+    lastNameError: null,
+    emailError: null,
+    passwordError: null,
+    confirmPasswordError: null
+  })
+
+  const [formError, setFormError] = useState('')
+
   const handleChange = (event) => {
     event.preventDefault()
     const { name, value } = event.target
@@ -70,6 +81,14 @@ function Register (props) {
   const submitHandler = (event) => {
     event.preventDefault()
     const { firstName, lastName, email, password, confirmPassword } = newUser
+
+    const inputs = document.querySelector('#register-form-js').elements
+
+    Object.keys(newUser).forEach((detail) => {
+      validateField({ target: inputs[detail] })
+    })
+
+    for (const value of Object.values(error)) if (value) return
 
     if (password === confirmPassword) {
       register({ firstName, lastName, username: email, password }, { baseUrl })
@@ -85,9 +104,54 @@ function Register (props) {
           props.dispatch(addUserInfo(res))
           return null
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          if (err.message === 'Bad Request') {
+            setFormError('A user with that email already exists')
+          }
+        })
     }
   }
+
+  const updatedState = {}
+
+  function validateField ({ target }) {
+    const { name, value } = target
+
+    const fieldSuccess = () => {
+      updatedState[`${name}Error`] = null
+      setError({
+        ...error,
+        ...updatedState
+      })
+    }
+
+    const fieldError = (message) => {
+      updatedState[`${name}Error`] = message
+      setError({
+        ...error,
+        ...updatedState
+      })
+    }
+
+    if (isEmpty(value)) {
+      fieldError('This field is required!')
+    } else fieldSuccess()
+
+    switch (name) {
+      case 'email':
+        !isValidEmail(value) ? fieldError('Email is not valid!') : fieldSuccess()
+        break
+      case 'confirmPassword':
+        !isPasswordMatch(newUser.password, value) ? fieldError('Passwords must match!') : fieldSuccess()
+        break
+    }
+  }
+
+  function handleFocus () {
+    if (!formError) return
+    setFormError('')
+  }
+
   const classes = useStyles()
   return (
     <Container component="main" maxWidth="xs" className={classes.container}>
@@ -98,11 +162,12 @@ function Register (props) {
         <Typography component="h1" variant="h5">
           Register
         </Typography>
-        <form className={classes.form} noValidate>
+        <form id ="register-form-js" className={classes.form} onFocus={handleFocus} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 onChange={handleChange}
+                onBlur={validateField}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -113,11 +178,14 @@ function Register (props) {
                 autoFocus
                 type='email'
                 role='email'
+                error={!!error.firstNameError}
+                helperText={error.firstNameError ? error.firstNameError : ''}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 onChange={handleChange}
+                onBlur={validateField}
                 variant="outlined"
                 required
                 fullWidth
@@ -127,11 +195,14 @@ function Register (props) {
                 autoComplete="lname"
                 type='email'
                 role='email'
+                error={!!error.lastNameError}
+                helperText={error.lastNameError ? error.lastNameError : ''}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 onChange={handleChange}
+                onBlur={validateField}
                 variant="outlined"
                 required
                 fullWidth
@@ -141,11 +212,14 @@ function Register (props) {
                 autoComplete="email"
                 type='email'
                 role='email'
+                error={!!error.emailError}
+                helperText={error.emailError ? error.emailError : ''}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 onChange={handleChange}
+                onBlur={validateField}
                 variant="outlined"
                 required
                 fullWidth
@@ -154,11 +228,14 @@ function Register (props) {
                 type="password"
                 id="password"
                 role='password'
+                error={!!error.passwordError}
+                helperText={error.passwordError ? error.passwordError : ''}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 onChange={handleChange}
+                onBlur={validateField}
                 variant="outlined"
                 required
                 fullWidth
@@ -167,12 +244,15 @@ function Register (props) {
                 type="password"
                 id="confirmPassword"
                 role='confirmPassword'
+                error={!!error.confirmPasswordError}
+                helperText={error.confirmPasswordError ? error.confirmPasswordError : ''}
               />
             </Grid>
             <Grid item xs={12}>
+              {formError && <p style={{ color: '#ff1744' }}>{formError}</p>}
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I'm not a robot"
+                label="sign your life away with us"
               />
             </Grid>
           </Grid>

@@ -4,19 +4,19 @@ import { addAccount } from '../actions/accounts.action'
 import { postAccount } from '../api/api'
 import { formatAmount, localStringToNumber } from '../utils/currency'
 
-const AddAccount = (props) => {
+function AddAccount (props) {
   const [account, setAccount] = useState({
     name: '',
     balance: ''
   })
 
-  const handleChange = (event) => {
+  function handleChange (event) {
     event.preventDefault()
     const { name, value } = event.target
     setAccount({ ...account, [name]: value })
   }
 
-  const handleSubmit = (event) => {
+  function handleSubmit (event) {
     const id = props.userInfo.id
     event.preventDefault()
     props.dispatch(addAccount(account, id))

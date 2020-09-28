@@ -36,7 +36,7 @@ const styles = (theme) => ({
   }
 })
 
-function Navbar(props) {
+function Navbar (props) {
   const { classes } = props
 
   return (

@@ -83,7 +83,7 @@ const styles = (theme) => ({
   }
 })
 
-function PhotoGrid(props) {
+function PhotoGrid (props) {
   const { classes } = props
 
   const images = [

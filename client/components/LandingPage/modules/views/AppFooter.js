@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container'
 import Typography from '../components/Typography'
 import TextField from '../components/TextField'
 
-function Copyright() {
+function Copyright () {
   return (
     <React.Fragment>
       {'© '}
@@ -72,7 +72,7 @@ const LANGUAGES = [
   }
 ]
 
-export default function AppFooter() {
+export default function AppFooter () {
   const classes = useStyles()
 
   return (

@@ -10,7 +10,7 @@ import AppFooter from './modules/views/AppFooter'
 
 import withRoot from './modules/withRoot'
 
-function LandingPage() {
+function LandingPage () {
   return (
     <>
       <Navbar />

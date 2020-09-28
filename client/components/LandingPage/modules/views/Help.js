@@ -28,7 +28,7 @@ const styles = (theme) => ({
   }
 })
 
-function Help(props) {
+function Help (props) {
   const { classes } = props
 
   return (

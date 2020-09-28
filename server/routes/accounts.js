@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const { getAccountDetails, addAccountDetails, deleteAccount } = require('../database/accountsDb')
+const { getAccountDetails, addAccountDetails } = require('../database/db')
+const { deleteAccount } = require('../database/accountsDb')
 
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id)

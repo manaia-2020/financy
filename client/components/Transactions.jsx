@@ -37,7 +37,8 @@ const Transactions = (props) => {
         return null
       })
   }
-
+  console.log(transactions)
+  console.log(balances)
   return (
     <div>
       <div>

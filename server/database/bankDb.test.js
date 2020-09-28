@@ -53,7 +53,7 @@ describe('newTransaction', () => {
       })
       .then((trans) => {
         expect(trans).toHaveLength(5)
-        expect(trans[trans.length - 1].recurring_transaction_id).toBe(5)
+        expect(trans[trans.length - 1].recurring_transaction_id).toBe(4)
         return null
       })
   })

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchGoalsBegin, fetchGoalsFailure, fetchGoalsSuccess } from '../actions/goals.action'
 import { getUserGoals } from '../api/goals.api'
+import { formatAmount } from '../utils/currency'
 import AddGoal from './AddGoal'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -47,7 +48,7 @@ function Goals (props) {
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
-                Date:{ goal.goal_date }, Amount: { goal.amount }
+                Date:{ goal.goal_date }, Amount: { formatAmount(goal.amount) }
                 </Typography>
               </AccordionDetails>
             </Accordion>

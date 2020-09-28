@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addGoal } from '../actions/goals.action'
 import { postGoal } from '../api/goals.api'
-import { formatAmount, localStringToNumber } from '../utils/currency'
+import { localStringToNumber } from '../utils/currency'
 
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -68,7 +68,7 @@ function AddGoal (props) {
     const { name, value } = target
     setGoal({
       ...goal,
-      [name]: formatAmount(value)
+      [name]: value
     })
   }
 
@@ -107,7 +107,6 @@ function AddGoal (props) {
                 id="amount"
                 name="amount"
                 autoFocus
-                value={goal.amount}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
@@ -120,7 +119,6 @@ function AddGoal (props) {
               type="date"
               name="date"
               required
-              // defaultValue={goal.date}
               onChange={handleChange}
               className={classes.textField}
               InputLabelProps={{

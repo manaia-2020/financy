@@ -12,7 +12,7 @@ router.get('/:userId/:accountId/show', (req, res) => {
     .then((medals) => {
       res.status(200)
       res.json({ medals })
-      return null
+      return null //you don't need this return statement
     })
     .catch((err) => {
       sendErr(err, res)

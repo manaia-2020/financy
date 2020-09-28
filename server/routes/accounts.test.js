@@ -7,6 +7,8 @@ jest.mock('../database/accountsDb', () => ({
   deleteAccount: jest.fn()
 }))
 
+//need to test the other functions as well
+
 describe('DELETE/ api/v1/accounts/:id', () => {
   test('calls deleteAccount db function', () => {
     deleteAccount.mockImplementation(() => Promise.resolve(1))

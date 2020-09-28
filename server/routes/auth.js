@@ -14,6 +14,8 @@ applyAuthRoutes(router, {
   getUserByName
 })
 
+//what is this route for? It looks like it will get the id of a user with no auth in it
+// either needs to be removed, renamed or put under test
 router.get('/auth', (req, res) => {
   const email = req.query.email
   getUserByName(email)

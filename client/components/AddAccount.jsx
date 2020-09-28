@@ -21,7 +21,7 @@ function AddAccount (props) {
     event.preventDefault()
     props.dispatch(addAccount(account, id))
     postAccount(id, account)
-      .then(console.log())
+      .then(console.log()) //it's a console log, and it's logging nothing, two reasons for it to die
       .catch(err => console.log(err))
   }
 

@@ -4,6 +4,7 @@ const config = require('../../knexfile')[environment]
 const connection = knex(config)
 const { generateHash } = require('authenticare/server')
 
+//looks like most of these are about users - perhaps this file should be userDb.js?
 function saveNewUser (user, db = connection) {
   user.email = user.username
   return generateHash(user.password)

@@ -100,7 +100,7 @@ const Login = (props) => {
           <Avatar className={classes.avatar}>
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log In
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleClick}>
             <TextField
@@ -141,7 +141,7 @@ const Login = (props) => {
               className={classes.submit}
               onClick={handleClick}
             >
-              Sign In
+              Log In
             </Button>
             <Grid container>
               <Grid item xs>

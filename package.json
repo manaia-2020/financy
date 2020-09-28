@@ -11,7 +11,7 @@
     "dev": "run-p dev:client dev:server",
     "dev:client": "webpack --watch",
     "dev:server": "nodemon server",
-    "start": "run-s build server",
+    "start": "run-s server",
     "build": "webpack",
     "server": "node server",
     "test": "jest",
@@ -21,7 +21,7 @@
     "reset:db": "run-s migrate seed",
     "lint": "npx eslint . --ext .js,.jsx",
     "lint:fix": "npx eslint . --ext .js,.jsx --fix",
-    "postinstall": "webpack && knex migrate:latest"
+    "postinstall": "run-s build migrate"
   },
   "babel": {
     "presets": [

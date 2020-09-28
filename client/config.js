@@ -7,6 +7,6 @@ const environments = {
   build: ''
 }
 
-const env = 'production'
+const env = process.env.NODE_ENV || 'development'
 
 export const baseApiUrl = environments[env]

@@ -28,7 +28,7 @@ const styles = (theme) => ({
   }
 })
 
-function Help (props) {
+function Help(props) {
   const { classes } = props
 
   return (
@@ -42,7 +42,7 @@ function Help (props) {
         We are here to help. Get in touch!
       </Typography>
       <img
-        src="/static/themes/onepirate/producBuoy.svg"
+        src="/images/producBuoy.svg"
         className={classes.buoy}
         alt="buoy"
       />

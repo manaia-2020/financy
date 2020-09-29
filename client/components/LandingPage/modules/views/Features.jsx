@@ -37,14 +37,14 @@ const styles = (theme) => ({
   }
 })
 
-function Features (props) {
+function Features(props) {
   const { classes } = props
 
   return (
     <section className={classes.root}>
       <Container className={classes.container}>
         <img
-          src="/static/themes/onepirate/productCurvyLines.png"
+          src="/images/productCurvyLines.png"
           className={classes.curvyLines}
           alt="curvy lines"
         />
@@ -53,7 +53,7 @@ function Features (props) {
             <div className={classes.item}>
               <img
                 className={classes.image}
-                src="/static/themes/onepirate/productValues1.svg"
+                src="/images/productFeatures1.svg"
                 alt="tracking"
               />
               <Typography variant="h6" className={classes.title}>
@@ -69,7 +69,7 @@ function Features (props) {
             <div className={classes.item}>
               <img
                 className={classes.image}
-                src="/static/themes/onepirate/productValues2.svg"
+                src="/images/productFeatures2.svg"
                 alt="graph"
               />
               <Typography variant="h6" className={classes.title}>
@@ -85,7 +85,7 @@ function Features (props) {
             <div className={classes.item}>
               <img
                 className={classes.image}
-                src="/static/themes/onepirate/productValues3.svg"
+                src="/images/productFeatures3.svg"
                 alt="money"
               />
               <Typography variant="h6" className={classes.title}>

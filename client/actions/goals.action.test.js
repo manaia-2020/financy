@@ -1,4 +1,11 @@
-import { addGoal, ADD_GOAL, fetchGoalsBegin, fetchGoalsFailure, fetchGoalsSuccess, FETCH_GOALS_BEGIN, FETCH_GOALS_FAILURE, FETCH_GOALS_SUCCESS } from './goals.action'
+import {
+  addGoal,
+  fetchGoalsBegin,
+  fetchGoalsSuccess,
+  ADD_GOAL,
+  FETCH_GOALS_BEGIN,
+  FETCH_GOALS_SUCCESS
+} from './goals.action'
 
 describe('goals action tests', () => {
   test('addGoal', () => {
@@ -27,12 +34,5 @@ describe('goals action tests', () => {
     const action = fetchGoalsSuccess(goals)
     expect(action.type).toBe(FETCH_GOALS_SUCCESS)
     expect(action.payload.goals).toBe(goals)
-  })
-
-  test('fetchGoalsFailure', () => {
-    const error = 'goals not found'
-    const action = fetchGoalsFailure(error)
-    expect(action.type).toBe(FETCH_GOALS_FAILURE)
-    expect(action.payload.error).toBe(error)
   })
 })

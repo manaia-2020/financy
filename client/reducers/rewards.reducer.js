@@ -2,7 +2,7 @@ import { SET_REWARDS } from '../actions'
 
 const initialState = []
 
-function setRewards (state = initialState, action) {
+function rewardsReducer (state = initialState, action) {
   switch (action.type) {
     case SET_REWARDS:
       return action.rewards
@@ -11,4 +11,4 @@ function setRewards (state = initialState, action) {
   }
 }
 
-export default setRewards
+export default rewardsReducer

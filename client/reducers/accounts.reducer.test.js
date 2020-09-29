@@ -1,6 +1,13 @@
 /* eslint-disable jest/valid-title */
 import accountsReducer from './accounts.reducer'
-import { addAccount, ADD_ACCOUNT, getAccounts, GET_ACCOUNTS, deleteAccount, DELETE_ACCOUNT } from '../actions/accounts.action'
+import {
+  addAccount,
+  getAccounts,
+  deleteAccount,
+  ADD_ACCOUNT,
+  GET_ACCOUNTS,
+  DELETE_ACCOUNT
+} from '../actions/accounts.action'
 
 describe('account reducer tests', () => {
   test(ADD_ACCOUNT, () => {

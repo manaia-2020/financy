@@ -1,7 +1,7 @@
 const environments = {
-  development: 'http://localhost:3000/api/v1',
-  test: 'http://localhost:3333/api/v1',
-  production: '',
+  development: '/api/v1',
+  test: '/api/v1',
+  production: '/api/v1',
   integration: '',
   deployment: '',
   build: ''

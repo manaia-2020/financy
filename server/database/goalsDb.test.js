@@ -2,7 +2,7 @@
 
 const knex = require('knex')
 const config = require('../../knexfile').test
-const { saveNewGoal, getAllGoalsByUserId } = require('./goals.database')
+const { saveNewGoal, getAllGoalsByUserId } = require('./goalsDb')
 
 const testDb = knex(config)
 
@@ -18,9 +18,9 @@ describe('saveNewGoal', () => {
       amount: "$32.00",
       id: 2
     }
-  
+
     expect.assertions(1)
-  
+
     return saveNewGoal(data, testDb)
       .then((id) => {
         expect(id[0]).toBe(3)

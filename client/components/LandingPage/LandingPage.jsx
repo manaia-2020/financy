@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Navbar from './Navbar'
 import ProductHero from './modules/views/ProductHero'
 import Features from './modules/views/Features'
 import PhotoGrid from './modules/views/PhotoGrid'
@@ -15,7 +14,6 @@ function LandingPage () {
   return (
     <>
       <IfNotAuthenticated>
-        <Navbar />
         <ProductHero />
         <Features />
         <PhotoGrid />

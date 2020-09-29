@@ -4,6 +4,7 @@ import { register, isAuthenticated } from 'authenticare/client'
 import { baseApiUrl as baseUrl } from '../config'
 import { getUserInfo } from '../api/api'
 import { addUserInfo } from '../actions'
+import { isEmpty, isPasswordMatch, isValidEmail } from '../utils/validation'
 import Navbar from './LandingPage/Navbar'
 
 import Avatar from '@material-ui/core/Avatar'
@@ -18,7 +19,6 @@ import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { isEmpty, isPasswordMatch, isValidEmail } from '../utils/validation'
 
 function Copyright () {
   return (
@@ -156,8 +156,8 @@ function Register (props) {
   const classes = useStyles()
   return (
     <>
-      <Navbar />
-      <Container component="main" maxWidth="xs" className={classes.container}>
+      <Container component="main" maxWidth="xs" className={classes.container} >
+        <Navbar />
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>

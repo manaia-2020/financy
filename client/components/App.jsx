@@ -57,10 +57,10 @@ const App = (props) => {
         <Route path="/goals">
           <Goals />
         </Route>
-        <Route exact path="/transactions">
+        <Route path="/transactions">
           <Transactions />
         </Route>
-        <Route exact path="/accounts">
+        <Route path="/accounts">
           <Accounts />
         </Route>
       </Switch>

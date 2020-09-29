@@ -35,9 +35,12 @@ const styles = (theme) => ({
     fontWeight: theme.typography.fontWeightMedium
   },
   image: {
-    height: 55,
+    height: 250,
     marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(4)
+    marginBottom: theme.spacing(4),
+    justify: 'center',
+    padding: 4,
+    borderRadius: 5,
   },
   curvyLines: {
     pointerEvents: 'none',
@@ -87,7 +90,7 @@ function Team(props) {
             <Grid item xs={6} md={3}>
               <div className={classes.item}>
                 <img
-                  src=""
+                  src="/images/josiah.jpg"
                   alt="Josiah"
                   className={classes.image}
                 />

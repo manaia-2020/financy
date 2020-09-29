@@ -32,16 +32,16 @@ const Transactions = (props) => {
 
   const { id } = props.userInfo
   useEffect(() => {
-   if(id){
-     getAccountApi(id)
-       .then((results) => {
-         props.dispatch(getAccounts(results))
-         return null
-       })
-       .catch((err) => {
-         if (err) console.log(err)
-       })
-   }
+    if (id) {
+      getAccountApi(id)
+        .then((results) => {
+          props.dispatch(getAccounts(results))
+          return null
+        })
+        .catch((err) => {
+          if (err) console.log(err)
+        })
+    }
   }, [props.userInfo])
 
   const handleChange = (event) => {
@@ -76,15 +76,15 @@ const Transactions = (props) => {
     selectEmpty: {
       marginTop: theme.spacing(2)
     },
-    boxMargin:{
-      marginTop:"15px"
+    boxMargin: {
+      marginTop: '15px'
     },
-    buttonMargin:{
-      marginTop:"15px"
+    buttonMargin: {
+      marginTop: '15px'
     },
-    boldHeading:{
-      fontWeight:'bold'
-    },
+    boldHeading: {
+      fontWeight: 'bold'
+    }
   }))
   const classes = useStyles()
   console.log(transactions)
@@ -93,44 +93,44 @@ const Transactions = (props) => {
   const latestBalance = balances.balance
 
   return (
-    <div style={{display:"flex",justifyContent:'center', width:'800px', margin:'auto'}}>
+    <div style={{ display: 'flex', justifyContent: 'center', width: '800px', margin: 'auto' }}>
       <div>
         <AddTransaction />
       </div>
       <Container className={classes.containerMargin} component="main" maxWidth="xs">
         <CssBaseline />
         <form className={classes.formControl} onSubmit={requestTransactions}>
-        <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
+          <div className={classes.paper}>
+            <Typography component="h1" variant="h5">
             View Transactions
-          </Typography>
-          <FormControl>
-            <InputLabel>Account</InputLabel>
-            <Select
-              labelId="accountSelect"
-              id="accountSelect"
-              onChange={handleChange}
-              name="accountSelect"
-              defaultValue=""
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {props.accounts.map((account) => (
-                <MenuItem key={account.id} value={account.id}>
-                  {account.name}
+            </Typography>
+            <FormControl>
+              <InputLabel>Account</InputLabel>
+              <Select
+                labelId="accountSelect"
+                id="accountSelect"
+                onChange={handleChange}
+                name="accountSelect"
+                defaultValue=""
+              >
+                <MenuItem value="">
+                  <em>None</em>
                 </MenuItem>
-              ))}
-            </Select>
-            <FormHelperText>Please Select An Account</FormHelperText>
-            <Button className={classes.buttonMargin} type="submit" variant="contained" color="primary">
+                {props.accounts.map((account) => (
+                  <MenuItem key={account.id} value={account.id}>
+                    {account.name}
+                  </MenuItem>
+                ))}
+              </Select>
+              <FormHelperText>Please Select An Account</FormHelperText>
+              <Button className={classes.buttonMargin} type="submit" variant="contained" color="primary">
               Get
-            </Button>
-          </FormControl>
-          <Box className={classes.boxMargin} component="div" display="inline">
+              </Button>
+            </FormControl>
+            <Box className={classes.boxMargin} component="div" display="inline">
             Current Balance: ${latestBalance}
-          </Box>
-        </div>
+            </Box>
+          </div>
         </form>
         {transactions.length === 0
           ? null

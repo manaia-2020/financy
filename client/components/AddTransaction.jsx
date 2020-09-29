@@ -15,7 +15,6 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 
 const AddTransaction = (props) => {
-
   const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),

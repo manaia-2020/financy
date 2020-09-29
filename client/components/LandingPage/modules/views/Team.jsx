@@ -40,7 +40,7 @@ const styles = (theme) => ({
     marginBottom: theme.spacing(4),
     justify: 'center',
     padding: 4,
-    borderRadius: 5,
+    borderRadius: 5
   },
   curvyLines: {
     pointerEvents: 'none',
@@ -53,7 +53,7 @@ const styles = (theme) => ({
   }
 })
 
-function Team(props) {
+function Team (props) {
   const { classes } = props
 
   return (

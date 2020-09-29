@@ -49,7 +49,7 @@ const styles = (theme) => ({
   }
 })
 
-function ProductHeroLayout(props) {
+function ProductHeroLayout (props) {
   const { backgroundClassName, children, classes } = props
 
   return (

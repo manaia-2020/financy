@@ -37,7 +37,7 @@ const styles = (theme) => ({
   }
 })
 
-function Features(props) {
+function Features (props) {
   const { classes } = props
 
   return (

@@ -6,7 +6,7 @@ import Typography from '../components/Typography'
 import ProductHeroLayout from './ProductHeroLayout'
 
 const backgroundImage =
-  'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400&q=80'
+  'https://images.unsplash.com/photo-1572805287211-238422be6b9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'
 
 const styles = (theme) => ({
   background: {
@@ -15,7 +15,7 @@ const styles = (theme) => ({
     backgroundPosition: 'center'
   },
   button: {
-    minWidth: 200
+    minWidth: 400
   },
   h5: {
     marginBottom: theme.spacing(4),

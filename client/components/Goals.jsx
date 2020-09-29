@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchGoalsBegin, fetchGoalsSuccess } from '../actions/goals.action'
-import { getUserGoals } from '../api/goals.api'
+import { fetchGoalsBegin, fetchGoalsSuccess, deleteGoal } from '../actions/goals.action'
+import { getUserGoals, deleteGoalById } from '../api/goals.api'
 import { formatAmount } from '../utils/currency'
 import AddGoal from './AddGoal'
 
@@ -11,9 +11,11 @@ import AccordionSummary from '@material-ui/core/AccordionSummary'
 import AccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { Button } from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 function Goals (props) {
-  const { begin, success, goals, userInfo } = props
+  const { begin, success, goals, userInfo, goalRemoved } = props
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,6 +26,7 @@ function Goals (props) {
       fontWeight: theme.typography.fontWeightRegular
     }
   }))
+
   useEffect(() => {
     if (userInfo.id) {
       begin()
@@ -32,6 +35,12 @@ function Goals (props) {
         .catch((error) => console.log(error))
     }
   }, [userInfo])
+
+  function removeGoal (id) {
+    deleteGoalById(id)
+      .then(() => goalRemoved(id))
+      .catch(console.log)
+  }
 
   const classes = useStyles()
   return (
@@ -49,9 +58,18 @@ function Goals (props) {
                 <Typography className={classes.heading}>{goal.name}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Date:{goal.goal_date}, Amount: {formatAmount(goal.amount)}
+                <Typography style={{ flex: 1 }}>
+                  Date: {new Date(goal.goal_date).toLocaleDateString()}, Amount: {formatAmount(goal.amount)}
                 </Typography>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.button}
+                  startIcon={<DeleteIcon />}
+                  onClick={() => removeGoal(goal.id)}
+                >
+                    Delete
+                </Button>
               </AccordionDetails>
             </Accordion>
           </div>))}
@@ -68,7 +86,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   begin: () => dispatch(fetchGoalsBegin()),
-  success: (goals) => dispatch(fetchGoalsSuccess(goals))
+  success: (goals) => dispatch(fetchGoalsSuccess(goals)),
+  goalRemoved: (goal) => dispatch(deleteGoal(goal))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Goals)

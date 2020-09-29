@@ -10,7 +10,6 @@ import {
 describe('goals reducer tests', () => {
   test(ADD_GOAL, () => {
     const date = Date.now()
-    const id = 2
     const goal = {
       name: 'pin jesus to cross',
       date: date,
@@ -22,11 +21,10 @@ describe('goals reducer tests', () => {
     const expectedState = [{
       name: 'pin jesus to cross',
       goal_date: date,
-      amount: '$23.00',
-      user_id: id
+      amount: '$23.00'
     }]
 
-    const action = addGoal(goal, id)
+    const action = addGoal(goal)
 
     const actualState = goalsReducer(initialState, action)
 

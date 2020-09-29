@@ -2,7 +2,7 @@
 
 const knex = require('knex')
 const config = require('../../knexfile').test
-const { saveNewGoal, getAllGoalsByUserId } = require('./goalsDb')
+const { saveNewGoal, getAllGoalsByUserId, getGoalById, deleteGoalById } = require('./goalsDb')
 
 const testDb = knex(config)
 
@@ -45,5 +45,35 @@ describe('getAllGoalsByUserId', () => {
       .then((goals) => {
         expect(goals[0]).toEqual(expected)
       })
+  })
+})
+
+describe('getGoalById', () => {
+  test('get a goal by id', () => {
+    const id = 1
+    const expected = {
+      id: 1,
+      name: 'Go on a holiday',
+      goal_date: '04/03/2021',
+      amount: 2330,
+      user_id: 1
+    }
+
+    expect.assertions(1)
+
+    return getGoalById(id, testDb)
+      .then((goal) => expect(goal).toEqual(expected))
+  })
+})
+
+describe('deleteGoalById', () => {
+  test('delete a goal by id', () => {
+    const id = 1
+
+    expect.assertions(1)
+
+    return deleteGoalById(id, testDb)
+      .then(() => getGoalById(id, testDb))
+      .then((actual) => expect(actual).toBeUndefined())
   })
 })

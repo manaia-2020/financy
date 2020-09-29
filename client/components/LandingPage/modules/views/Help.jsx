@@ -42,7 +42,7 @@ function Help (props) {
         We are here to help. Get in touch!
       </Typography>
       <img
-        src="/static/themes/onepirate/producBuoy.svg"
+        src="/images/producBuoy.svg"
         className={classes.buoy}
         alt="buoy"
       />

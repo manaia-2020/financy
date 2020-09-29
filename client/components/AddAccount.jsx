@@ -115,7 +115,7 @@ function AddAccount (props) {
               variant="contained"
               color="primary"
               className={classes.submit}
-            >Add New Goal</Button>
+            >Add New Account</Button>
           </form>
         </div>
       </Container>

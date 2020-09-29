@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addNewTransaction } from '../api/api'
 
@@ -15,7 +15,6 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 
 const AddTransaction = (props) => {
-  useEffect(() => {}, [])
 
   const useStyles = makeStyles((theme) => ({
     paper: {
@@ -23,10 +22,6 @@ const AddTransaction = (props) => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center'
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: '#17E9E0'
     },
     form: {
       width: '100%', // Fix IE 11 issue.
@@ -128,6 +123,7 @@ const AddTransaction = (props) => {
               autoFocus
               onChange={handleChange}
             ></TextField>
+            <InputLabel>Enter negative amount for outgoings</InputLabel>
             <TextField
               variant="outlined"
               margin="normal"

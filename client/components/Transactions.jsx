@@ -23,6 +23,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Box from '@material-ui/core/Box'
+import clsx from 'clsx'
 
 const Transactions = (props) => {
   const [transactions, setTransactions] = useState([])
@@ -31,15 +32,17 @@ const Transactions = (props) => {
 
   const { id } = props.userInfo
   useEffect(() => {
-    getAccountApi(id)
-      .then((results) => {
-        props.dispatch(getAccounts(results))
-        return null
-      })
-      .catch((err) => {
-        if (err) console.log(err)
-      })
-  }, [])
+   if(id){
+     getAccountApi(id)
+       .then((results) => {
+         props.dispatch(getAccounts(results))
+         return null
+       })
+       .catch((err) => {
+         if (err) console.log(err)
+       })
+   }
+  }, [props.userInfo])
 
   const handleChange = (event) => {
     console.log(event.target.value)
@@ -64,9 +67,24 @@ const Transactions = (props) => {
       margin: theme.spacing(1),
       minWidth: 120
     },
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    },
     selectEmpty: {
       marginTop: theme.spacing(2)
-    }
+    },
+    boxMargin:{
+      marginTop:"15px"
+    },
+    buttonMargin:{
+      marginTop:"15px"
+    },
+    boldHeading:{
+      fontWeight:'bold'
+    },
   }))
   const classes = useStyles()
   console.log(transactions)
@@ -75,13 +93,14 @@ const Transactions = (props) => {
   const latestBalance = balances.balance
 
   return (
-    <div>
+    <div style={{display:"flex",justifyContent:'center', width:'800px', margin:'auto'}}>
       <div>
         <AddTransaction />
       </div>
-      <Container component="main" maxWidth="xs">
+      <Container className={classes.containerMargin} component="main" maxWidth="xs">
         <CssBaseline />
         <form className={classes.formControl} onSubmit={requestTransactions}>
+        <div className={classes.paper}>
           <Typography component="h1" variant="h5">
             View Transactions
           </Typography>
@@ -104,13 +123,14 @@ const Transactions = (props) => {
               ))}
             </Select>
             <FormHelperText>Please Select An Account</FormHelperText>
-            <Button type="submit" variant="contained" color="primary">
+            <Button className={classes.buttonMargin} type="submit" variant="contained" color="primary">
               Get
             </Button>
           </FormControl>
-          <Box component="div" display="inline">
-            Current Balance: {latestBalance}
+          <Box className={classes.boxMargin} component="div" display="inline">
+            Current Balance: ${latestBalance}
           </Box>
+        </div>
         </form>
         {transactions.length === 0
           ? null
@@ -122,8 +142,8 @@ const Transactions = (props) => {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography className={classes.heading}>
-                      Name: {item.name}
+                  <Typography className={clsx(classes.heading, classes.boldHeading)}>
+                      Transaction: {item.name}
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>

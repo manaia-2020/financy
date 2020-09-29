@@ -58,8 +58,8 @@ function AddGoal (props) {
   function handleSubmit (event) {
     const id = props.userInfo.id
     event.preventDefault()
-    props.dispatch(addGoal(goal, id))
     postGoal(goal, id)
+      .then((addedGoal) => props.dispatch(addGoal(addedGoal)))
       .catch(err => console.log(err))
   }
 

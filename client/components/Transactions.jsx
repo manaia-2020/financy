@@ -72,7 +72,7 @@ const Transactions = (props) => {
   console.log(transactions)
   console.log(balances)
 
-  let latestBalance = balances.balance
+  const latestBalance = balances.balance
 
   return (
     <div>

@@ -51,22 +51,22 @@ function Accounts (props) {
            Here are your accounts..
         </Typography>
         {accounts.map((acc, i) => (
-          <div key={i}>
+          <div key={acc[0].id}>
             <Accordion>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography component="h1" variant="h5">{acc.name}
+                <Typography component="h1" variant="h5">{acc[0].name}
                 </Typography>
 
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
-                  Balance:${acc.balance}
+                  Balance:${acc[0].balance}
                   <Button className={classes.submit}
-                    onClick={() => handleClick(acc.id)}>
+                    onClick={() => handleClick(acc[0].id)}>
                       Remove
                   </Button>
                 </Typography>

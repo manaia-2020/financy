@@ -46,6 +46,19 @@ function getAccountDetails (id, db = connection) {
     .select('accounts.id as id', 'users.id as userId', 'name')
 }
 
+function userAccountsMaxBalances (id, db = connection) {
+  return db('accounts').select('id').where('user_id', id)
+    .then(accounts => {
+      return Promise.all(accounts.map(account => {
+        return db('balance_history')
+          .join('accounts', 'balance_history.account_id', 'accounts.id')
+          .where('accounts.id', account.id)
+          .max('balance_updated_at')
+          .select('*')
+      }))
+    })
+}
+
 function addAccountDetails (data, db = connection) {
   return db('accounts')
     .insert({
@@ -67,5 +80,6 @@ module.exports = {
   getUserByName,
   userExists,
   getAccountDetails,
-  addAccountDetails
+  addAccountDetails,
+  userAccountsMaxBalances
 }

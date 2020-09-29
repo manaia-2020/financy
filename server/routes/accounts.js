@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
 
-const { getAccountDetails, addAccountDetails } = require('../database/db')
+const { getAccountDetails, addAccountDetails, userAccountsMaxBalances } = require('../database/db')
 const { deleteAccount } = require('../database/accountsDb')
 
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id)
-  getAccountDetails(id)
+  userAccountsMaxBalances(id)
     .then((accounts) => {
       return res.json(accounts)
     })

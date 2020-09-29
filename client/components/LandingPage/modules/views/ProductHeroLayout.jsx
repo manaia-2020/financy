@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import Navbar from '../../Navbar'
 
 const styles = (theme) => ({
   root: {
@@ -12,8 +13,8 @@ const styles = (theme) => ({
     alignItems: 'center',
     [theme.breakpoints.up('sm')]: {
       height: '80vh',
-      minHeight: 500,
-      maxHeight: 1300
+      minHeight: 800,
+      maxHeight: 2000
     }
   },
   container: {
@@ -42,6 +43,7 @@ const styles = (theme) => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     zIndex: -2
+
   },
   arrowDown: {
     position: 'absolute',
@@ -55,12 +57,7 @@ function ProductHeroLayout (props) {
   return (
     <section className={classes.root}>
       <Container className={classes.container}>
-        <img
-          src="/images/productHeroWonder.png"
-          alt="wonder"
-          width="147"
-          height="80"
-        />
+        <Navbar />
         {children}
         <div className={classes.backdrop} />
         <div className={clsx(classes.background, backgroundClassName)} />

@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#17E9E0'
+  },
+  nav: {
+    backgroundColor: '#A64AC9'
   }
 
 }))
@@ -148,7 +151,7 @@ const Login = (props) => {
   const classes = useStyles()
   return (
     <>
-      <Navbar />
+      <Navbar className={classes.nav} />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>

@@ -1,18 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-
 import { withStyles, ThemeProvider } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link'
 import AppBar from './modules/components/AppBar'
 import Toolbar, { styles as toolbarStyles } from './modules/components/Toolbar'
-
+import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './modules/theme'
 
 const styles = (theme) => ({
   title: {
-    fontSize: 24
+    fontSize: 24,
+    justifyContent: 'flex-start'
+
   },
   placeholder: toolbarStyles(theme).root,
   toolbar: {
@@ -31,22 +32,41 @@ const styles = (theme) => ({
   },
   rightLink: {
     fontSize: 16,
-    color: theme.palette.common.white,
-    marginLeft: theme.spacing(3)
+    color: theme.palette.secondary.main,
+    marginLeft: theme.spacing(4)
   },
   linkSecondary: {
     color: theme.palette.secondary.main
+  },
+  appBar: {
+    backgroundColor: 'transparent',
+    transition: theme.transitions.create(['background-color'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.standard
+    }),
+    padding: '0 20px'
+  },
+  appBarScrolled: {
+    backgroundColor: 'grey',
+    transition: theme.transitions.create(['background-color'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.standard
+    })
   }
 })
 
 function Navbar (props) {
   const { classes } = props
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 800
+  })
 
   return (
     <div>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppBar position="fixed">
+        <AppBar position="fixed" color="transparent" className={`${classes.appBar} ${trigger === false ? '' : classes.appBarScrolled}`}>
           <Toolbar className={classes.toolbar}>
             <div className={classes.left} />
             <Link
@@ -108,7 +128,7 @@ function Navbar (props) {
         </AppBar>
       </ThemeProvider>
       <div className={classes.placeholder} />
-    </div>
+    </div >
   )
 }
 

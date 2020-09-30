@@ -39,7 +39,7 @@ const styles = (theme) => ({
   }
 })
 
-function Header(props) {
+function Header (props) {
   const { classes, onDrawerToggle } = props
 
   return (

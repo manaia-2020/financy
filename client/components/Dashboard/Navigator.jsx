@@ -22,10 +22,10 @@ const styles = (theme) => ({
     paddingBottom: theme.spacing(2),
     color: '#a64ac9',
     fontSize: 24,
-    backgroundColor: 'black',
+    backgroundColor: 'black'
   },
   categoryHeaderPrimary: {
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   item: {
     paddingTop: 1,
@@ -40,7 +40,7 @@ const styles = (theme) => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
     fontSize: 30,
-    color: '#a64ac9',
+    color: '#a64ac9'
   },
   submit: {
     '&:hover, &:focus': {
@@ -56,7 +56,6 @@ const styles = (theme) => ({
     backgroundPosition: 'center'
   }
 })
-
 
 const Nav = (props) => {
   const { history, dispatch, userInfo, classes, ...other } = props
@@ -87,20 +86,20 @@ const Nav = (props) => {
               <Button className={classes.submit}>Profile</Button>
             </Link>
 
-            <Link to="/" style={{ textDecoration: 'none' }}>
-              <Button className={classes.submit}>Rewards</Button>
-            </Link>
-
             <Link to="/goals" style={{ textDecoration: 'none' }}>
               <Button className={classes.submit}>Goals</Button>
+            </Link>
+
+            <Link to="/accounts" style={{ textDecoration: 'none' }}>
+              <Button className={classes.submit}>Accounts</Button>
             </Link>
 
             <Link to="/transactions" style={{ textDecoration: 'none' }}>
               <Button className={classes.submit}> Transactions</Button>
             </Link>
 
-            <Link to="/accounts" style={{ textDecoration: 'none' }}>
-              <Button className={classes.submit}>Accounts</Button>
+            <Link to="/rewards" style={{ textDecoration: 'none' }}>
+              <Button className={classes.submit}>Rewards</Button>
             </Link>
 
           </List>
@@ -111,7 +110,7 @@ const Nav = (props) => {
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     userInfo: state.addUserInfo
   }

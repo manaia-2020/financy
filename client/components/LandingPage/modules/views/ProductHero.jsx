@@ -30,7 +30,7 @@ const styles = (theme) => ({
   }
 })
 
-function ProductHero(props) {
+function ProductHero (props) {
   const { classes } = props
 
   return (

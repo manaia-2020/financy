@@ -66,7 +66,6 @@ const Nav = (props) => {
   const handleClick = () => {
     logOff()
     if (!isAuthenticated()) {
-      console.log(props)
       history.push('/')
     }
   }

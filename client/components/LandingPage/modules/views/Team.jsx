@@ -53,7 +53,7 @@ const styles = (theme) => ({
   }
 })
 
-function Team (props) {
+function Team(props) {
   const { classes } = props
 
   return (
@@ -103,7 +103,7 @@ function Team (props) {
             <Grid item xs={6} md={3}>
               <div className={classes.item}>
                 <img
-                  src=""
+                  src="images/brad.jpg"
                   alt="Brad"
                   className={classes.image}
                 />
@@ -116,7 +116,7 @@ function Team (props) {
             <Grid item xs={6} md={3}>
               <div className={classes.item}>
                 <img
-                  src=""
+                  src="images/max.jpg"
                   alt="Max"
                   className={classes.image}
                 />

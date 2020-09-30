@@ -45,12 +45,10 @@ const Transactions = (props) => {
   }, [props.userInfo])
 
   const handleChange = (event) => {
-    console.log(event.target.value)
     setAccountId(event.target.value)
   }
 
   const requestTransactions = (event) => {
-    console.log(id)
     event.preventDefault()
     return getUserAccountTransactions(id, accountId)
       .then((items) => {
@@ -86,13 +84,11 @@ const Transactions = (props) => {
     boldHeading: {
       fontWeight: 'bold'
     },
-    containerMargin:{
-      marginBottom:'50px'
+    containerMargin: {
+      marginBottom: '50px'
     }
   }))
   const classes = useStyles()
-  console.log(transactions)
-  console.log(balances)
 
   const latestBalance = balances.balance
 

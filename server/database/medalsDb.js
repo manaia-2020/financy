@@ -34,12 +34,11 @@ function getMedal (medalId, db = database) {
 
 async function awardMedal (userId, db = database) {
   const accountIds = await getAccountDetails(userId, db)
-  accountIds.map(async(account) => {
+  accountIds.map(async (account) => {
     const delta = await calcBalanceDelta(userId, account.id, db)
     const medalId = decideMedal(delta)
     const newMedal = await getMedal(medalId, db)
     return insertUsersMedals(userId, newMedal.id, db)
-
   })
 }
 

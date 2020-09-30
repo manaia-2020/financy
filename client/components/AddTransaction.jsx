@@ -62,30 +62,6 @@ const AddTransaction = (props) => {
     setNewTrans({ ...newTrans, [name]: value })
   }
 
-  const checkFloat = () => {
-    const float = /^[-+]?[0-9]+\.[0-9]+$/
-    return Number(newTrans.amount) !== 0 ? newTrans.amount.match(float) : false
-  }
-
-  // const toggleRecurring = () => {
-  //   return !showRecurring ? setShowRecurring(true) : setShowRecurring(false)
-  // }
-
-  // const viewRecurringForm = () => {
-  //   return (
-  //     <>
-  //       <label htmlFor="frequency">How Often</label>
-  //       <select onChange={handleChange} name="frequency" id="frequency">
-  //         <option value="7">Weekly</option>
-  //         <option value="14">Fortnightly</option>
-  //         <option value="28">Monthly</option>
-  //         <option value="91">Quarterly</option>
-  //         <option value="365">Annually</option>
-  //       </select>
-  //     </>
-  //   )
-  // }
-
   const classes = useStyles()
   return (
     <>

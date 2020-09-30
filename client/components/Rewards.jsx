@@ -13,10 +13,9 @@ import Avatar from '@material-ui/core/Avatar'
 const Rewards = ({ dispatch, userInfo, medals }) => {
   const { id } = userInfo
   useEffect(() => {
-    if(id){
+    if (id) {
       getRewardsApi(userInfo.id)
         .then(rewards => {
-          console.log(rewards)
           dispatch(setRewards(rewards.medals))
           return null
         })
@@ -24,66 +23,65 @@ const Rewards = ({ dispatch, userInfo, medals }) => {
     }
   }, [userInfo])
 
-  const useStyles = makeStyles((theme) =>({
+  const useStyles = makeStyles((theme) => ({
     bullet: {
       display: 'inline-block',
       margin: '0 2px',
-      transform: 'scale(0.8)',
+      transform: 'scale(0.8)'
     },
     title: {
-      fontSize: 14,
+      fontSize: 14
     },
     root: {
       display: 'flex',
       '& > *': {
-        margin: theme.spacing(1),
+        margin: theme.spacing(1)
       },
       width: '50%',
       margin: 'auto'
     },
     pos: {
-      marginBottom: 12,
+      marginBottom: 12
     },
     headingMargin: {
-      width:'50%',
-      margin:'auto',
+      width: '50%',
+      margin: 'auto',
       padding: '10px'
-    },
+    }
   }))
 
   const noMedals = medals.length === 0
 
   const classes = useStyles()
- 
 
   return (
     <>
-    <div  >
-    <Typography className={classes.headingMargin} component="h1" variant="h4">
+      <div >
+        <Typography className={classes.headingMargin} component="h1" variant="h4">
       Here are the medals you have been awarded
-    </Typography>
-      {noMedals ? <h2>'No medals awarded'</h2> : medals.map(medal => (
-        <div key={medal.id}>
-          <Card className={classes.root} variant="outlined">
-          <CardContent>
-            <Typography variant="h5" component="h2">
-              {medal.name}
-            </Typography>
-            <div className={classes.root}>
-              <Avatar alt={medal.id} src={medal.image}/>
-            </div>
-          </CardContent>
-          </Card>
-        </div>
-      ))}
-    </div>
+        </Typography>
+        {noMedals ? <h2>No medals awarded</h2> : medals.map(medal => (
+          <div key={medal.id}>
+            <Card className={classes.root} variant="outlined">
+              <CardContent>
+                <Typography variant="h5" component="h2">
+                  {medal.name}
+                </Typography>
+                <div className={classes.root}>
+                  <Avatar alt={medal.id} src={medal.image}/>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+      </div>
     </>
   )
 }
 
 const mapStateToProps = (state) => ({
   userInfo: state.addUserInfo,
-  medals: state.rewards,
+  medals: state.rewards
 })
 
 export default connect(mapStateToProps)(Rewards)

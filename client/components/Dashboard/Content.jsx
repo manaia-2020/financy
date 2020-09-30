@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
@@ -21,10 +21,9 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Modal from '@material-ui/core/Modal'
-import { getAccountApi, removeAccount } from '../../api/api'
-import { deleteAccount, getAccounts } from '../../actions/accounts.action'
+import Select from '@material-ui/core/Select'
 import { formatAmount } from '../../utils/currency'
-import AddAccount from '../AddAccount'
+import { MenuItem } from '@material-ui/core'
 
 const styles = (theme) => ({
   paper: {
@@ -41,7 +40,7 @@ const styles = (theme) => ({
   block: {
     display: 'block'
   },
-  addUser: {
+  add: {
     marginRight: theme.spacing(1)
   },
   contentWrapper: {
@@ -53,22 +52,8 @@ const styles = (theme) => ({
 })
 
 function Content (props) {
-  const { accounts, userInfo, dispatch, classes } = props
+  const { type, columns, rows, classes, handleDelete, modal, accounts, handleChange } = props
   const [open, setOpen] = React.useState(false)
-
-  useEffect(() => {
-    if (userInfo.id) {
-      getAccountApi(userInfo.id)
-        .then((results) => dispatch(getAccounts(results)))
-        .catch((err) => console.log(err.message))
-    }
-  }, [userInfo])
-
-  function handleClick (id) {
-    removeAccount(id)
-      .then(() => dispatch(deleteAccount(id)))
-      .catch((err) => console.log(err.message))
-  }
 
   const handleOpen = () => {
     setOpen(true)
@@ -78,17 +63,8 @@ function Content (props) {
     setOpen(false)
   }
 
-  function generateRandom (status) {
-    const rich = ['Oooh she a hoe!', 'Oooh she a rich hoe!', 'Girl I see you. get that 🍆', 'Being a sugar baby is not being a prostitute']
-    const poor = ['Girl you can do better than this', 'I am very disapointed in you']
-
-    switch (status) {
-      case 'rich':
-        return rich[Math.floor(Math.random() * rich.length)]
-      case 'poor':
-        return poor[Math.floor(Math.random() * poor.length)]
-    }
-  }
+  const money = ['balance', 'amount']
+  const date = ['goal_date', 'date']
 
   return (
     <Paper className={classes.paper}>
@@ -106,7 +82,7 @@ function Content (props) {
             <Grid item xs>
               <TextField
                 fullWidth
-                placeholder="Search by email address, phone number, or user UID"
+                placeholder="Search by name"
                 InputProps={{
                   disableUnderline: true,
                   className: classes.searchInput
@@ -114,9 +90,25 @@ function Content (props) {
               />
             </Grid>
             <Grid item>
-              <Button variant="contained" onClick={handleOpen} className={classes.addUser}>
-                Add Account
-              </Button>
+              {type === 'transaction' && (
+                <Select
+                  labelId="accountSelect"
+                  id="accountSelect"
+                  onChange={handleChange}
+                  name="12"
+                  style={{ marginRight: 25 }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {accounts.map((account) => (
+                    <MenuItem key={account.id} value={account.id}>
+                      {account.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              )}
+              <Button variant="contained" onClick={handleOpen} className={classes.add}>add {type}</Button>
               <Modal
                 open={open}
                 onClose={handleClose}
@@ -128,7 +120,7 @@ function Content (props) {
                   justifyContent: 'center'
                 }}
               >
-                <AddAccount />
+                {modal}
               </Modal>
               <Tooltip title="Reload">
                 <IconButton>
@@ -140,38 +132,39 @@ function Content (props) {
         </Toolbar>
       </AppBar>
       <div className={classes.contentWrapper}>
-        {accounts.length ? (
+        {rows.length ? (
           <>
-            <Typography color="textSecondary" align="center">
-            Get it girl! You got some moneyyyyyyy!
-            </Typography>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Account Name</TableCell>
-                    <TableCell align="right">Message</TableCell>
-                    <TableCell align="right">Balance</TableCell>
-                    <TableCell align="right"></TableCell>
+                    {columns.map((column, index) => index < 1 ? (
+                      <TableCell key={column}>{column}</TableCell>
+                    ) : (
+                      <TableCell align="right" key={column}>
+                        {column !== 'delete' ? column : ''}
+                      </TableCell>)
+                    )}
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {accounts.map((account) => (
-                    <TableRow key={account.id}>
-                      <TableCell component="th" scope="row">
-                        {account.name}
-                      </TableCell>
-                      <TableCell align="right">{account.balance < 500 ? generateRandom('poor') : generateRandom('rich') }</TableCell>
-                      <TableCell align="right">{formatAmount(account.balance)}</TableCell>
-                      <TableCell align="right">
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          className={classes.button}
-                          startIcon={<DeleteIcon />}
-                          onClick={() => handleClick(account.id)}
-                        >Delete</Button>
-                      </TableCell>
+                  {rows.map((row) => (
+                    <TableRow key={row.id}>
+                      {columns.map((column, index) => index < 1 ? (
+                        <TableCell key={column} component="th" scope="row">{row[column]}</TableCell>
+                      ) : (
+                        <TableCell key={column} align="right">
+                          {column !== 'delete' ? money.includes(column) || date.includes(column) ? money.includes(column) ? formatAmount(row[column]) : new Date(row[column]).toLocaleDateString() : row[column] : (
+                            <Button
+                              variant="contained"
+                              color="secondary"
+                              className={classes.button}
+                              startIcon={<DeleteIcon />}
+                              onClick={() => handleDelete(row.id)}
+                            >Delete</Button>
+                          )}
+                        </TableCell>
+                      ))}
                     </TableRow>
                   ))}
                 </TableBody>
@@ -180,7 +173,7 @@ function Content (props) {
           </>
         ) : (
           <Typography color="textSecondary" align="center">
-            Girl you dont got any money, is everything alright? You need some money?
+      Girl you dont got any money, is everything alright? You need some money?
           </Typography>
         )}
       </div>

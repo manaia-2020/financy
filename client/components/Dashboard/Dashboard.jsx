@@ -10,7 +10,6 @@ import Hidden from '@material-ui/core/Hidden'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import Navigator from './Navigator'
-import Content from './Content'
 import Header from './Header'
 import { IfAuthenticated } from '../Authenticated'
 import { connect } from 'react-redux'
@@ -196,7 +195,7 @@ const styles = {
 }
 
 function Dashboard (props) {
-  const { classes, history } = props
+  const { classes, history, content } = props
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
@@ -216,7 +215,7 @@ function Dashboard (props) {
           <div className={classes.app}>
             <Header onDrawerToggle={handleDrawerToggle} />
             <main className={classes.main}>
-              <Content />
+              {content}
             </main>
             <footer className={classes.footer}>
               <Copyright />
@@ -232,4 +231,10 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default connect()(withStyles(styles)(Dashboard))
+function mapStateToProps (state) {
+  return {
+    content: state.content
+  }
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(Dashboard))

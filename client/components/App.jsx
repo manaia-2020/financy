@@ -9,11 +9,9 @@ import { getUser } from '../api/api'
 import { addUserInfo } from '../actions'
 
 import Dashboard from './Dashboard/Dashboard'
-import Transactions from './Transactions'
-import Goals from './Goals'
 import Rewards from './Rewards'
-import Accounts from './Accounts'
 import LandingPage from './LandingPage/LandingPage'
+import { setContent } from '../actions/content.action'
 
 const App = (props) => {
   if (isAuthenticated()) {
@@ -24,7 +22,7 @@ const App = (props) => {
 
   return (
     <>
-      {/* <Route path="/" component={Dashboard} /> */}
+      <Route path="/" render={({ history }) => <Dashboard history={history} /> } />
       <Route exact path="/" component={LandingPage} />
       <Route
         exact path="/login"
@@ -43,20 +41,20 @@ const App = (props) => {
       <Switch>
         <Route
           path="/dashboard"
-          render={({ history }) => <Dashboard history={history} />}
+          render={() => <Redirect to="/dashboard" /> }
         />
         <Route path="/rewards">
           <Rewards />
         </Route>
-        <Route path="/goals">
-          <Goals />
-        </Route>
-        <Route path="/transactions">
-          <Transactions />
-        </Route>
-        <Route path="/accounts">
-          <Accounts />
-        </Route>
+        <Route path="/goals" render={() => {
+          props.dispatch(setContent('goals'))
+        }} />
+        <Route path="/transactions" render={() => {
+          props.dispatch(setContent('transactions'))
+        }} />
+        <Route path="/accounts" render={() => {
+          props.dispatch(setContent('account'))
+        }} />
       </Switch>
     </>
   )

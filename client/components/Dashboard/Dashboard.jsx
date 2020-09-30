@@ -194,7 +194,7 @@ const styles = {
     background: '#eaeff1'
   }
 }
-
+import Accounts from '../Accounts'
 function Dashboard (props) {
   const { classes, history } = props
   const [mobileOpen, setMobileOpen] = React.useState(false)
@@ -216,7 +216,7 @@ function Dashboard (props) {
           <div className={classes.app}>
             <Header onDrawerToggle={handleDrawerToggle} />
             <main className={classes.main}>
-              <Content />
+              <Accounts />
             </main>
             <footer className={classes.footer}>
               <Copyright />

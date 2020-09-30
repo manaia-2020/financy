@@ -24,7 +24,7 @@ const App = (props) => {
 
   return (
     <>
-      {/* <Route path="/" component={Dashboard} /> */}
+      <Route path="/" render={({ history }) => <Dashboard history={history} /> } />
       <Route exact path="/" component={LandingPage} />
       <Route
         exact path="/login"
@@ -43,7 +43,7 @@ const App = (props) => {
       <Switch>
         <Route
           path="/dashboard"
-          render={({ history }) => <Dashboard history={history} />}
+          render={() => <Redirect to="/dashboard" /> }
         />
         <Route path="/rewards">
           <Rewards />

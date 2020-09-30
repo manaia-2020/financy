@@ -42,12 +42,11 @@ const styles = (theme) => ({
     justify: 'center',
     padding: 4,
     borderRadius: 5,
-    boxShadow: '0 -1px 0 #404854 inset',
     transition: 'all ease-in-out .2s',
     '&:hover': {
       filter: 'brightness(.75)',
-      transform: 'scale(1.2)',
-    },
+      transform: 'scale(1.2)'
+    }
   },
   curvyLines: {
     pointerEvents: 'none',
@@ -60,7 +59,7 @@ const styles = (theme) => ({
   }
 })
 
-function Team(props) {
+function Team (props) {
   const { classes } = props
 
   return (
@@ -77,7 +76,7 @@ function Team(props) {
           className={classes.title}
           component="h2"
         >
-          Meet The Team
+          Meet our Team of JNR DEVS
         </Typography>
         <div>
           <Grid container spacing={4}>

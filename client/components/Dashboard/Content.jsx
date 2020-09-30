@@ -54,6 +54,7 @@ const styles = (theme) => ({
 function Content (props) {
   const { type, columns, rows, classes, handleDelete, modal, accounts, handleChange, message } = props
   const [open, setOpen] = React.useState(false)
+  const [filterText, setFilterText] = React.useState('')
 
   const handleOpen = () => {
     setOpen(true)
@@ -62,6 +63,13 @@ function Content (props) {
   const handleClose = () => {
     setOpen(false)
   }
+
+  const filteredItems = rows.filter(
+    item =>
+      item.name.toLocaleLowerCase().includes(filterText)
+  )
+
+  const rowsToDisplay = filterText ? filteredItems : rows
 
   const money = ['balance', 'amount']
   const date = ['goal_date', 'date']
@@ -83,6 +91,8 @@ function Content (props) {
               <TextField
                 fullWidth
                 placeholder="Search by name"
+                onChange={e => setFilterText(e.target.value.toLocaleLowerCase())}
+                value={filterText}
                 InputProps={{
                   disableUnderline: true,
                   className: classes.searchInput
@@ -148,7 +158,7 @@ function Content (props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
+                  {rowsToDisplay.map((row) => (
                     <TableRow key={row.id}>
                       {columns.map((column, index) => index < 1 ? (
                         <TableCell key={column} component="th" scope="row">{row[column]}</TableCell>

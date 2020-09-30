@@ -16,9 +16,8 @@ test('user can add new account in input', async () => {
   render(<Provider store={store}><AddAccount /></Provider>)
   expect.assertions(1)
   postAccount.mockImplementation(() => Promise.resolve(2))
-  const name = screen.getByPlaceholderText('Account Name')
-  const balance = screen.getByPlaceholderText('NZ$0.00')
-
+  const name = screen.getAllByRole('textbox')[0]
+  const balance = screen.getAllByRole('textbox')[0]
   fireEvent.change(name, { target: { value: 'OnlyFans' } })
   fireEvent.change(balance, { target: { value: 10 } })
 

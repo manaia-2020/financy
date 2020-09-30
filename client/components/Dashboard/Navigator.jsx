@@ -86,16 +86,16 @@ const Nav = (props) => {
               <Button className={classes.submit}>Profile</Button>
             </Link>
 
-            <Link to="/goals" style={{ textDecoration: 'none' }}>
-              <Button className={classes.submit}>Goals</Button>
-            </Link>
-
             <Link to="/accounts" style={{ textDecoration: 'none' }}>
               <Button className={classes.submit}>Accounts</Button>
             </Link>
 
             <Link to="/transactions" style={{ textDecoration: 'none' }}>
               <Button className={classes.submit}> Transactions</Button>
+            </Link>
+
+            <Link to="/goals" style={{ textDecoration: 'none' }}>
+              <Button className={classes.submit}>Goals</Button>
             </Link>
 
             <Link to="/rewards" style={{ textDecoration: 'none' }}>
@@ -110,7 +110,7 @@ const Nav = (props) => {
   )
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     userInfo: state.addUserInfo
   }

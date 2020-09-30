@@ -38,7 +38,11 @@ function AddGoal (props) {
       marginTop: theme.spacing(8),
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center'
+      alignItems: 'center',
+      backgroundColor: '#fff',
+      paddingTop: 200,
+      paddingBottom: 200,
+      padding: 100
     },
     avatar: {
       margin: theme.spacing(1),
@@ -81,7 +85,7 @@ function AddGoal (props) {
   const classes = useStyles()
   return (
     <>
-      <Container component="main" maxWidth="xs">
+      <Container component="main">
         <CssBaseline />
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">

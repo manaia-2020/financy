@@ -44,7 +44,7 @@ function ProductHero (props) {
         />
         <Navbar />
         <Typography color="inherit" align="center" variant="h2" marked="center">
-          Budget your way to prosperity
+          Saving made fun
         </Typography>
         <Typography
           color="inherit"
@@ -52,7 +52,8 @@ function ProductHero (props) {
           variant="h5"
           className={classes.h5}
         >
-          A fun and Interactive way to save money and manage your finances
+          Festive season with family? A trip to Tokyo with your friends? Your first home? Or a rainy day? <br />
+          All smart money savers know it is essential to track your spending, so come do it with us at Financy!
         </Typography>
         <Button
           color="secondary"

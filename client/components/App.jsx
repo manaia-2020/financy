@@ -5,16 +5,12 @@ import { connect } from 'react-redux'
 import Login from './Login'
 import Register from './Register'
 
-import Nav from './Nav'
 import { getUser } from '../api/api'
 import { addUserInfo } from '../actions'
 
-import Transactions from './Transactions'
-import Dashboard from './Dashboard'
-import Goals from './Goals'
-import Rewards from './Rewards'
-import Accounts from './Accounts'
+import Dashboard from './Dashboard/Dashboard'
 import LandingPage from './LandingPage/LandingPage'
+import { setContent } from '../actions/content.action'
 
 const App = (props) => {
   if (isAuthenticated()) {
@@ -25,44 +21,42 @@ const App = (props) => {
 
   return (
     <>
-      <Route path="/" component={Nav} />
+      <Route path="/" render={({ history }) => <Dashboard history={history} /> } />
       <Route exact path="/" component={LandingPage} />
       <Route
         exact path="/login"
         render={({ history }) => {
           return isAuthenticated() ? (
-            <Redirect to="/dashboard" />
-          ) : (
-            <Login history={history} />
-          )
+            <Redirect to="/dashboard" />) : (<Login history={history} />)
         }}
       />
       <Route
         exact path="/register"
         render={({ history }) => {
           return isAuthenticated() ? (
-            <Redirect to="/dashboard" />
-          ) : (
-            <Register history={history} />
-          )
+            <Redirect to="/dashboard" />) : (<Register history={history} />)
         }}
       />
       <Switch>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
-        <Route path="/rewards">
-          <Rewards />
-        </Route>
-        <Route path="/goals">
-          <Goals />
-        </Route>
-        <Route path="/transactions">
-          <Transactions />
-        </Route>
-        <Route path="/accounts">
-          <Accounts />
-        </Route>
+        <Route
+          path="/dashboard"
+          render={() => <Redirect to="/dashboard" />}
+        />
+        <Route
+          path="/rewards"
+          render={() => {
+            props.dispatch(setContent('rewards'))
+          }}
+        />
+        <Route path="/goals" render={() => {
+          props.dispatch(setContent('goals'))
+        }} />
+        <Route path="/transactions" render={() => {
+          props.dispatch(setContent('transactions'))
+        }} />
+        <Route path="/accounts" render={() => {
+          props.dispatch(setContent('account'))
+        }} />
       </Switch>
     </>
   )

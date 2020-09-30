@@ -62,6 +62,7 @@ function Content (props) {
   }
 
   const money = ['balance', 'amount']
+  const date = ['goal_date', 'date']
   // function generateRandom (status) {
   //   const rich = ['Oooh she a hoe!', 'Oooh she a rich hoe!', 'Girl I see you. get that 🍆', 'Being a sugar baby is not being a prostitute']
   //   const poor = ['Girl you can do better than this', 'I am very disapointed in you']
@@ -144,7 +145,7 @@ function Content (props) {
                         <TableCell key={column} component="th" scope="row">{row[column]}</TableCell>
                       ) : (
                         <TableCell key={column} align="right">
-                          {column !== 'delete' ? money.includes(column) ? formatAmount(row[column]) : row[column] : (
+                          {column !== 'delete' ? money.includes(column) || date.includes(column) ? money.includes(column) ? formatAmount(row[column]) : new Date(row[column]).toLocaleDateString() : row[column] : (
                             <Button
                               variant="contained"
                               color="secondary"

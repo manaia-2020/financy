@@ -4,7 +4,7 @@ import { getAccountApi, removeAccount } from '../api/api'
 import { getAccounts, deleteAccount } from '../actions/accounts.action'
 import AddAccount from './AddAccount'
 import Content from './Dashboard/Content'
-
+import { setContent } from '../actions/content.action'
 function Accounts (props) {
   const { accounts, userInfo, dispatch } = props
 
@@ -15,6 +15,10 @@ function Accounts (props) {
         .catch((err) => console.log(err.message))
     }
   }, [userInfo])
+
+  useEffect(() => {
+    dispatch(setContent('account'))
+  }, [])
 
   function handleDelete (id) {
     removeAccount(id)

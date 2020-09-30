@@ -14,6 +14,7 @@ import Goals from './Goals'
 import Rewards from './Rewards'
 import Accounts from './Accounts'
 import LandingPage from './LandingPage/LandingPage'
+import { setContent } from '../actions/content.action'
 
 const App = (props) => {
   if (isAuthenticated()) {
@@ -48,15 +49,15 @@ const App = (props) => {
         <Route path="/rewards">
           <Rewards />
         </Route>
-        <Route path="/goals">
-          <Goals />
-        </Route>
+        <Route path="/goals" render={() => {
+          props.dispatch(setContent('goals'))
+        }} />
         <Route path="/transactions">
           <Transactions />
         </Route>
-        <Route path="/accounts">
-          <Accounts />
-        </Route>
+        <Route path="/accounts" render={() => {
+          props.dispatch(setContent('account'))
+        }} />
       </Switch>
     </>
   )

@@ -5,7 +5,6 @@ import { IfAuthenticated } from '../Authenticated'
 import { logOff, isAuthenticated } from 'authenticare/client'
 
 import PropTypes from 'prop-types'
-import clsx from 'clsx'
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
@@ -116,7 +115,7 @@ const Nav = (props) => {
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     userInfo: state.addUserInfo
   }

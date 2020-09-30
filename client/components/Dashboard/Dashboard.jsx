@@ -15,7 +15,7 @@ import Header from './Header'
 import { IfAuthenticated } from '../Authenticated'
 import { connect } from 'react-redux'
 
-function Copyright() {
+function Copyright () {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}

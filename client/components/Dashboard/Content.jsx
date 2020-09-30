@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
@@ -78,17 +78,15 @@ function Content (props) {
     setOpen(false)
   }
 
-  function generateRandom(status) {
+  function generateRandom (status) {
     const rich = ['Oooh she a hoe!', 'Oooh she a rich hoe!', 'Girl I see you. get that 🍆', 'Being a sugar baby is not being a prostitute']
     const poor = ['Girl you can do better than this', 'I am very disapointed in you']
-    
+
     switch (status) {
       case 'rich':
-        const richIndex = Math.floor(Math.random() * rich.length)
-        return rich[richIndex]
+        return rich[Math.floor(Math.random() * rich.length)]
       case 'poor':
-        const poorIndex = Math.floor(Math.random() * poor.length)
-        return poor[poorIndex]
+        return poor[Math.floor(Math.random() * poor.length)]
     }
   }
 
@@ -182,7 +180,7 @@ function Content (props) {
           </>
         ) : (
           <Typography color="textSecondary" align="center">
-            Girl you don't got any money, is everything alright? You need some money?
+            Girl you dont got any money, is everything alright? You need some money?
           </Typography>
         )}
       </div>

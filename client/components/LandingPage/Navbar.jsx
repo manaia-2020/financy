@@ -133,9 +133,6 @@ function Navbar (props) {
 }
 
 Navbar.propTypes = {
-  /**
-   * Override or extend the styles applied to the component.
-   */
   classes: PropTypes.object.isRequired
 }
 

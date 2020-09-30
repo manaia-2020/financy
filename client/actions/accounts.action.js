@@ -2,11 +2,10 @@ export const ADD_ACCOUNT = 'ADD_ACCOUNT'
 export const GET_ACCOUNTS = 'GET_ACCOUNTS'
 export const DELETE_ACCOUNT = 'DELETE_ACCOUNT'
 
-export const addAccount = (account, id) => {
+export const addAccount = (account) => {
   return {
     type: ADD_ACCOUNT,
-    account,
-    id
+    account
   }
 }
 

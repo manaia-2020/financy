@@ -43,9 +43,12 @@ const App = (props) => {
           path="/dashboard"
           render={() => <Redirect to="/dashboard" />}
         />
-        <Route path="/rewards">
-          <Rewards />
-        </Route>
+        <Route
+          path="/rewards"
+          render={() => {
+            props.dispatch(setContent('rewards'))
+          }}
+        />
         <Route path="/goals" render={() => {
           props.dispatch(setContent('goals'))
         }} />

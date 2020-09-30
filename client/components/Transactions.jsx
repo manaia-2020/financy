@@ -31,7 +31,8 @@ const Transactions = (props) => {
   }
 
   const columns = ['name', 'amount', 'date']
-  return <Content type="transaction" columns={columns} rows={transactions} handleChange={handleChange} modal={<AddTransaction />} />
+  const message = 'That money coming out better be for investments girl'
+  return <Content type="transaction" columns={columns} rows={transactions} handleChange={handleChange} modal={<AddTransaction />} message={message}/>
 }
 
 function mapStatetoProps (state) {

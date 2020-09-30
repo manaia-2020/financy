@@ -25,7 +25,8 @@ function Goals (props) {
   }
 
   const columns = ['name', 'goal_date', 'amount', 'delete']
-  return <Content type="goal" columns={columns} rows={goals} handleDelete={handleDelete} modal={<AddGoal />} />
+  const message = 'Girl if you wan\'t that money, you better set some goals!'
+  return <Content type="goal" columns={columns} rows={goals} handleDelete={handleDelete} modal={<AddGoal />} message={message} />
 }
 
 const mapStateToProps = (state) => ({

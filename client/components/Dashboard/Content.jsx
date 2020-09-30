@@ -52,7 +52,7 @@ const styles = (theme) => ({
 })
 
 function Content (props) {
-  const { type, columns, rows, classes, handleDelete, modal, accounts, handleChange } = props
+  const { type, columns, rows, classes, handleDelete, modal, accounts, handleChange, message } = props
   const [open, setOpen] = React.useState(false)
 
   const handleOpen = () => {
@@ -172,9 +172,7 @@ function Content (props) {
             </TableContainer>
           </>
         ) : (
-          <Typography color="textSecondary" align="center">
-      Girl you dont got any money, is everything alright? You need some money?
-          </Typography>
+          <Typography color="textSecondary" align="center">{message}</Typography>
         )}
       </div>
     </Paper>

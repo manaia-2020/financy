@@ -27,7 +27,8 @@ function Accounts (props) {
   }
 
   const columns = ['name', 'balance', 'delete']
-  return <Content type="account" columns={columns} rows={accounts} handleDelete={handleDelete} modal={<AddAccount />} />
+  const message = 'Girl you dont got any money, you better go get that bread'
+  return <Content type="account" columns={columns} rows={accounts} handleDelete={handleDelete} modal={<AddAccount />} message={message} />
 }
 
 function mapStateToProps (state) {

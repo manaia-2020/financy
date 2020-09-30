@@ -12,12 +12,12 @@ import {
 describe('account reducer tests', () => {
   test(ADD_ACCOUNT, () => {
     expect.assertions(1)
-    const account = { name: 'Jesus', balance: '🍷' }
+    const account = { name: 'Jesus', balance: '🍷', user_id: 2 }
 
     const initialState = [{ name: 'Mary', balance: '🐑', user_id: 1 }]
 
-    const expectedState = [...initialState, { ...account, user_id: 2 }]
-    const action = addAccount(account, 2)
+    const expectedState = [...initialState, { ...account }]
+    const action = addAccount(account)
     const actualState = accountsReducer(initialState, action)
     expect(actualState).toEqual(expectedState)
   })

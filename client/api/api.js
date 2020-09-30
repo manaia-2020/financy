@@ -14,17 +14,20 @@ export function getAccountApi (id) {
     .then(response => response.body)
 }
 
-export function postAccount (id, account) {
-  return request
+export async function postAccount (id, account) {
+  const res = await request
     .post(`/api/v1/accounts/${id}`)
     .send(account)
-    .then(response => response.body)
+  if (res.status === 201) return res.body
+  throw new Error('DATABASE ERROR')
 }
 
-export function removeAccount (id) {
-  return request
+export async function removeAccount (id) {
+  const res = await request
     .del(`/api/v1/accounts/${id}`)
-    .then(response => response)
+
+  if (res.status === 200) return res.body
+  throw new Error('DATABASE ERROR')
 }
 
 export function getUserInfo (email) {

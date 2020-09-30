@@ -59,21 +59,22 @@ function userAccountsMaxBalances (id, db = connection) {
     })
 }
 
-function addAccountDetails (data, db = connection) {
-  return db('accounts')
+async function addAccountDetails (data, db = connection) {
+  const accountId = await db('accounts')
     .insert({
       name: data.name,
       balance: data.balance,
       user_id: data.id
     })
-    .then((accountId) => {
-      return db('balance_history')
-        .insert({
-          balance: data.balance,
-          balance_updated_at: Date.now(),
-          account_id: accountId[0]
-        })
+
+  await db('balance_history')
+    .insert({
+      balance: data.balance,
+      balance_updated_at: Date.now(),
+      account_id: accountId[0]
     })
+
+  return accountId
 }
 
 module.exports = {

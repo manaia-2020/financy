@@ -21,7 +21,9 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Modal from '@material-ui/core/Modal'
+import Select from '@material-ui/core/Select'
 import { formatAmount } from '../../utils/currency'
+import { MenuItem } from '@material-ui/core'
 
 const styles = (theme) => ({
   paper: {
@@ -50,7 +52,7 @@ const styles = (theme) => ({
 })
 
 function Content (props) {
-  const { type, columns, rows, classes, handleDelete, modal } = props
+  const { type, columns, rows, classes, handleDelete, modal, accounts, handleChange } = props
   const [open, setOpen] = React.useState(false)
 
   const handleOpen = () => {
@@ -63,17 +65,6 @@ function Content (props) {
 
   const money = ['balance', 'amount']
   const date = ['goal_date', 'date']
-  // function generateRandom (status) {
-  //   const rich = ['Oooh she a hoe!', 'Oooh she a rich hoe!', 'Girl I see you. get that 🍆', 'Being a sugar baby is not being a prostitute']
-  //   const poor = ['Girl you can do better than this', 'I am very disapointed in you']
-
-  //   switch (status) {
-  //     case 'rich':
-  //       return rich[Math.floor(Math.random() * rich.length)]
-  //     case 'poor':
-  //       return poor[Math.floor(Math.random() * poor.length)]
-  //   }
-  // }
 
   return (
     <Paper className={classes.paper}>
@@ -99,6 +90,24 @@ function Content (props) {
               />
             </Grid>
             <Grid item>
+              {type === 'transaction' && (
+                <Select
+                  labelId="accountSelect"
+                  id="accountSelect"
+                  onChange={handleChange}
+                  name="12"
+                  style={{ marginRight: 25 }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {accounts.map((account) => (
+                    <MenuItem key={account.id} value={account.id}>
+                      {account.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              )}
               <Button variant="contained" onClick={handleOpen} className={classes.add}>add {type}</Button>
               <Modal
                 open={open}

@@ -9,7 +9,6 @@ import { getUser } from '../api/api'
 import { addUserInfo } from '../actions'
 
 import Dashboard from './Dashboard/Dashboard'
-import Rewards from './Rewards'
 import LandingPage from './LandingPage/LandingPage'
 import { setContent } from '../actions/content.action'
 

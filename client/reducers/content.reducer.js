@@ -19,6 +19,7 @@ export default function contentReducer (state = initialState, action) {
         case 'transactions':
           return <Transactions />
       }
+      break
 
     default:
       return state

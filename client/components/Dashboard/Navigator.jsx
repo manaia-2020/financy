@@ -53,6 +53,12 @@ const styles = (theme) => ({
   },
   divider: {
     marginTop: theme.spacing(2)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#17E9E0',
+    textDecoration: 'none',
+    width: 150,
   }
 })
 
@@ -61,6 +67,7 @@ const Nav = (props) => {
   const handleClick = () => {
     logOff()
     if (!isAuthenticated()) {
+      console.log(props)
       history.push('/')
     }
   }
@@ -70,59 +77,37 @@ const Nav = (props) => {
         <Header />
         <Drawer variant="permanent" {...other}>
           <List disablePadding>
-            <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
-              Financy
-            </ListItem>
-            <ListItem className={clsx(classes.item, classes.itemCategory)}>
-              <ListItemText classes={{ primary: classes.itemPrimary }}>
+
+            <ListItem >Financy</ListItem>
+
+            <ListItem>
+              <ListItemText>
                 Profile Overview <br />
                 User Id: {userInfo.id} <br />
                 Email: {userInfo.email}<br />
               </ListItemText>
             </ListItem>
 
-            <ListItem className={classes.categoryHeader}>
-              <Link to="/dashboard">Profile</Link>
-            </ListItem>
+            <Link to="/dashboard">
+              <Button className={classes.submit}>Profile</Button>
+            </Link>
 
-            <ListItem className={classes.categoryHeader}>
-              <Link to="/">
-                <ListItemText
-                  classes={{
-                    primary: classes.categoryHeaderPrimary
-                  }} >Rewards
-                </ListItemText>
-              </Link>
-            </ListItem>
+            <Link to="/">
+              <Button className={classes.submit}>Rewards</Button>
+            </Link>
 
-            <ListItem className={classes.categoryHeader}>
-              <Link to="/goals">
-                <ListItemText
-                  classes={{
-                    primary: classes.categoryHeaderPrimary
-                  }} >Goals
-                </ListItemText>
-              </Link>
-            </ListItem>
+            <Link to="/goals">
+              <Button className={classes.submit}>Goals</Button>
+            </Link>
 
-            <ListItem className={classes.categoryHeader}>
-              <Link to="/transactions">
-                <ListItemText
-                  classes={{
-                    primary: classes.categoryHeaderPrimary
-                  }} >Transactions
-                </ListItemText>
-              </Link>
-            </ListItem>
-            <ListItem className={classes.categoryHeader}>
-              <Link to="/accounts">
-                <ListItemText
-                  classes={{
-                    primary: classes.categoryHeaderPrimary
-                  }} >Accounts
-                </ListItemText>
-              </Link>
-            </ListItem>
+            <Link to="/transactions">
+              <Button className={classes.submit}> Transactions</Button>
+            </Link>
+
+            <Link to="/accounts">
+              <Button className={classes.submit}>Accounts</Button>
+            </Link>
+
           </List>
           <Button onClick={handleClick}>Log off</Button>
         </Drawer>
@@ -131,7 +116,7 @@ const Nav = (props) => {
   )
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     userInfo: state.addUserInfo
   }

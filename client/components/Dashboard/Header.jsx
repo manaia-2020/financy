@@ -36,7 +36,7 @@ const styles = (theme) => ({
   }
 })
 
-function Header (props) {
+function Header(props) {
   const { classes, onDrawerToggle } = props
 
   return (
@@ -44,18 +44,16 @@ function Header (props) {
       <AppBar color="primary" position="sticky" elevation={0}>
         <Toolbar>
           <Grid container spacing={1} alignItems="center">
-            <Hidden smUp>
-              <Grid item>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  onClick={onDrawerToggle}
-                  edge="start"
-                >
-                  <MenuIcon />
-                </IconButton>
-              </Grid>
-            </Hidden>
+            <Grid item>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={onDrawerToggle}
+                edge="start"
+              >
+                <MenuIcon />
+              </IconButton>
+            </Grid>
             <Grid item xs />
             <Grid item>
               <Tooltip title="Alerts • No alerts">
@@ -66,7 +64,7 @@ function Header (props) {
             </Grid>
             <Grid item>
               <IconButton color="inherit" className={classes.iconButtonAvatar}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
+                <Avatar alt="My Avatar" />
               </IconButton>
             </Grid>
           </Grid>
@@ -105,8 +103,7 @@ function Header (props) {
 }
 
 Header.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onDrawerToggle: PropTypes.func.isRequired
+  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(Header)

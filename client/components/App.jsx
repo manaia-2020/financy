@@ -14,6 +14,7 @@ import Goals from './Goals'
 import Rewards from './Rewards'
 import Accounts from './Accounts'
 import LandingPage from './LandingPage/LandingPage'
+import Navigator from './Dashboard/Navigator'
 
 const App = (props) => {
   if (isAuthenticated()) {

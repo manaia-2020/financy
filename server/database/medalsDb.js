@@ -40,8 +40,8 @@ async function awardMedal (userId, accountId, db = database) {
 
 function decideMedal (delta) {
   return delta < 10 ? 3
-    : delta >= 100 ? 2
-      : delta >= 50 ? 1 : 'No medal for you'
+    : delta >= 500 ? 2
+      : delta >= 100 ? 1 : 'No medal for you'
 }
 
 function insertUsersMedals (userId, medalId, db = database) {

@@ -5,14 +5,18 @@ import { getRewardsApi } from '../api/rewards.api'
 import { setRewards } from '../actions'
 
 const Rewards = ({ dispatch, userInfo, medals }) => {
+  const { id } = userInfo
   useEffect(() => {
-    getRewardsApi(userInfo.id)
-      .then(rewards => {
-        dispatch(setRewards(rewards.medals))
-        return null
-      })
-      .catch(err => console.log(err))
-  }, [])
+    if(id){
+      getRewardsApi(userInfo.id)
+        .then(rewards => {
+          console.log(rewards)
+          dispatch(setRewards(rewards.medals))
+          return null
+        })
+        .catch(err => console.log(err))
+    }
+  }, [userInfo])
 
   const noMedals = medals.length === 0
   return (
@@ -25,7 +29,7 @@ const Rewards = ({ dispatch, userInfo, medals }) => {
 
 const mapStateToProps = (state) => ({
   userInfo: state.addUserInfo,
-  medals: state.setRewards
+  medals: state.rewards
 })
 
 export default connect(mapStateToProps)(Rewards)

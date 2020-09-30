@@ -61,10 +61,10 @@ const AddTransaction = (props) => {
     setNewTrans({ ...newTrans, [name]: value })
   }
 
-  // const checkFloat = () => {
-  //   const float = /^[-+]?[0-9]+\.[0-9]+$/
-  //   return Number(newTrans.amount) !== 0 ? newTrans.amount.match(float) : false
-  // }
+  const checkFloat = () => {
+    const float = /^[-+]?[0-9]+\.[0-9]+$/
+    return Number(newTrans.amount) !== 0 ? newTrans.amount.match(float) : false
+  }
 
   // const toggleRecurring = () => {
   //   return !showRecurring ? setShowRecurring(true) : setShowRecurring(false)

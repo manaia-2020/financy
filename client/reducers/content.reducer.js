@@ -9,14 +9,14 @@ const initialState = <h1>Hello</h1>
 export default function contentReducer (state = initialState, action) {
   switch (action.type) {
     case SET_MAIN_CONTENT:
-      switch(action.payload.type) {
+      switch (action.payload.type) {
         case 'account':
           return <Accounts />
 
         case 'goals':
           return <Goals />
 
-        case 'transaction':
+        case 'transactions':
           return <Transactions />
       }
 

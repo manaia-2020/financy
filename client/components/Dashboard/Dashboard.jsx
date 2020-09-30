@@ -231,7 +231,7 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     content: state.content
   }

@@ -13,6 +13,7 @@ import Navigator from './Navigator'
 import Content from './Content'
 import Header from './Header'
 import { IfAuthenticated } from '../Authenticated'
+import { connect } from 'react-redux'
 
 function Copyright() {
   return (
@@ -194,8 +195,8 @@ const styles = {
   }
 }
 
-function Dashboard(props) {
-  const { classes } = props
+function Dashboard (props) {
+  const { classes, history } = props
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
@@ -209,7 +210,7 @@ function Dashboard(props) {
           <CssBaseline />
           <nav className={classes.drawer}>
             <Hidden smDown implementation="css">
-              <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+              <Navigator history={history} PaperProps={{ style: { width: drawerWidth } }} />
             </Hidden>
           </nav>
           <div className={classes.app}>
@@ -231,4 +232,4 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Dashboard)
+export default connect()(withStyles(styles)(Dashboard))

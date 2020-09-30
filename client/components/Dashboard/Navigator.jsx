@@ -58,7 +58,7 @@ const styles = (theme) => ({
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#17E9E0',
     textDecoration: 'none',
-    width: 150,
+    width: 150
   }
 })
 

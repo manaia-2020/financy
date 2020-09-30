@@ -25,7 +25,7 @@ const App = (props) => {
 
   return (
     <>
-      <Route path="/" component={Dashboard} />
+      {/* <Route path="/" component={Dashboard} /> */}
       <Route exact path="/" component={LandingPage} />
       <Route
         exact path="/login"
@@ -42,9 +42,10 @@ const App = (props) => {
         }}
       />
       <Switch>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
+        <Route
+          path="/dashboard"
+          render={({ history }) => <Dashboard history={history} />}
+        />
         <Route path="/rewards">
           <Rewards />
         </Route>

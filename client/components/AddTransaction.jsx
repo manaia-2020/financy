@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addNewTransaction } from '../api/api'
 
@@ -13,20 +13,15 @@ import Container from '@material-ui/core/Container'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
+import clsx from 'clsx'
 
 const AddTransaction = (props) => {
-  useEffect(() => {}, [])
-
   const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center'
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: '#17E9E0'
     },
     form: {
       width: '100%', // Fix IE 11 issue.
@@ -67,30 +62,6 @@ const AddTransaction = (props) => {
     setNewTrans({ ...newTrans, [name]: value })
   }
 
-  // const checkFloat = () => {
-  //   const float = /^[-+]?[0-9]+\.[0-9]+$/
-  //   return Number(newTrans.amount) !== 0 ? newTrans.amount.match(float) : false
-  // }
-
-  // const toggleRecurring = () => {
-  //   return !showRecurring ? setShowRecurring(true) : setShowRecurring(false)
-  // }
-
-  // const viewRecurringForm = () => {
-  //   return (
-  //     <>
-  //       <label htmlFor="frequency">How Often</label>
-  //       <select onChange={handleChange} name="frequency" id="frequency">
-  //         <option value="7">Weekly</option>
-  //         <option value="14">Fortnightly</option>
-  //         <option value="28">Monthly</option>
-  //         <option value="91">Quarterly</option>
-  //         <option value="365">Annually</option>
-  //       </select>
-  //     </>
-  //   )
-  // }
-
   const classes = useStyles()
   return (
     <>
@@ -128,6 +99,7 @@ const AddTransaction = (props) => {
               autoFocus
               onChange={handleChange}
             ></TextField>
+            <InputLabel>Enter negative amount for outgoings</InputLabel>
             <TextField
               variant="outlined"
               margin="normal"
@@ -151,7 +123,7 @@ const AddTransaction = (props) => {
                 shrink: true
               }}
             />
-            <Button type="submit" variant="contained" color="primary" className={classes.buttonMargin}>
+            <Button type="submit" variant="contained" color="primary" className={clsx(classes.buttonMargin, classes.submit)}>
               Add Transaction
             </Button>
             <Grid container ></Grid>

@@ -1,6 +1,6 @@
 const knex = require('knex')
 const config = require('../../knexfile').test
-const { getPreviousBalance, calcBalanceDelta, getMedal, awardMedal, decideMedal, insertUsersMedals, getUsersMedals } = require('./medalsDb')
+const { getPreviousBalance, calcBalanceDelta, getMedal, decideMedal, insertUsersMedals, getUsersMedals } = require('./medalsDb')
 
 const testDb = knex(config)
 
@@ -44,13 +44,13 @@ describe('decideMedal', () => {
   test('returns the correct medal for delta 50', () => {
     const delta = 50
     const medalId = decideMedal(delta)
-    expect(medalId).toBe(1)
+    expect(medalId).toBe('No medal for you')
   })
 
   test('returns the correct medal for delta 150', () => {
     const delta = 150
     const medalId = decideMedal(delta)
-    expect(medalId).toBe(2)
+    expect(medalId).toBe(1)
   })
 
   test('returns the correct medal for delta -10', () => {
@@ -63,15 +63,6 @@ describe('decideMedal', () => {
     const delta = 20
     const medalId = decideMedal(delta)
     expect(medalId).toMatch(/No medal for you/)
-  })
-})
-
-describe('awardMedal', () => {
-  test('Returns the correct medal', async () => {
-    const userId = 3
-    const accountId = 7
-    const medal = await awardMedal(userId, accountId, testDb)
-    expect(medal).toHaveLength(1)
   })
 })
 

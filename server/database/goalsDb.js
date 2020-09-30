@@ -16,7 +16,17 @@ function getAllGoalsByUserId (id, db = connection) {
   return db('goals').where('goals.user_id', id)
 }
 
+function deleteGoalById (id, db = connection) {
+  return db('goals').where('id', id).del()
+}
+
+function getGoalById (id, db = connection) {
+  return db('goals').where('id', id).first()
+}
+
 module.exports = {
   saveNewGoal,
-  getAllGoalsByUserId
+  getAllGoalsByUserId,
+  deleteGoalById,
+  getGoalById
 }

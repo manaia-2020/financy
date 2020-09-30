@@ -23,6 +23,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Box from '@material-ui/core/Box'
+import clsx from 'clsx'
 
 const Transactions = (props) => {
   const [transactions, setTransactions] = useState([])
@@ -31,23 +32,23 @@ const Transactions = (props) => {
 
   const { id } = props.userInfo
   useEffect(() => {
-    getAccountApi(id)
-      .then((results) => {
-        props.dispatch(getAccounts(results))
-        return null
-      })
-      .catch((err) => {
-        if (err) console.log(err)
-      })
-  }, [])
+    if (id) {
+      getAccountApi(id)
+        .then((results) => {
+          props.dispatch(getAccounts(results))
+          return null
+        })
+        .catch((err) => {
+          if (err) console.log(err)
+        })
+    }
+  }, [props.userInfo])
 
   const handleChange = (event) => {
-    console.log(event.target.value)
     setAccountId(event.target.value)
   }
 
   const requestTransactions = (event) => {
-    console.log(id)
     event.preventDefault()
     return getUserAccountTransactions(id, accountId)
       .then((items) => {
@@ -64,13 +65,30 @@ const Transactions = (props) => {
       margin: theme.spacing(1),
       minWidth: 120
     },
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+      backgroundColor: '#17E9E0'
+    },
     selectEmpty: {
       marginTop: theme.spacing(2)
+    },
+    boxMargin: {
+      margin: '15px'
+    },
+    boldHeading: {
+      fontWeight: 'bold'
+    },
+    containerMargin: {
+      marginBottom: '50px'
     }
   }))
   const classes = useStyles()
-  console.log(transactions)
-  console.log(balances)
 
   const latestBalance = balances.balance
 
@@ -79,38 +97,41 @@ const Transactions = (props) => {
       <div>
         <AddTransaction />
       </div>
-      <Container component="main" maxWidth="xs">
+      <hr />
+      <Container className={classes.containerMargin} component="main" maxWidth="xs">
         <CssBaseline />
         <form className={classes.formControl} onSubmit={requestTransactions}>
-          <Typography component="h1" variant="h5">
+          <div className={classes.paper}>
+            <Typography component="h1" variant="h5">
             View Transactions
-          </Typography>
-          <FormControl>
-            <InputLabel>Account</InputLabel>
-            <Select
-              labelId="accountSelect"
-              id="accountSelect"
-              onChange={handleChange}
-              name="accountSelect"
-              defaultValue=""
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {props.accounts.map((account) => (
-                <MenuItem key={account.id} value={account.id}>
-                  {account.name}
+            </Typography>
+            <Box className={classes.boxMargin} component="div" display="inline">
+            Current Balance: ${latestBalance}
+            </Box>
+            <FormControl className={classes.formControl}>
+              <InputLabel>Account</InputLabel>
+              <Select
+                labelId="accountSelect"
+                id="accountSelect"
+                onChange={handleChange}
+                name="accountSelect"
+                defaultValue=""
+              >
+                <MenuItem value="">
+                  <em>None</em>
                 </MenuItem>
-              ))}
-            </Select>
-            <FormHelperText>Please Select An Account</FormHelperText>
-            <Button type="submit" variant="contained" color="primary">
+                {props.accounts.map((account) => (
+                  <MenuItem key={account.id} value={account.id}>
+                    {account.name}
+                  </MenuItem>
+                ))}
+              </Select>
+              <FormHelperText>Please Select An Account</FormHelperText>
+              <Button className={clsx(classes.boxMargin, classes.submit)} type="submit" variant="contained" color="primary">
               Get
-            </Button>
-          </FormControl>
-          <Box component="div" display="inline">
-            Current Balance: {latestBalance}
-          </Box>
+              </Button>
+            </FormControl>
+          </div>
         </form>
         {transactions.length === 0
           ? null
@@ -122,8 +143,8 @@ const Transactions = (props) => {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography className={classes.heading}>
-                      Name: {item.name}
+                  <Typography className={clsx(classes.heading, classes.boldHeading)}>
+                      Transaction: {item.name}
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -141,6 +162,7 @@ const Transactions = (props) => {
           ))}
       </Container>
     </div>
+
   )
 }
 

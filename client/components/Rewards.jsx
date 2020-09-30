@@ -8,7 +8,7 @@ const Rewards = ({ dispatch, userInfo, medals }) => {
   const { id } = userInfo
   useEffect(() => {
     if(id){
-      getRewardsApi(userInfo.id)
+      getRewardsApi(userInfo.id, accountIds)
         .then(rewards => {
           console.log(rewards)
           dispatch(setRewards(rewards.medals))
@@ -29,7 +29,7 @@ const Rewards = ({ dispatch, userInfo, medals }) => {
 
 const mapStateToProps = (state) => ({
   userInfo: state.addUserInfo,
-  medals: state.rewards
+  medals: state.rewards,
 })
 
 export default connect(mapStateToProps)(Rewards)

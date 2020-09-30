@@ -44,13 +44,13 @@ describe('decideMedal', () => {
   test('returns the correct medal for delta 50', () => {
     const delta = 50
     const medalId = decideMedal(delta)
-    expect(medalId).toBe(1)
+    expect(medalId).toBe("No medal for you")
   })
 
   test('returns the correct medal for delta 150', () => {
     const delta = 150
     const medalId = decideMedal(delta)
-    expect(medalId).toBe(2)
+    expect(medalId).toBe(1)
   })
 
   test('returns the correct medal for delta -10', () => {
@@ -66,14 +66,6 @@ describe('decideMedal', () => {
   })
 })
 
-describe('awardMedal', () => {
-  test('Returns the correct medal', async () => {
-    const userId = 3
-    const accountId = 7
-    const medal = await awardMedal(userId, accountId, testDb)
-    expect(medal).toHaveLength(1)
-  })
-})
 
 describe('insertUsersMedals', () => {
   const userId = 2

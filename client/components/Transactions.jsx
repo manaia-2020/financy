@@ -81,10 +81,13 @@ const Transactions = (props) => {
       marginTop: theme.spacing(2)
     },
     boxMargin: {
-      marginTop: '15px'
+      margin: '15px'
     },
     boldHeading: {
       fontWeight: 'bold'
+    },
+    containerMargin:{
+      marginBottom:'50px'
     }
   }))
   const classes = useStyles()
@@ -99,13 +102,16 @@ const Transactions = (props) => {
         <AddTransaction />
       </div>
       <hr />
-      <Container component="main" maxWidth="xs">
+      <Container className={classes.containerMargin} component="main" maxWidth="xs">
         <CssBaseline />
         <form className={classes.formControl} onSubmit={requestTransactions}>
           <div className={classes.paper}>
             <Typography component="h1" variant="h5">
             View Transactions
             </Typography>
+            <Box className={classes.boxMargin} component="div" display="inline">
+            Current Balance: ${latestBalance}
+            </Box>
             <FormControl className={classes.formControl}>
               <InputLabel>Account</InputLabel>
               <Select
@@ -129,9 +135,6 @@ const Transactions = (props) => {
               Get
               </Button>
             </FormControl>
-            <Box className={classes.boxMargin} component="div" display="inline">
-            Current Balance: ${latestBalance}
-            </Box>
           </div>
         </form>
         {transactions.length === 0

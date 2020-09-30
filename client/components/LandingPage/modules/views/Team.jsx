@@ -83,7 +83,7 @@ function Team (props) {
             <Grid item xs={6} md={3}>
               <div className={classes.item}>
                 <img
-                  src=""
+                  src="images/tia.jpg"
                   alt="Tia"
                   className={classes.image}
                 />

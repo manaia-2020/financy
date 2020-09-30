@@ -45,12 +45,10 @@ const Transactions = (props) => {
   }, [props.userInfo])
 
   const handleChange = (event) => {
-    console.log(event.target.value)
     setAccountId(event.target.value)
   }
 
   const requestTransactions = (event) => {
-    console.log(id)
     event.preventDefault()
     return getUserAccountTransactions(id, accountId)
       .then((items) => {
@@ -73,30 +71,33 @@ const Transactions = (props) => {
       flexDirection: 'column',
       alignItems: 'center'
     },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+      backgroundColor: '#17E9E0'
+    },
     selectEmpty: {
       marginTop: theme.spacing(2)
     },
     boxMargin: {
-      marginTop: '15px'
-    },
-    buttonMargin: {
-      marginTop: '15px'
+      margin: '15px'
     },
     boldHeading: {
       fontWeight: 'bold'
+    },
+    containerMargin: {
+      marginBottom: '50px'
     }
   }))
   const classes = useStyles()
-  console.log(transactions)
-  console.log(balances)
 
   const latestBalance = balances.balance
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', width: '800px', margin: 'auto' }}>
+    <div>
       <div>
         <AddTransaction />
       </div>
+      <hr />
       <Container className={classes.containerMargin} component="main" maxWidth="xs">
         <CssBaseline />
         <form className={classes.formControl} onSubmit={requestTransactions}>
@@ -104,7 +105,10 @@ const Transactions = (props) => {
             <Typography component="h1" variant="h5">
             View Transactions
             </Typography>
-            <FormControl>
+            <Box className={classes.boxMargin} component="div" display="inline">
+            Current Balance: ${latestBalance}
+            </Box>
+            <FormControl className={classes.formControl}>
               <InputLabel>Account</InputLabel>
               <Select
                 labelId="accountSelect"
@@ -123,13 +127,10 @@ const Transactions = (props) => {
                 ))}
               </Select>
               <FormHelperText>Please Select An Account</FormHelperText>
-              <Button className={classes.buttonMargin} type="submit" variant="contained" color="primary">
+              <Button className={clsx(classes.boxMargin, classes.submit)} type="submit" variant="contained" color="primary">
               Get
               </Button>
             </FormControl>
-            <Box className={classes.boxMargin} component="div" display="inline">
-            Current Balance: ${latestBalance}
-            </Box>
           </div>
         </form>
         {transactions.length === 0
@@ -161,6 +162,7 @@ const Transactions = (props) => {
           ))}
       </Container>
     </div>
+
   )
 }
 

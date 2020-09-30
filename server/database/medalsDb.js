@@ -3,6 +3,7 @@ const environment = process.env.NODE_ENV || 'development'
 const config = require('../../knexfile')[environment]
 
 const { getCurrentBalance } = require('./bankDb')
+const { getAccountDetails } = require('./db')
 const database = knex(config)
 
 const oneWeekInSecs = 1000 * 60 * 60 * 24 * 7
@@ -31,17 +32,20 @@ function getMedal (medalId, db = database) {
     .first()
 }
 
-async function awardMedal (userId, accountId, db = database) {
-  const delta = await calcBalanceDelta(userId, accountId, db)
-  const medalId = decideMedal(delta)
-  const newMedal = await getMedal(medalId, db)
-  return insertUsersMedals(userId, newMedal.id, db)
+async function awardMedal (userId, db = database) {
+  const accountIds = await getAccountDetails(userId, db)
+  accountIds.map(async (account) => {
+    const delta = await calcBalanceDelta(userId, account.id, db)
+    const medalId = decideMedal(delta)
+    const newMedal = await getMedal(medalId, db)
+    return insertUsersMedals(userId, newMedal.id, db)
+  })
 }
 
 function decideMedal (delta) {
   return delta < 10 ? 3
-    : delta >= 100 ? 2
-      : delta >= 50 ? 1 : 'No medal for you'
+    : delta >= 500 ? 2
+      : delta >= 100 ? 1 : 'No medal for you'
 }
 
 function insertUsersMedals (userId, medalId, db = database) {

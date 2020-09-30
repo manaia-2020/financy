@@ -113,6 +113,7 @@ function AddGoal (props) {
               />
             </FormControl>
             <TextField
+              margin="normal"
               id="goalDate"
               label="Goal Date"
               type="date"

@@ -41,7 +41,7 @@ const App = (props) => {
       <Switch>
         <Route
           path="/dashboard"
-          render={() => <Redirect to="/dashboard" /> }
+          render={() => <Redirect to="/dashboard" />}
         />
         <Route path="/rewards">
           <Rewards />

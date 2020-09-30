@@ -36,11 +36,18 @@ const styles = (theme) => ({
   },
   image: {
     height: 250,
+    width: 175,
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(4),
     justify: 'center',
     padding: 4,
-    borderRadius: 5
+    borderRadius: 5,
+    boxShadow: '0 -1px 0 #404854 inset',
+    transition: 'all ease-in-out .2s',
+    '&:hover': {
+      filter: 'brightness(.75)',
+      transform: 'scale(1.2)',
+    },
   },
   curvyLines: {
     pointerEvents: 'none',

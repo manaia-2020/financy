@@ -18,7 +18,8 @@ const lightColor = 'rgba(255, 255, 255, 0.7)'
 
 const styles = (theme) => ({
   secondaryBar: {
-    zIndex: 0
+    zIndex: 0,
+    backgroundColor: '#eaeff1'
   },
   iconButtonAvatar: {
     padding: 4
@@ -32,15 +33,18 @@ const styles = (theme) => ({
   },
   button: {
     borderColor: lightColor
+  },
+  header: {
+    color: '#b76ed3'
   }
 })
 
-function Header (props) {
+function Header(props) {
   const { classes, onDrawerToggle } = props
 
   return (
     <IfAuthenticated>
-      <AppBar color="primary" position="sticky" elevation={0}>
+      <AppBar className={classes.secondaryBar} position="sticky" elevation={0}>
         <Toolbar>
           <Grid container spacing={1} alignItems="center">
             <Grid item>
@@ -79,8 +83,8 @@ function Header (props) {
         <Toolbar>
           <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
-              <Typography color="inherit" variant="h5" component="h1">
-                Profile Overview
+              <Typography className={classes.header} variant="h5" component="h1">
+                Dashboard
               </Typography>
             </Grid>
           </Grid>

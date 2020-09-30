@@ -9,7 +9,6 @@ import { getUser } from '../api/api'
 import { addUserInfo } from '../actions'
 
 import Dashboard from './Dashboard/Dashboard'
-import Rewards from './Rewards'
 import LandingPage from './LandingPage/LandingPage'
 import { setContent } from '../actions/content.action'
 
@@ -43,9 +42,12 @@ const App = (props) => {
           path="/dashboard"
           render={() => <Redirect to="/dashboard" />}
         />
-        <Route path="/rewards">
-          <Rewards />
-        </Route>
+        <Route
+          path="/rewards"
+          render={() => {
+            props.dispatch(setContent('rewards'))
+          }}
+        />
         <Route path="/goals" render={() => {
           props.dispatch(setContent('goals'))
         }} />

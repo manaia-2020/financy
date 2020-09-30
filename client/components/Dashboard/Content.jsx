@@ -22,6 +22,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Modal from '@material-ui/core/Modal'
 import Select from '@material-ui/core/Select'
+import Avatar from '@material-ui/core/Avatar'
 import { formatAmount } from '../../utils/currency'
 import { MenuItem } from '@material-ui/core'
 
@@ -73,6 +74,7 @@ function Content (props) {
 
   const money = ['balance', 'amount']
   const date = ['goal_date', 'date']
+  const noNames = ['delete', 'image']
 
   return (
     <Paper className={classes.paper}>
@@ -118,7 +120,7 @@ function Content (props) {
                   ))}
                 </Select>
               )}
-              <Button variant="contained" onClick={handleOpen} className={classes.add}>add {type}</Button>
+              {type !== 'reward' && <Button variant="contained" onClick={handleOpen} className={classes.add}>add {type}</Button>}
               <Modal
                 open={open}
                 onClose={handleClose}
@@ -152,7 +154,7 @@ function Content (props) {
                       <TableCell key={column}>{column}</TableCell>
                     ) : (
                       <TableCell align="right" key={column}>
-                        {column !== 'delete' ? column : ''}
+                        {!noNames.includes(column) ? column : ''}
                       </TableCell>)
                     )}
                   </TableRow>
@@ -164,7 +166,7 @@ function Content (props) {
                         <TableCell key={column} component="th" scope="row">{row[column]}</TableCell>
                       ) : (
                         <TableCell key={column} align="right">
-                          {column !== 'delete' ? money.includes(column) || date.includes(column) ? money.includes(column) ? formatAmount(row[column]) : new Date(row[column]).toLocaleDateString() : row[column] : (
+                          {column !== 'delete' ? column === 'image' ? <Avatar alt={row.name} src={row[column]} style={{ float: 'right' }}/> : money.includes(column) || date.includes(column) ? money.includes(column) ? formatAmount(row[column]) : new Date(row[column]).toLocaleDateString() : row[column] : (
                             <Button
                               variant="contained"
                               color="secondary"

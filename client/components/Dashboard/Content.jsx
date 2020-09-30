@@ -142,7 +142,7 @@ function Content (props) {
         </Toolbar>
       </AppBar>
       <div className={classes.contentWrapper}>
-        {rows.length ? (
+        {rowsToDisplay.length ? (
           <>
             <TableContainer component={Paper}>
               <Table className={classes.table} aria-label="simple table">
@@ -182,8 +182,15 @@ function Content (props) {
             </TableContainer>
           </>
         ) : (
-          <Typography color="textSecondary" align="center">{message}</Typography>
-        )}
+          filterText ? (
+            <Typography color="textSecondary" align="center">
+              There are no items by that name!
+            </Typography>
+          ) : (
+            <Typography color="textSecondary" align="center">
+              {message}
+            </Typography>
+          ))}
       </div>
     </Paper>
   )

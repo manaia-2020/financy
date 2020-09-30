@@ -9,25 +9,26 @@ import AccordionSummary from '@material-ui/core/AccordionSummary'
 import AccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Button from '@material-ui/core/Button'
+import { Button } from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 import AddAccount from './AddAccount'
+import { formatAmount } from '../utils/currency'
 
 function Accounts (props) {
-  const { accounts, userInfo } = props
+  const { accounts, userInfo, dispatch } = props
   useEffect(() => {
-    getAccountApi(userInfo.id)
-      .then((results) => {
-        props.dispatch(getAccounts(results))
-        return null
-      }).catch((err) => {
-        if (err) console.log(err.message)
-      })
-  }, [])
+    if (userInfo.id) {
+      getAccountApi(userInfo.id)
+        .then((results) => dispatch(getAccounts(results)))
+        .catch((err) => console.log(err.message))
+    }
+  }, [userInfo])
 
   function handleClick (id) {
     removeAccount(id)
-    return props.dispatch(deleteAccount(id))
+      .then(() => dispatch(deleteAccount(id)))
+      .catch((err) => console.log(err.message))
   }
 
   const useStyles = makeStyles((theme) => ({
@@ -50,26 +51,31 @@ function Accounts (props) {
         <Typography component="h1" variant="h5">
            Here are your accounts..
         </Typography>
-        {accounts.map((acc, i) => (
-          <div key={acc[0].id}>
+        {accounts.map((account) => (
+          <div key={account.id}>
             <Accordion>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography component="h1" variant="h5">{acc[0].name}
+                <Typography component="h1" variant="h5">{account.name}
                 </Typography>
 
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  Balance:${acc[0].balance}
-                  <Button className={classes.submit}
-                    onClick={() => handleClick(acc[0].id)}>
-                      Remove
-                  </Button>
+                <Typography style={{ flex: 1 }}>
+                  Balance: {formatAmount(account.balance)}
                 </Typography>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.button}
+                  startIcon={<DeleteIcon />}
+                  onClick={() => handleClick(account.id)}
+                >
+                    Remove Account
+                </Button>
               </AccordionDetails>
             </Accordion>
           </div>

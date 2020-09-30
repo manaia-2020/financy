@@ -9,6 +9,11 @@ function deleteAccount (id, db = connection) {
     .del()
 }
 
+function getAccountById (id, db = connection) {
+  return db('accounts').where('id', id).first()
+}
+
 module.exports = {
-  deleteAccount
+  deleteAccount,
+  getAccountById
 }

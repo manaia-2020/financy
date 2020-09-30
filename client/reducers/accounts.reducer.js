@@ -8,11 +8,7 @@ export default function accountsReducer (state = initialState, action) {
       return action.accounts
 
     case ADD_ACCOUNT:
-      return [...state, {
-        name: action.account.name,
-        balance: action.account.balance,
-        user_id: action.id
-      }]
+      return [...state, action.account]
     case DELETE_ACCOUNT:
       return state.filter((account) => account.id !== action.id)
     default:

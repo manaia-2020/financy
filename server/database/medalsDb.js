@@ -11,7 +11,7 @@ function getPreviousBalance (userId, accountId, db = database) {
   const lastTrans = Date.now() - oneWeekInSecs
   return db('balance_history')
     .join('accounts', 'accounts.id', 'account_id')
-    .select()
+    .select('*', 'balance_history.balance as balance')
     .where({ user_id: userId })
     .where({ account_id: accountId })
     .where('balance_updated_at', '>', lastTrans)

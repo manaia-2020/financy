@@ -59,7 +59,7 @@ const styles = (theme) => ({
   }
 })
 
-function Team(props) {
+function Team (props) {
   const { classes } = props
 
   return (

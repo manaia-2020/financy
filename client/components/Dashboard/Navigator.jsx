@@ -110,7 +110,7 @@ const Nav = (props) => {
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     userInfo: state.addUserInfo
   }

@@ -13,6 +13,7 @@ import Container from '@material-ui/core/Container'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
+import clsx from 'clsx'
 
 const AddTransaction = (props) => {
   const useStyles = makeStyles((theme) => ({
@@ -146,7 +147,7 @@ const AddTransaction = (props) => {
                 shrink: true
               }}
             />
-            <Button type="submit" variant="contained" color="primary" className={classes.buttonMargin}>
+            <Button type="submit" variant="contained" color="primary" className={clsx(classes.buttonMargin, classes.submit)}>
               Add Transaction
             </Button>
             <Grid container ></Grid>

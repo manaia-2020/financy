@@ -73,13 +73,14 @@ const Transactions = (props) => {
       flexDirection: 'column',
       alignItems: 'center'
     },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+      backgroundColor: '#17E9E0'
+    },
     selectEmpty: {
       marginTop: theme.spacing(2)
     },
     boxMargin: {
-      marginTop: '15px'
-    },
-    buttonMargin: {
       marginTop: '15px'
     },
     boldHeading: {
@@ -93,18 +94,19 @@ const Transactions = (props) => {
   const latestBalance = balances.balance
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', width: '800px', margin: 'auto' }}>
+    <div>
       <div>
         <AddTransaction />
       </div>
-      <Container className={classes.containerMargin} component="main" maxWidth="xs">
+      <hr />
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <form className={classes.formControl} onSubmit={requestTransactions}>
           <div className={classes.paper}>
             <Typography component="h1" variant="h5">
             View Transactions
             </Typography>
-            <FormControl>
+            <FormControl className={classes.formControl}>
               <InputLabel>Account</InputLabel>
               <Select
                 labelId="accountSelect"
@@ -123,7 +125,7 @@ const Transactions = (props) => {
                 ))}
               </Select>
               <FormHelperText>Please Select An Account</FormHelperText>
-              <Button className={classes.buttonMargin} type="submit" variant="contained" color="primary">
+              <Button className={clsx(classes.boxMargin, classes.submit)} type="submit" variant="contained" color="primary">
               Get
               </Button>
             </FormControl>
@@ -161,6 +163,7 @@ const Transactions = (props) => {
           ))}
       </Container>
     </div>
+
   )
 }
 

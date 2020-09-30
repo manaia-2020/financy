@@ -16,6 +16,7 @@ import Input from '@material-ui/core/Input'
 import InputLabel from '@material-ui/core/InputLabel'
 
 function AddAccount (props) {
+  const { dispatch, userInfo } = props
   const [account, setAccount] = useState({
     name: '',
     balance: ''
@@ -28,10 +29,10 @@ function AddAccount (props) {
   }
 
   function handleSubmit (event) {
-    const id = props.userInfo.id
     event.preventDefault()
-    props.dispatch(addAccount(account, id))
+    const id = userInfo.id
     postAccount(id, account)
+      .then((account) => dispatch(addAccount(account)))
       .catch(err => console.log(err))
   }
 

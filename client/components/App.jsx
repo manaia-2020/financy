@@ -5,12 +5,11 @@ import { connect } from 'react-redux'
 import Login from './Login'
 import Register from './Register'
 
-import Nav from './Nav'
 import { getUser } from '../api/api'
 import { addUserInfo } from '../actions'
 
+import Dashboard from './Dashboard/Dashboard'
 import Transactions from './Transactions'
-import Dashboard from './Dashboard'
 import Goals from './Goals'
 import Rewards from './Rewards'
 import Accounts from './Accounts'
@@ -25,26 +24,20 @@ const App = (props) => {
 
   return (
     <>
-      <Route path="/" component={Nav} />
+      <Route path="/" component={Dashboard} />
       <Route exact path="/" component={LandingPage} />
       <Route
         exact path="/login"
         render={({ history }) => {
           return isAuthenticated() ? (
-            <Redirect to="/dashboard" />
-          ) : (
-            <Login history={history} />
-          )
+            <Redirect to="/dashboard" />) : (<Login history={history} />)
         }}
       />
       <Route
         exact path="/register"
         render={({ history }) => {
           return isAuthenticated() ? (
-            <Redirect to="/dashboard" />
-          ) : (
-            <Register history={history} />
-          )
+            <Redirect to="/dashboard" />) : (<Register history={history} />)
         }}
       />
       <Switch>
